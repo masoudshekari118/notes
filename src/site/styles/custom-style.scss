@@ -1,13 +1,410 @@
+/* ============================================
+   Masoud Shekari Digital Garden Theme
+   Persian RTL Knowledge Garden
+   ============================================ */
+
+
+/* فونت فارسی */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+
+:root {
+
+    /* رنگ‌های اصلی */
+    --primary-green: #166534;
+    --primary-green-light: #22c55e;
+    --accent-gold: #d97706;
+
+    /* پس زمینه */
+    --background-main: #fafaf8;
+    --background-card: #ffffff;
+
+    /* متن */
+    --text-main: #1f2937;
+    --text-secondary: #6b7280;
+
+    /* حاشیه */
+    --border-color: #e5e7eb;
+
+}
+
+
+
+/* ============================================
+   تنظیمات کلی
+   ============================================ */
+
+
+html {
+    direction: rtl;
+}
+
+
 body {
-    /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-      IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
-   ***/
-    //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
-    //  h1 {
-    //   color: black;
-    //  }
+
+    font-family: "Vazirmatn",
+                 Tahoma,
+                 Arial,
+                 sans-serif;
+
+    direction: rtl;
+    text-align: right;
+
+    background: var(--background-main);
+
+    color: var(--text-main);
+
+    line-height: 2;
+
+    font-size: 16px;
+
+}
+
+
+/* ============================================
+   لینک‌ها
+   ============================================ */
+
+
+a {
+
+    color: var(--primary-green);
+
+    text-decoration: none;
+
+    border-bottom: none;
+
+    transition: all .2s ease;
+
+}
+
+
+a:hover {
+
+    color: var(--primary-green-light);
+
+}
+
+
+/* ============================================
+   تیترها
+   ============================================ */
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+
+    font-family: "Vazirmatn", sans-serif;
+
+    font-weight: 800;
+
+    color: #111827;
+
+    line-height: 1.5;
+
+}
+
+
+
+h1 {
+
+    font-size: 2.4rem;
+
+    border-right: 5px solid var(--primary-green);
+
+    padding-right: 1rem;
+
+}
+
+
+
+h2 {
+
+    font-size: 1.8rem;
+
+    color: var(--primary-green);
+
+}
+
+
+
+h3 {
+
+    font-size: 1.4rem;
+
+}
+
+
+/* ============================================
+   محتوای یادداشت
+   ============================================ */
+
+
+article,
+.content,
+.note {
+
+    background: var(--background-card);
+
+    border-radius: 18px;
+
+    padding: 2.5rem;
+
+    box-shadow:
+
+        0 10px 30px rgba(0,0,0,.05);
+
+    border:1px solid var(--border-color);
+
+}
+
+
+/* ============================================
+   پاراگراف‌ها
+   ============================================ */
+
+
+p {
+
+    margin-bottom: 1.4rem;
+
+}
+
+
+/* ============================================
+   نقل قول‌ها
+   ============================================ */
+
+
+blockquote {
+
+
+    background:#f0fdf4;
+
+    border-right:5px solid var(--primary-green);
+
+    border-left:none;
+
+    border-radius:12px;
+
+    padding:1rem 1.5rem;
+
+    margin:2rem 0;
+
+    color:#374151;
+
+
+}
+
+
+
+/* ============================================
+   کدها
+   ============================================ */
+
+
+code {
+
+
+    direction:ltr;
+
+    background:#f3f4f6;
+
+    color:#be123c;
+
+    border-radius:6px;
+
+    padding:.2rem .5rem;
+
+}
+
+
+
+pre {
+
+    direction:ltr;
+
+    border-radius:12px;
+
+}
+
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+
+nav,
+.navbar {
+
+
+    direction:rtl;
+
+    background:white;
+
+    border-bottom:1px solid var(--border-color);
+
+
+    padding:1rem 2rem;
+
+
+    box-shadow:
+
+    0 3px 12px rgba(0,0,0,.04);
+
+
+}
+
+
+/* ============================================
+   کارت‌های لینک و یادداشت
+   ============================================ */
+
+
+.card,
+.note-card {
+
+
+    background:white;
+
+    border-radius:16px;
+
+    border:1px solid var(--border-color);
+
+    padding:1.5rem;
+
+    transition:.25s;
+
+
+}
+
+
+.card:hover,
+.note-card:hover {
+
+
+    transform:translateY(-4px);
+
+
+    box-shadow:
+
+    0 12px 30px rgba(0,0,0,.08);
+
+
+}
+
+
+
+/* ============================================
+   بک لینک‌ها
+   ============================================ */
+
+
+.backlinks,
+.graph {
+
+
+    background:white;
+
+    border-radius:16px;
+
+    border:1px solid var(--border-color);
+
+    padding:1.5rem;
+
+}
+
+
+
+/* ============================================
+   تگ‌ها
+   ============================================ */
+
+
+.tag {
+
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:.3rem .8rem;
+
+    border-radius:20px;
+
+    font-size:.85rem;
+
+}
+
+
+/* ============================================
+   صفحه اصلی
+   ============================================ */
+
+
+main {
+
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:2rem;
+
+
+}
+
+
+
+/* ============================================
+   تصاویر
+   ============================================ */
+
+
+img {
+
+
+    max-width:100%;
+
+    border-radius:16px;
+
+
+}
+
+
+
+/* ============================================
+   موبایل
+   ============================================ */
+
+
+@media(max-width:768px){
+
+
+    body{
+
+        font-size:15px;
+
+    }
+
+
+    article,
+    .content,
+    .note {
+
+        padding:1.2rem;
+
+    }
+
+
+    h1{
+
+        font-size:1.8rem;
+
+    }
+
+
 }
