@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/nwfkr/chtwr-az-ai-yk-astad-khswsy-waqey-bsazym/","dg-note-properties":{}}
+{"dg-publish":true,"dg-permalink":"/ai-tutor","permalink":"/ai-tutor/","dg-note-properties":{}}
 ---
 
 
