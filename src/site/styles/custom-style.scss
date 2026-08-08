@@ -274,3 +274,11 @@ article:hover { box-shadow: var(--shadow); border-color: var(--accent-light); }
   .header-inner { flex-wrap: wrap; gap: 1rem; }
   .header-search { max-width: 100%; order: 3; }
 }
+
+/* همهٔ کلاس‌های احتمالی سایدبار */
+.sidebar, .left-sidebar, .right-sidebar, .side-panel, .sidenav, .folder-container, .nav-folder, .tree, .file-tree, .note-sidebar, .explorer, .vault-tree {
+  background: var(--bg-sidebar) !important;
+  color: var(--text-primary) !important;
+  width: 280px !important;
+  border-right: 1px solid var(--border) !important;
+}
