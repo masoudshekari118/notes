@@ -1,112 +1,114 @@
 /* =========================================================
-   MASOUD SHEKARI — PERSONAL DIGITAL GARDEN
-   Premium Light / Dark UI
-   Designed for Obsidian Digital Garden
+   MASOUD SHEKARI — DIGITAL GARDEN
+   Note Page UI / UX
+   Light & Dark Theme
    ========================================================= */
 
 
-/* =========================================================
-   01 — FONT
-   ========================================================= */
+/* ---------------------------------------------------------
+   01. FONT
+   --------------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
 
-/* =========================================================
-   02 — DESIGN TOKENS
-   ========================================================= */
+/* ---------------------------------------------------------
+   02. LIGHT THEME
+   --------------------------------------------------------- */
 
 :root {
 
   --font: 'Vazirmatn', Tahoma, sans-serif;
 
-  /* Main palette */
-  --bg-body: #f5f7f5;
-  --bg-surface: #ffffff;
-  --bg-sidebar: #f7f9f7;
+  /* Backgrounds */
+  --background-primary: #f5f7f5;
+  --background-secondary: #eef2ef;
+  --background-tertiary: #e8ede9;
 
-  --bg-hover: #eef5f0;
-  --bg-active: #e7f0ea;
+  --background-primary-alt: #f8faf8;
 
-  --text-primary: #26332c;
-  --text-secondary: #526159;
-  --text-muted: #8a9790;
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-soft: #f8faf8;
+  --surface-hover: #eef5f0;
 
-  /* Calm emerald */
-  --accent: #287a57;
-  --accent-light: #4c9975;
-  --accent-hover: #1f6246;
-  --accent-soft: #e5f1ea;
+  /* Text */
+  --text-normal: #26332c;
+  --text-muted: #718078;
+  --text-faint: #9aa69f;
+
+  /* Accent */
+  --interactive-accent: #287a57;
+  --interactive-accent-hover: #1f6849;
+  --accent-color: #287a57;
+
+  --accent-soft: #e4f0e8;
+  --accent-softer: #eef6f1;
 
   /* Borders */
-  --border: #dfe7e2;
-  --border-light: #edf1ee;
-
-  /* Layout */
-  --content-width: 1180px;
-  --reading-width: 780px;
-  --sidebar-width: 250px;
-
-  /* Radius */
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
+  --background-modifier-border: #dfe7e2;
+  --background-modifier-border-hover: #cbd8d0;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(35, 55, 44, 0.035);
-  --shadow: 0 6px 24px rgba(35, 55, 44, 0.055);
-  --shadow-lg: 0 14px 40px rgba(35, 55, 44, 0.08);
+  --shadow-soft: 0 2px 12px rgba(38, 51, 44, .045);
+  --shadow-medium: 0 8px 28px rgba(38, 51, 44, .07);
 
-  --transition: 180ms ease;
+  /* Radius */
+  --radius-small: 7px;
+  --radius-medium: 12px;
+  --radius-large: 18px;
+
+  /* Layout */
+  --dg-content-max-width: 1180px;
+  --dg-filetree-width: 260px;
+
 }
 
 
-/* =========================================================
-   03 — DARK MODE
-   ========================================================= */
+/* ---------------------------------------------------------
+   03. DARK THEME
+   --------------------------------------------------------- */
 
 html.dark {
 
-  --bg-body: #141b17;
-  --bg-surface: #1a231e;
-  --bg-sidebar: #18211c;
+  --background-primary: #151b17;
+  --background-secondary: #1a221d;
+  --background-tertiary: #202a23;
 
-  --bg-hover: #202d26;
-  --bg-active: #26362d;
+  --background-primary-alt: #182019;
 
-  --text-primary: #e8eee9;
-  --text-secondary: #b8c5bc;
-  --text-muted: #7e8c83;
+  --surface: #1b241e;
+  --surface-soft: #202a23;
+  --surface-hover: #26332b;
 
-  --accent: #6db894;
-  --accent-light: #82c7a5;
-  --accent-hover: #91d1b1;
-  --accent-soft: #203b2d;
+  --text-normal: #e6ece8;
+  --text-muted: #b0bdb5;
+  --text-faint: #7e8c84;
 
-  --border: #2d3931;
-  --border-light: #232d27;
+  --interactive-accent: #70b996;
+  --interactive-accent-hover: #8ac8a8;
+  --accent-color: #70b996;
 
-  --shadow-sm: 0 1px 4px rgba(0,0,0,.15);
-  --shadow: 0 8px 28px rgba(0,0,0,.20);
-  --shadow-lg: 0 16px 44px rgba(0,0,0,.28);
+  --accent-soft: #20392b;
+  --accent-softer: #1c3025;
+
+  --background-modifier-border: #2c3830;
+  --background-modifier-border-hover: #3a4940;
+
+  --shadow-soft: 0 2px 14px rgba(0,0,0,.15);
+  --shadow-medium: 0 10px 30px rgba(0,0,0,.25);
 }
 
 
-/* =========================================================
-   04 — GLOBAL RESET
-   ========================================================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* ---------------------------------------------------------
+   04. GLOBAL
+   --------------------------------------------------------- */
 
 html {
   font-size: 16px;
   scroll-behavior: smooth;
 }
+
 
 body {
 
@@ -114,839 +116,693 @@ body {
 
   direction: rtl;
 
-  background: var(--bg-body) !important;
+  background: var(--background-primary) !important;
 
-  color: var(--text-primary) !important;
+  color: var(--text-normal) !important;
 
   line-height: 2;
 
   transition:
-    background var(--transition),
-    color var(--transition);
+    background-color .25s ease,
+    color .25s ease;
+
 }
 
 
-/* Force Vazirmatn */
+/* Force font */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-li,
-a,
-span,
-div,
-button,
-input,
-textarea,
-select {
+*,
+*::before,
+*::after {
 
   font-family: var(--font) !important;
+
 }
 
 
-/* =========================================================
-   05 — MAIN TYPOGRAPHY
-   ========================================================= */
+/* ---------------------------------------------------------
+   05. MAIN PAGE BACKGROUND
+   --------------------------------------------------------- */
 
-h1 {
+/*
+   Removes the old strong separation between
+   sidebar and note content.
+*/
+
+body,
+body.theme-light,
+body.theme-dark {
+
+  background: var(--background-primary) !important;
+
+}
+
+
+/* Main Digital Garden wrapper */
+
+.content-wrapper,
+.content {
+
+  background: transparent !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   06. NAVBAR
+   --------------------------------------------------------- */
+
+.navbar {
+
+  background: rgba(255,255,255,.92) !important;
+
+  border-bottom: 1px solid var(--background-modifier-border) !important;
+
+  box-shadow: var(--shadow-soft) !important;
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+
+  z-index: 1000;
+
+}
+
+
+html.dark .navbar {
+
+  background: rgba(21,27,23,.92) !important;
+
+}
+
+
+/* Navbar links */
+
+.navbar a {
+
+  color: var(--text-muted) !important;
+
+  border: none !important;
+
+  transition:
+    color .18s ease,
+    background .18s ease;
+
+}
+
+
+.navbar a:hover {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-softer);
+
+  border-radius: var(--radius-small);
+
+}
+
+
+/* ---------------------------------------------------------
+   07. FILE TREE / LEFT NAVIGATION
+   --------------------------------------------------------- */
+
+/*
+   The old Digital Garden sidebar is intentionally
+   made light and visually integrated with the page.
+*/
+
+.filetree-wrapper,
+.filetree-sidebar {
+
+  background: var(--background-primary) !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+}
+
+
+/* File tree width */
+
+.filetree-sidebar {
+
+  width: 270px !important;
+
+}
+
+
+/* Remove vertical separator */
+
+.filetree-sidebar {
+
+  border-right: none !important;
+
+  border-left: none !important;
+
+}
+
+
+/* File tree links */
+
+.filetree-sidebar a,
+.filetree-wrapper a {
+
+  color: var(--text-muted) !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  border-radius: var(--radius-small);
+
+  padding: .42rem .75rem;
+
+  margin: 2px 0;
+
+  transition:
+    color .18s ease,
+    background .18s ease;
+
+}
+
+
+/* Hover */
+
+.filetree-sidebar a:hover,
+.filetree-wrapper a:hover {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-softer) !important;
+
+}
+
+
+/* Active */
+
+.filetree-sidebar a.active,
+.filetree-wrapper a.active {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-soft) !important;
+
+  font-weight: 600;
+
+}
+
+
+/* Folder names */
+
+.filetree-sidebar .folder,
+.filetree-sidebar .folder-name {
+
+  color: var(--text-normal) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   08. REMOVE OLD SIDEBAR BOXES
+   --------------------------------------------------------- */
+
+.filetree,
+.file-tree,
+.nav-folder,
+.folder-container,
+.tree,
+.sidenav,
+.explorer {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   09. MAIN CONTENT
+   --------------------------------------------------------- */
+
+.content {
+
+  max-width: 800px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  padding: 2rem 2.5rem 4rem;
+
+}
+
+
+/*
+   Remove the old card-like appearance.
+*/
+
+.content article,
+.content .markdown-preview-view,
+.content .note-content {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   10. NOTE TITLE
+   --------------------------------------------------------- */
+
+.content h1 {
+
+  color: var(--text-normal) !important;
 
   font-size: clamp(1.9rem, 3vw, 2.45rem);
 
   font-weight: 800;
 
-  line-height: 1.5;
+  line-height: 1.55;
 
-  color: var(--text-primary) !important;
+  letter-spacing: -.025em;
 
-  margin: 0 0 1.6rem;
+  margin: 0 0 1.5rem;
 
-  padding-bottom: 1rem;
+  padding-bottom: 1.1rem;
 
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--background-modifier-border);
 
-  letter-spacing: -0.02em;
 }
 
 
-h2 {
+/* ---------------------------------------------------------
+   11. HEADINGS
+   --------------------------------------------------------- */
 
-  font-size: 1.55rem;
+.content h2 {
+
+  color: var(--text-normal) !important;
+
+  font-size: 1.5rem;
 
   font-weight: 700;
 
   line-height: 1.6;
 
-  color: var(--text-primary) !important;
+  margin-top: 2.7rem;
 
-  margin: 2.5rem 0 1rem;
+  margin-bottom: 1rem;
 
-  position: relative;
 }
 
 
-h2::before {
+.content h2::before {
 
   content: "";
 
   display: inline-block;
 
-  width: 5px;
+  width: 4px;
 
-  height: 1.35em;
+  height: 1.15em;
 
-  background: var(--accent);
+  background: var(--accent-color);
 
   border-radius: 10px;
 
   margin-left: .65rem;
 
-  vertical-align: -0.25em;
+  vertical-align: -.2em;
+
 }
 
 
-h3 {
+.content h3 {
 
-  font-size: 1.3rem;
+  color: var(--text-normal) !important;
+
+  font-size: 1.25rem;
 
   font-weight: 700;
 
-  color: var(--text-primary) !important;
-
-  margin: 2rem 0 .8rem;
-}
-
-
-h4,
-h5,
-h6 {
-
-  color: var(--text-secondary) !important;
+  margin-top: 2rem;
 
 }
 
 
-p {
+/* ---------------------------------------------------------
+   12. PARAGRAPHS
+   --------------------------------------------------------- */
 
-  color: var(--text-secondary);
+.content p {
 
-  margin-bottom: 1.25rem;
+  color: var(--text-normal) !important;
+
+  font-size: 1rem;
+
+  line-height: 2.15;
+
+  margin-bottom: 1.3rem;
 
 }
 
 
-/* =========================================================
-   06 — LINKS
-   ========================================================= */
+/* ---------------------------------------------------------
+   13. LINKS
+   --------------------------------------------------------- */
 
-a {
+.content a {
 
-  color: var(--accent) !important;
+  color: var(--accent-color) !important;
 
   text-decoration: none;
 
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px dashed rgba(40,122,87,.35);
 
   transition:
-    color var(--transition),
-    border-color var(--transition),
-    background var(--transition);
+    color .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+
 }
 
 
-a:hover {
+.content a:hover {
 
-  color: var(--accent-hover) !important;
+  color: var(--interactive-accent-hover) !important;
 
-  border-bottom-color: var(--accent-light);
+  background: var(--accent-softer);
+
+  border-bottom-color: var(--accent-color);
+
+  border-radius: 3px;
+
 }
 
 
-/* Internal links */
+/* ---------------------------------------------------------
+   14. INTERNAL LINKS
+   --------------------------------------------------------- */
 
-.internal-link {
+.content .internal-link {
 
-  color: var(--accent) !important;
+  color: var(--accent-color) !important;
 
   border-bottom: 1px dashed rgba(40,122,87,.35);
 
 }
 
 
-.internal-link:hover {
+/* ---------------------------------------------------------
+   15. TAGS
+   --------------------------------------------------------- */
 
-  background: var(--accent-soft);
+.tag {
 
-  border-radius: 4px;
-
-  border-bottom-color: var(--accent);
-}
-
-
-/* =========================================================
-   07 — TOP NAVIGATION
-   ========================================================= */
-
-/*
-   When the real Digital Garden header is used,
-   this styling gives it a clean floating navigation appearance.
-*/
-
-.site-header {
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 1000;
-
-  width: 100%;
-
-  padding: .65rem 1.5rem;
-
-  background: rgba(255,255,255,.88);
-
-  border-bottom: 1px solid var(--border-light);
-
-  box-shadow: 0 2px 14px rgba(30,50,40,.035);
-
-  backdrop-filter: blur(14px);
-
-  -webkit-backdrop-filter: blur(14px);
-
-  transition:
-    background var(--transition),
-    border var(--transition);
-}
-
-
-html.dark .site-header {
-
-  background: rgba(20,27,23,.88);
-}
-
-
-.header-inner {
-
-  max-width: var(--content-width);
-
-  min-height: 58px;
-
-  margin: 0 auto;
-
-  display: flex;
+  display: inline-flex !important;
 
   align-items: center;
 
-  gap: 1.5rem;
-}
+  padding: .22rem .7rem !important;
 
+  margin: .15rem .1rem;
 
-/* Site name */
+  border-radius: 999px !important;
 
-.site-logo {
+  background: var(--accent-soft) !important;
 
-  flex-shrink: 0;
+  color: var(--accent-color) !important;
 
-  font-size: 1.15rem;
+  border: 1px solid transparent !important;
 
-  font-weight: 800;
+  font-size: .8rem;
 
-  color: var(--text-primary) !important;
-
-  border: none !important;
-
-  white-space: nowrap;
-}
-
-
-.site-logo:hover {
-
-  color: var(--accent) !important;
+  text-decoration: none !important;
 
 }
 
 
-/* Search */
+.tag:hover {
 
-.header-search {
+  background: var(--accent-softer) !important;
 
-  flex: 1;
-
-  max-width: 360px;
-
-  margin-right: auto;
-}
-
-
-.search-input {
-
-  width: 100%;
-
-  padding: .58rem 1rem;
-
-  background: var(--bg-body);
-
-  color: var(--text-primary);
-
-  border: 1px solid var(--border);
-
-  border-radius: var(--radius-xl);
-
-  outline: none;
-
-  font-size: .9rem;
-
-  transition:
-    border var(--transition),
-    background var(--transition),
-    box-shadow var(--transition);
-}
-
-
-.search-input::placeholder {
-
-  color: var(--text-muted);
-}
-
-
-.search-input:focus {
-
-  background: var(--bg-surface);
-
-  border-color: var(--accent-light);
-
-  box-shadow:
-    0 0 0 3px var(--accent-soft);
-}
-
-
-/* Navigation */
-
-.header-nav {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: .25rem;
-
-  white-space: nowrap;
-}
-
-
-.header-nav a {
-
-  padding: .45rem .75rem;
-
-  border-radius: var(--radius-sm);
-
-  color: var(--text-secondary) !important;
-
-  font-size: .9rem;
-
-  font-weight: 500;
-
-  border: none !important;
-}
-
-
-.header-nav a:hover {
-
-  color: var(--accent) !important;
-
-  background: var(--bg-hover);
-}
-
-
-/* Theme button */
-
-.theme-toggle {
-
-  width: 38px;
-
-  height: 38px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border: 1px solid var(--border);
-
-  border-radius: 50%;
-
-  background: var(--bg-surface);
-
-  color: var(--text-secondary);
-
-  cursor: pointer;
-
-  transition: all var(--transition);
-}
-
-
-.theme-toggle:hover {
-
-  color: var(--accent);
-
-  background: var(--accent-soft);
-
-  border-color: var(--accent-light);
+  border-color: var(--accent-color) !important;
 
 }
 
 
-/* =========================================================
-   08 — MAIN LAYOUT
-   ========================================================= */
+/* ---------------------------------------------------------
+   16. TABLE OF CONTENTS
+   --------------------------------------------------------- */
 
-.main-wrapper {
+.toc {
 
-  width: 100%;
+  background: var(--accent-softer) !important;
 
-  max-width: var(--content-width);
+  border: 1px solid var(--background-modifier-border) !important;
 
-  margin: 0 auto;
+  border-radius: var(--radius-medium) !important;
 
-  padding: 3rem 2rem 4rem;
+  padding: 1rem 1.2rem !important;
 
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 3.5rem;
-}
-
-
-/* =========================================================
-   09 — SIDEBAR
-   ========================================================= */
-
-.sidebar-left,
-aside.sidebar,
-.sidebar,
-.left-sidebar,
-.right-sidebar,
-.side-panel,
-.sidenav,
-.folder-container,
-.nav-folder,
-.tree,
-.file-tree,
-.note-sidebar,
-.explorer,
-.vault-tree {
-
-  background: var(--bg-sidebar) !important;
-
-  color: var(--text-secondary) !important;
-
-  border: none !important;
+  margin: 0 0 2rem !important;
 
   box-shadow: none !important;
-}
-
-
-/* Main sidebar */
-
-.sidebar-left,
-aside.sidebar {
-
-  width: var(--sidebar-width);
-
-  min-width: var(--sidebar-width);
-
-  flex-shrink: 0;
-
-  padding: 1rem 0;
-
-  position: sticky;
-
-  top: 85px;
-
-  border-radius: var(--radius-lg);
 
 }
 
 
-/* Remove old visual box */
+.toc a {
 
-.sidebar-left::before,
-aside.sidebar::before {
-
-  display: none;
-}
-
-
-/* Sidebar items */
-
-.sidebar-left a,
-aside.sidebar a {
-
-  display: block;
-
-  padding: .55rem .9rem;
-
-  margin: 2px 0;
+  color: var(--text-muted) !important;
 
   border: none !important;
 
-  border-radius: var(--radius-sm);
-
-  color: var(--text-secondary) !important;
-
-  font-size: .9rem;
-}
-
-
-.sidebar-left a:hover,
-aside.sidebar a:hover {
-
-  background: var(--bg-hover);
-
-  color: var(--accent) !important;
-}
-
-
-/* Active sidebar item */
-
-.sidebar-left a.active,
-aside.sidebar a.active {
-
-  background: var(--bg-active);
-
-  color: var(--accent) !important;
-
-  font-weight: 600;
-}
-
-
-/* =========================================================
-   10 — CONTENT AREA
-   ========================================================= */
-
-.content {
-
-  flex: 1;
-
-  min-width: 0;
-
-  max-width: var(--reading-width);
+  font-size: .88rem;
 
 }
 
 
-/*
-   Important:
-   Remove the "boxed website" feeling.
-*/
+.toc a:hover {
 
-article,
-.note-content,
-.content-card {
-
-  width: 100%;
+  color: var(--accent-color) !important;
 
   background: transparent !important;
 
-  border: none !important;
-
-  box-shadow: none !important;
-
-  border-radius: 0;
-
-  padding: 0;
-
-  margin-bottom: 3rem;
 }
 
 
-/* Reading text */
-
-article p,
-.note-content p {
-
-  max-width: 100%;
-
-  font-size: 1rem;
-
-  line-height: 2.15;
-}
-
-
-/* =========================================================
-   11 — NOTE LIST
-   ========================================================= */
-
-.note-list-item {
-
-  display: block;
-
-  padding: 1.15rem 1.35rem;
-
-  margin-bottom: .75rem;
-
-  background: var(--bg-surface);
-
-  border: 1px solid var(--border-light);
-
-  border-radius: var(--radius);
-
-  box-shadow: var(--shadow-sm);
-
-  color: inherit;
-
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    border-color var(--transition),
-    background var(--transition);
-}
-
-
-.note-list-item:hover {
-
-  transform: translateY(-2px);
-
-  background: var(--bg-surface);
-
-  border-color: var(--accent-light);
-
-  box-shadow: var(--shadow);
-}
-
-
-.note-list-item h3 {
-
-  margin: 0 0 .25rem;
-
-  color: var(--text-primary) !important;
-
-  font-size: 1.1rem;
-}
-
-
-.note-list-item p {
-
-  margin: 0;
-
-  color: var(--text-muted);
-}
-
-
-/* =========================================================
-   12 — GRAPH
-   ========================================================= */
+/* ---------------------------------------------------------
+   17. GRAPH
+   --------------------------------------------------------- */
 
 .graph {
 
-  position: relative;
+  background: var(--surface) !important;
 
-  background: var(--bg-surface) !important;
+  border: 1px solid var(--background-modifier-border) !important;
 
-  border: 1px solid var(--border-light) !important;
+  border-radius: var(--radius-large) !important;
 
-  border-radius: var(--radius-lg);
+  padding: 1rem !important;
 
-  padding: 1.25rem;
+  margin: 3rem 0 !important;
 
-  margin: 2.5rem 0;
+  box-shadow: var(--shadow-soft) !important;
 
-  box-shadow: var(--shadow-sm);
-
-  overflow: hidden;
 }
 
 
-.graph h3 {
+#graph-component {
 
-  margin-top: 0;
+  background: transparent !important;
 
-  color: var(--text-primary) !important;
+  border-radius: var(--radius-medium);
+
 }
 
 
-/* Graph canvas */
-
-.graph canvas,
-.graph svg {
-
-  max-width: 100%;
-
-  border-radius: var(--radius);
-}
-
-
-/* =========================================================
-   13 — BACKLINKS
-   ========================================================= */
+/* ---------------------------------------------------------
+   18. BACKLINKS / CONNECTED PAGES
+   --------------------------------------------------------- */
 
 .backlinks {
 
-  margin-top: 3rem;
+  margin-top: 3rem !important;
 
-  padding-top: 1.5rem;
+  padding-top: 1.7rem !important;
 
   background: transparent !important;
 
   border: none !important;
 
-  border-top: 1px solid var(--border-light) !important;
-
-  border-radius: 0;
+  border-top: 1px solid var(--background-modifier-border) !important;
 
   box-shadow: none !important;
+
 }
 
 
 .backlinks h3 {
 
-  color: var(--text-primary) !important;
+  color: var(--text-normal) !important;
 
-  font-size: 1rem;
+  font-size: 1.05rem;
+
+  font-weight: 700;
 
   margin-bottom: 1rem;
+
 }
 
 
+/* Backlink items */
+
 .backlinks a {
 
-  display: inline-block;
+  display: inline-flex;
 
-  padding: .35rem .7rem;
+  padding: .35rem .75rem;
 
   margin: .2rem;
 
-  background: var(--accent-soft);
+  background: var(--surface);
 
-  border: 1px solid transparent;
+  border: 1px solid var(--background-modifier-border);
 
   border-radius: 999px;
 
-  font-size: .85rem;
+  color: var(--text-muted) !important;
+
+  font-size: .82rem;
+
 }
 
 
 .backlinks a:hover {
 
-  border-color: var(--accent-light);
+  background: var(--accent-soft);
 
-  background: var(--bg-active);
+  color: var(--accent-color) !important;
+
+  border-color: var(--accent-color);
+
 }
 
 
-/* =========================================================
-   14 — TAGS
-   ========================================================= */
+/* ---------------------------------------------------------
+   19. CONNECTED / MENTIONED PAGES
+   --------------------------------------------------------- */
 
-.tags-cloud {
+.content .page-list,
+.content .related-pages,
+.content .backlinks-list {
 
-  margin: 2rem 0;
+  margin-top: 1rem;
 
-  padding: 1rem 0;
-
-  background: transparent !important;
-
-  border: none !important;
-
-  box-shadow: none !important;
 }
 
 
-.tags-cloud a {
+.content .page-list a,
+.content .related-pages a,
+.content .backlinks-list a {
 
-  display: inline-flex;
+  display: block;
 
-  align-items: center;
+  padding: .65rem .85rem;
 
-  padding: .35rem .75rem;
+  margin-bottom: .45rem;
 
-  margin: .25rem;
+  background: var(--surface);
 
-  background: var(--bg-surface);
+  border: 1px solid var(--background-modifier-border);
 
-  border: 1px solid var(--border-light);
-
-  border-radius: 999px;
+  border-radius: var(--radius-medium);
 
   color: var(--text-secondary) !important;
 
-  font-size: .82rem;
+  border-bottom-width: 1px;
+
 }
 
 
-.tags-cloud a:hover {
+.content .page-list a:hover,
+.content .related-pages a:hover,
+.content .backlinks-list a:hover {
 
-  color: var(--accent) !important;
+  background: var(--accent-softer);
 
-  border-color: var(--accent-light);
+  border-color: var(--accent-color);
 
-  background: var(--accent-soft);
+  transform: translateX(-2px);
+
 }
 
 
-/* =========================================================
-   15 — BLOCKQUOTES
-   ========================================================= */
+/* ---------------------------------------------------------
+   20. BLOCKQUOTE
+   --------------------------------------------------------- */
 
 blockquote {
 
   margin: 2rem 0;
 
-  padding: 1.1rem 1.4rem;
+  padding: 1rem 1.3rem;
 
-  background: var(--accent-soft);
+  background: var(--accent-softer) !important;
 
-  border: none;
+  border: none !important;
 
-  border-right: 4px solid var(--accent);
+  border-right: 4px solid var(--accent-color) !important;
 
-  border-radius: var(--radius);
+  border-radius: var(--radius-medium);
 
-  color: var(--text-secondary);
+  color: var(--text-muted);
+
 }
 
 
 blockquote p {
 
   margin-bottom: 0;
+
 }
 
 
-/* =========================================================
-   16 — CODE
-   ========================================================= */
+/* ---------------------------------------------------------
+   21. CODE
+   --------------------------------------------------------- */
 
 code {
 
-  padding: .15rem .4rem;
+  background: var(--accent-softer) !important;
 
-  background: var(--bg-hover);
+  color: var(--accent-hover) !important;
 
-  color: var(--accent-hover);
+  padding: .12rem .4rem;
 
   border-radius: 5px;
 
-  font-size: .9em;
 }
 
 
 pre {
 
-  margin: 1.5rem 0;
+  background: #202822 !important;
+
+  color: #e8eee9 !important;
 
   padding: 1.25rem;
 
-  background: #202822 !important;
-
-  color: #e8eee9;
-
-  border-radius: var(--radius);
+  border-radius: var(--radius-medium);
 
   overflow-x: auto;
 
@@ -954,23 +810,46 @@ pre {
 
   text-align: left;
 
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-medium);
+
 }
 
 
 pre code {
 
-  background: transparent;
+  background: transparent !important;
 
-  color: inherit;
+  color: inherit !important;
+
 }
 
 
-/* =========================================================
-   17 — TABLES
-   ========================================================= */
+/* ---------------------------------------------------------
+   22. IMAGES
+   --------------------------------------------------------- */
 
-table {
+.content img {
+
+  display: block;
+
+  max-width: 100%;
+
+  height: auto;
+
+  margin: 2rem auto;
+
+  border-radius: var(--radius-large);
+
+  box-shadow: var(--shadow-medium);
+
+}
+
+
+/* ---------------------------------------------------------
+   23. TABLE
+   --------------------------------------------------------- */
+
+.content table {
 
   width: 100%;
 
@@ -980,456 +859,258 @@ table {
 
   border-spacing: 0;
 
+  background: var(--surface);
+
+  border: 1px solid var(--background-modifier-border);
+
+  border-radius: var(--radius-medium);
+
   overflow: hidden;
 
-  border: 1px solid var(--border-light);
-
-  border-radius: var(--radius);
-
-  background: var(--bg-surface);
 }
 
 
-th {
+.content th {
 
-  background: var(--bg-hover);
+  background: var(--accent-softer);
 
-  color: var(--text-primary);
+  color: var(--text-normal);
 
   font-weight: 700;
+
 }
 
 
-th,
-td {
+.content th,
+.content td {
 
   padding: .75rem 1rem;
 
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--background-modifier-border);
 
-  text-align: right;
 }
 
 
-tr:last-child td {
+.content tr:last-child td {
 
   border-bottom: none;
+
 }
 
 
-/* =========================================================
-   18 — IMAGES
-   ========================================================= */
+/* ---------------------------------------------------------
+   24. HORIZONTAL LINE
+   --------------------------------------------------------- */
 
-.note-content img,
-article img {
+.content hr {
 
-  max-width: 100%;
+  border: none;
 
-  height: auto;
-
-  display: block;
-
-  margin: 2rem auto;
-
-  border-radius: var(--radius-lg);
-
-  box-shadow: var(--shadow);
-}
-
-
-/* =========================================================
-   19 — HORIZONTAL RULE
-   ========================================================= */
-
-hr {
-
-  border: 0;
-
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--background-modifier-border);
 
   margin: 3rem 0;
+
 }
 
 
-/* =========================================================
-   20 — FOOTER
-   ========================================================= */
+/* ---------------------------------------------------------
+   25. SEARCH
+   --------------------------------------------------------- */
+
+.search-button {
+
+  color: var(--text-muted) !important;
+
+  background: var(--surface) !important;
+
+  border: 1px solid var(--background-modifier-border) !important;
+
+  border-radius: 999px !important;
+
+}
+
+
+.search-button:hover {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-softer) !important;
+
+  border-color: var(--accent-color) !important;
+
+}
+
+
+.search-box {
+
+  background: var(--surface) !important;
+
+  border: 1px solid var(--background-modifier-border) !important;
+
+  border-radius: var(--radius-large) !important;
+
+  box-shadow: var(--shadow-medium) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   26. FOOTER
+   --------------------------------------------------------- */
 
 .site-footer {
 
-  width: 100%;
+  max-width: var(--dg-content-max-width);
 
-  max-width: var(--content-width);
+  margin: 4rem auto 0;
 
-  margin: 3rem auto 0;
-
-  padding: 1.5rem 2rem;
+  padding: 1.4rem 2rem;
 
   text-align: center;
 
   background: transparent !important;
 
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--background-modifier-border) !important;
 
-  color: var(--text-muted);
+  color: var(--text-faint) !important;
 
-  font-size: .82rem;
+  font-size: .8rem;
+
 }
 
 
 .site-footer p {
 
-  margin: 0;
+  color: var(--text-faint) !important;
 
-  color: var(--text-muted);
 }
 
 
-.site-footer a {
+/* ---------------------------------------------------------
+   27. SELECTION
+   --------------------------------------------------------- */
 
-  color: var(--text-secondary) !important;
+::selection {
+
+  background: var(--accent-soft);
+
+  color: var(--text-normal);
+
 }
 
 
-/* =========================================================
-   21 — SEARCH RESULTS
-   ========================================================= */
-
-.search-container,
-.search-results {
-
-  background: var(--bg-surface) !important;
-
-  color: var(--text-primary);
-
-  border-color: var(--border) !important;
-
-  border-radius: var(--radius-lg);
-}
-
-
-.search-result {
-
-  padding: .8rem 1rem;
-
-  border-bottom: 1px solid var(--border-light);
-}
-
-
-.search-result:hover {
-
-  background: var(--bg-hover);
-}
-
-
-/* =========================================================
-   22 — TABLE OF CONTENTS
-   ========================================================= */
-
-.toc {
-
-  padding: 1rem;
-
-  margin-bottom: 2rem;
-
-  background: var(--bg-sidebar);
-
-  border-radius: var(--radius);
-
-  border: none;
-}
-
-
-.toc a {
-
-  color: var(--text-muted) !important;
-
-  font-size: .85rem;
-
-  border: none !important;
-}
-
-
-.toc a:hover {
-
-  color: var(--accent) !important;
-}
-
-
-/* =========================================================
-   23 — CALLOUTS
-   ========================================================= */
-
-.callout {
-
-  margin: 1.5rem 0;
-
-  border-radius: var(--radius);
-
-  border: 1px solid var(--border-light);
-
-  background: var(--bg-surface);
-}
-
-
-/* =========================================================
-   24 — SCROLLBAR
-   ========================================================= */
+/* ---------------------------------------------------------
+   28. SCROLLBAR
+   --------------------------------------------------------- */
 
 ::-webkit-scrollbar {
 
   width: 7px;
 
   height: 7px;
+
 }
 
 
 ::-webkit-scrollbar-track {
 
-  background: var(--bg-body);
+  background: var(--background-primary);
+
 }
 
 
 ::-webkit-scrollbar-thumb {
 
-  background: #c8d2cb;
+  background: #c7d2cb;
 
-  border-radius: 10px;
+  border-radius: 20px;
+
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
 
-  background: var(--accent-light);
+  background: var(--accent-color);
+
 }
 
 
 html.dark ::-webkit-scrollbar-thumb {
 
-  background: #46554c;
+  background: #45534b;
+
 }
 
 
-/* =========================================================
-   25 — SELECTION
-   ========================================================= */
+/* ---------------------------------------------------------
+   29. REMOVE HEAVY BORDERS
+   --------------------------------------------------------- */
 
-::selection {
+.filetree-sidebar,
+.sidebar,
+.filetree-wrapper,
+.content,
+.graph,
+.backlinks {
 
-  background: var(--accent-soft);
+  box-shadow: none;
 
-  color: var(--text-primary);
 }
 
 
-/* =========================================================
-   26 — MOBILE
-   ========================================================= */
+/* ---------------------------------------------------------
+   30. RESPONSIVE
+   --------------------------------------------------------- */
 
 @media (max-width: 900px) {
-
-  .main-wrapper {
-
-    flex-direction: column;
-
-    gap: 1.5rem;
-
-    padding: 2rem 1.25rem 3rem;
-  }
-
-
-  .sidebar-left,
-  aside.sidebar {
-
-    width: 100%;
-
-    min-width: 0;
-
-    position: static;
-
-    padding: .5rem 0;
-  }
-
 
   .content {
 
     max-width: 100%;
+
+    padding: 1.5rem 1.25rem 3rem;
+
   }
 
 
-  .site-header {
+  .filetree-sidebar {
 
-    padding: .6rem 1rem;
+    width: 100% !important;
+
   }
 
-
-  .header-inner {
-
-    flex-wrap: wrap;
-
-    gap: .6rem;
-  }
-
-
-  .header-search {
-
-    order: 3;
-
-    flex-basis: 100%;
-
-    max-width: none;
-  }
-
-
-  .header-nav {
-
-    gap: 0;
-  }
-
-
-  .header-nav a {
-
-    padding: .4rem .5rem;
-
-    font-size: .8rem;
-  }
-
-
-  h1 {
-
-    font-size: 1.8rem;
-  }
-
-
-  h2 {
-
-    font-size: 1.4rem;
-  }
 }
 
-
-/* =========================================================
-   27 — SMALL MOBILE
-   ========================================================= */
 
 @media (max-width: 600px) {
 
-  .site-logo {
+  .content {
 
-    font-size: 1rem;
+    padding: 1.25rem 1rem 2.5rem;
+
   }
 
 
-  .header-nav a {
+  .content h1 {
 
-    display: none;
+    font-size: 1.75rem;
+
   }
 
 
-  .main-wrapper {
+  .content h2 {
 
-    padding-left: 1rem;
+    font-size: 1.35rem;
 
-    padding-right: 1rem;
   }
 
 
-  article p,
-  .note-content p {
+  .content p {
 
-    font-size: .97rem;
+    font-size: .96rem;
 
     line-height: 2;
+
   }
-}
 
-
-/* =========================================================
-   28 — REMOVE OLD SIDEBAR BOX EFFECTS
-   ========================================================= */
-
-.sidebar-left *,
-aside.sidebar * {
-
-  box-shadow: none !important;
-}
-
-
-.sidebar-left,
-aside.sidebar {
-
-  border-left: none !important;
-
-  border-right: none !important;
-}
-
-
-/* =========================================================
-   29 — CLEAN DIGITAL GARDEN COMPONENTS
-   ========================================================= */
-
-.filetree,
-.file-tree,
-.nav-folder,
-.folder-container {
-
-  background: transparent !important;
-
-  border: none !important;
-}
-
-
-.filetree a,
-.file-tree a,
-.nav-folder a {
-
-  border: none !important;
-}
-
-
-/* =========================================================
-   30 — FINAL POLISH
-   ========================================================= */
-
-/* Prevent overly wide text */
-
-.markdown-preview-view,
-.note-content {
-
-  max-width: 100%;
-
-}
-
-
-/* Better focus */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-
-  outline: 2px solid var(--accent-light);
-
-  outline-offset: 3px;
-}
-
-
-/* Smooth theme transitions */
-
-body,
-.site-header,
-article,
-.note-list-item,
-.sidebar-left,
-aside.sidebar,
-input,
-.graph,
-table,
-blockquote {
-
-  transition:
-    background-color var(--transition),
-    border-color var(--transition),
-    color var(--transition),
-    box-shadow var(--transition);
 }
