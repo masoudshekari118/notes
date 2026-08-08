@@ -1,22 +1,44 @@
-{%if settings.dgHomeLink === true%}
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <a href="/" style="text-decoration: none;">
-                {% if meta.siteLogoPath %}
-                    <img class="site-logo" src="{{meta.siteLogoPath}}" alt="{{meta.siteName}}">
-                {% else %}
-                    <h1 style="margin: 15px !important;">{{meta.siteName}}</h1>
-                {% endif %}
-            </a>
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+
+export default function Header() {
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark')
+      setDark(true)
+    }
+  }, [])
+
+  const toggleTheme = () => {
+    if (dark) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    }
+    setDark(!dark)
+  }
+
+  return (
+    <header className="site-header">
+      <div className="header-inner">
+        <Link href="/" className="site-logo">🌱 مسعود شکری</Link>
+        <div className="header-search">
+          {/* اگر کامپوننت جستجو داری، اینجا بگذار.
+              می‌تونی از یک input ساده استفاده کنی که بعداً با کتابخانه جستجو ادغام بشه */}
+          <input type="text" placeholder="جستجو..." className="search-input" />
         </div>
-        {% if settings.dgEnableSearch === true%}
-            {% include "components/searchButton.njk" %}
-        {%endif%}
-    </nav>
-    {%else%}
-    <div class="empty-navbar" >
-        {% if settings.dgEnableSearch === true%}
-            {% include "components/searchButton.njk" %}
-        {%endif%}
-    </div>
-{%endif%}
+        <nav className="header-nav">
+          <Link href="/about">درباره من</Link>
+          <Link href="/resume">رزومه</Link>
+          <button onClick={toggleTheme} className="theme-toggle" aria-label="تغییر تم">
+            {dark ? '☀️' : '🌙'}
+          </button>
+        </nav>
+      </div>
+    </header>
+  )
+}
