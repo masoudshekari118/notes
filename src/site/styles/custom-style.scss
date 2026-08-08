@@ -1114,3 +1114,487 @@ html.dark ::-webkit-scrollbar-thumb {
   }
 
 }
+
+
+
+
+/* =========================================================
+   FINAL FIX — LAYOUT + GREEN BRAND COLOR
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01. BRAND COLOR
+   --------------------------------------------------------- */
+
+:root {
+
+  --brand-green: #176b45;
+  --brand-green-dark: #0f5134;
+  --brand-green-light: #2f8a60;
+  --brand-green-soft: #e6f2eb;
+
+  --yellow: #176b45;
+  --yellow-light: #2f8a60;
+  --interactive-accent: #176b45;
+  --interactive-accent-hover: #0f5134;
+  --accent-color: #176b45;
+
+}
+
+
+/* Dark mode */
+
+html.dark {
+
+  --brand-green: #63b98d;
+  --brand-green-dark: #82caa5;
+  --brand-green-light: #8bd0aa;
+  --brand-green-soft: #1d3a2b;
+
+  --yellow: #63b98d;
+  --yellow-light: #82caa5;
+  --interactive-accent: #63b98d;
+  --interactive-accent-hover: #82caa5;
+  --accent-color: #63b98d;
+
+}
+
+
+/* ---------------------------------------------------------
+   02. SITE NAME — MASOUD SHEKARI
+   --------------------------------------------------------- */
+
+.navbar a,
+.navbar .site-title,
+.navbar .site-name,
+.navbar .logo,
+.navbar .navbar-brand {
+
+  color: var(--brand-green) !important;
+
+}
+
+
+.navbar a:hover,
+.navbar .site-title:hover,
+.navbar .site-name:hover,
+.navbar .logo:hover,
+.navbar .navbar-brand:hover {
+
+  color: var(--brand-green-dark) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   03. REMOVE YELLOW / GOLD ACCENTS
+   --------------------------------------------------------- */
+
+/*
+   Digital Garden may use its own accent variables.
+   Override all common accent variables here.
+*/
+
+:root {
+
+  --dg-green: var(--brand-green);
+  --dg-accent: var(--brand-green);
+
+  --link-color: var(--brand-green);
+  --link-color-hover: var(--brand-green-dark);
+
+  --color-accent: var(--brand-green);
+  --color-accent-hover: var(--brand-green-dark);
+
+}
+
+
+/* Links */
+
+a,
+a:visited {
+
+  color: var(--brand-green) !important;
+
+}
+
+
+a:hover {
+
+  color: var(--brand-green-dark) !important;
+
+}
+
+
+/* Buttons */
+
+button {
+
+  color: var(--brand-green);
+
+}
+
+
+/* Search */
+
+.search-button {
+
+  color: var(--brand-green) !important;
+
+}
+
+
+.search-button:hover {
+
+  color: var(--brand-green-dark) !important;
+
+}
+
+
+/* Active navigation */
+
+.navbar .active,
+.navbar a.active {
+
+  color: var(--brand-green) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   04. FIX MAIN PAGE WIDTH
+   --------------------------------------------------------- */
+
+/*
+   The important issue:
+   Sidebar + content were wider than the available viewport.
+
+   We allow the layout to shrink instead of forcing
+   horizontal overflow.
+*/
+
+.main-wrapper,
+.content-wrapper,
+.page-container {
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  min-width: 0 !important;
+
+}
+
+
+/* Main flex container */
+
+.main-wrapper {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 2rem;
+
+  padding-left: 2rem;
+
+  padding-right: 2rem;
+
+}
+
+
+/* ---------------------------------------------------------
+   05. SIDEBAR WIDTH
+   --------------------------------------------------------- */
+
+.filetree-sidebar {
+
+  width: 230px !important;
+
+  min-width: 230px !important;
+
+  max-width: 230px !important;
+
+  flex: 0 0 230px !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   06. CONTENT MUST BE ABLE TO SHRINK
+   --------------------------------------------------------- */
+
+.content {
+
+  min-width: 0 !important;
+
+  width: auto !important;
+
+  max-width: 820px !important;
+
+  flex: 1 1 auto !important;
+
+}
+
+
+/*
+   Prevent images / tables / code blocks
+   from pushing the entire page wider.
+*/
+
+.content img,
+.content table,
+.content pre,
+.content iframe {
+
+  max-width: 100% !important;
+
+}
+
+
+/* Code */
+
+.content pre {
+
+  overflow-x: auto;
+
+}
+
+
+/* Tables */
+
+.content table {
+
+  display: block;
+
+  overflow-x: auto;
+
+}
+
+
+/* ---------------------------------------------------------
+   07. TEXT MUST NEVER HIDE BEHIND SIDEBAR
+   --------------------------------------------------------- */
+
+.content p,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6,
+.content li {
+
+  max-width: 100%;
+
+  overflow-wrap: break-word;
+
+  word-wrap: break-word;
+
+}
+
+
+/* ---------------------------------------------------------
+   08. REMOVE EXCESSIVE RIGHT/LEFT SPACE
+   --------------------------------------------------------- */
+
+.content {
+
+  margin-left: 0 !important;
+
+  margin-right: 0 !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   09. WIDE DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+
+  .main-wrapper {
+
+    gap: 3rem;
+
+    padding-left: 3rem;
+
+    padding-right: 3rem;
+
+  }
+
+
+  .filetree-sidebar {
+
+    width: 240px !important;
+
+    min-width: 240px !important;
+
+    flex-basis: 240px !important;
+
+  }
+
+
+  .content {
+
+    max-width: 850px !important;
+
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   10. MEDIUM SCREENS
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+  .main-wrapper {
+
+    gap: 1.5rem;
+
+    padding-left: 1.25rem;
+
+    padding-right: 1.25rem;
+
+  }
+
+
+  .filetree-sidebar {
+
+    width: 210px !important;
+
+    min-width: 210px !important;
+
+    flex-basis: 210px !important;
+
+  }
+
+
+  .content {
+
+    max-width: none !important;
+
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   11. TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 850px) {
+
+  .main-wrapper {
+
+    display: block;
+
+  }
+
+
+  .filetree-sidebar {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
+
+    display: block;
+
+    position: static !important;
+
+    margin-bottom: 1.5rem;
+
+  }
+
+
+  .content {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   12. FINAL GREEN OVERRIDES
+   --------------------------------------------------------- */
+
+/* Common yellow / accent elements */
+
+.color-yellow,
+.color-gold,
+.text-yellow,
+.text-gold,
+.is-yellow,
+.is-gold {
+
+  color: var(--brand-green) !important;
+
+}
+
+
+/* SVG icons */
+
+svg {
+
+  --yellow: var(--brand-green);
+
+}
+
+
+svg [fill="#EAB308"],
+svg [fill="#eab308"],
+svg [fill="#FACC15"],
+svg [fill="#facc15"],
+svg [fill="yellow"],
+svg [fill="gold"] {
+
+  fill: var(--brand-green) !important;
+
+}
+
+
+svg [stroke="#EAB308"],
+svg [stroke="#eab308"],
+svg [stroke="#FACC15"],
+svg [stroke="#facc15"],
+svg [stroke="yellow"],
+svg [stroke="gold"] {
+
+  stroke: var(--brand-green) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   13. MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+  .main-wrapper {
+
+    padding-left: 1rem;
+
+    padding-right: 1rem;
+
+  }
+
+
+  .content {
+
+    padding-left: 0;
+
+    padding-right: 0;
+
+  }
+
+}
