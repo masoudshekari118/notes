@@ -1,284 +1,1435 @@
-/* =============================================
-   Persian Digital Garden – Premium UI/UX Theme
-   مسعود شکری | نوفکر
-   ============================================= */
+/* =========================================================
+   MASOUD SHEKARI — PERSONAL DIGITAL GARDEN
+   Premium Light / Dark UI
+   Designed for Obsidian Digital Garden
+   ========================================================= */
+
+
+/* =========================================================
+   01 — FONT
+   ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
-/* ----- Variabls ----- */
+
+/* =========================================================
+   02 — DESIGN TOKENS
+   ========================================================= */
+
 :root {
+
   --font: 'Vazirmatn', Tahoma, sans-serif;
 
-  /* Light Theme */
-  --bg-body: #f4f6f9;
+  /* Main palette */
+  --bg-body: #f5f7f5;
   --bg-surface: #ffffff;
-  --bg-sidebar: #f8fafc;
-  --bg-hover: #ecfdf5;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --accent: #16a34a;
-  --accent-light: #22c55e;
-  --accent-hover: #15803d;
-  --accent-soft: #dcfce7;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --radius-sm: 6px;
+  --bg-sidebar: #f7f9f7;
+
+  --bg-hover: #eef5f0;
+  --bg-active: #e7f0ea;
+
+  --text-primary: #26332c;
+  --text-secondary: #526159;
+  --text-muted: #8a9790;
+
+  /* Calm emerald */
+  --accent: #287a57;
+  --accent-light: #4c9975;
+  --accent-hover: #1f6246;
+  --accent-soft: #e5f1ea;
+
+  /* Borders */
+  --border: #dfe7e2;
+  --border-light: #edf1ee;
+
+  /* Layout */
+  --content-width: 1180px;
+  --reading-width: 780px;
+  --sidebar-width: 250px;
+
+  /* Radius */
+  --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 16px;
-  --radius-xl: 20px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-  --shadow: 0 4px 16px rgba(0,0,0,0.06);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
-  --transition: 0.2s ease;
+  --radius-xl: 22px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(35, 55, 44, 0.035);
+  --shadow: 0 6px 24px rgba(35, 55, 44, 0.055);
+  --shadow-lg: 0 14px 40px rgba(35, 55, 44, 0.08);
+
+  --transition: 180ms ease;
 }
 
-/* Dark theme overrides (by .dark class on <html>) */
+
+/* =========================================================
+   03 — DARK MODE
+   ========================================================= */
+
 html.dark {
-  --bg-body: #0f172a;
-  --bg-surface: #1e293b;
-  --bg-sidebar: #1e293b;
-  --bg-hover: #334155;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
-  --accent: #4ade80;
-  --accent-light: #86efac;
-  --accent-hover: #22c55e;
-  --accent-soft: #064e3b;
-  --border: #334155;
-  --border-light: #1e293b;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
-  --shadow: 0 4px 16px rgba(0,0,0,0.6);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.8);
+
+  --bg-body: #141b17;
+  --bg-surface: #1a231e;
+  --bg-sidebar: #18211c;
+
+  --bg-hover: #202d26;
+  --bg-active: #26362d;
+
+  --text-primary: #e8eee9;
+  --text-secondary: #b8c5bc;
+  --text-muted: #7e8c83;
+
+  --accent: #6db894;
+  --accent-light: #82c7a5;
+  --accent-hover: #91d1b1;
+  --accent-soft: #203b2d;
+
+  --border: #2d3931;
+  --border-light: #232d27;
+
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.15);
+  --shadow: 0 8px 28px rgba(0,0,0,.20);
+  --shadow-lg: 0 16px 44px rgba(0,0,0,.28);
 }
 
-/* ----- Base Reset ----- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
+
+/* =========================================================
+   04 — GLOBAL RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: var(--font);
+
+  font-family: var(--font) !important;
+
   direction: rtl;
-  background: var(--bg-body);
-  color: var(--text-primary);
+
+  background: var(--bg-body) !important;
+
+  color: var(--text-primary) !important;
+
   line-height: 2;
-  transition: background var(--transition), color var(--transition);
+
+  transition:
+    background var(--transition),
+    color var(--transition);
 }
 
-/* ----- Typography ----- */
-h1, h2, h3, h4, h5, h6, p, li, a, span, div, button, input, textarea {
-  font-family: var(--font) !important;  /* force Vazirmatn everywhere */
+
+/* Force Vazirmatn */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a,
+span,
+div,
+button,
+input,
+textarea,
+select {
+
+  font-family: var(--font) !important;
 }
+
+
+/* =========================================================
+   05 — MAIN TYPOGRAPHY
+   ========================================================= */
 
 h1 {
-  font-size: 2.2rem;
+
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
+
   font-weight: 800;
-  color: var(--text-primary);
-  margin: 1.5rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--border);
+
+  line-height: 1.5;
+
+  color: var(--text-primary) !important;
+
+  margin: 0 0 1.6rem;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid var(--border-light);
+
+  letter-spacing: -0.02em;
 }
+
+
 h2 {
-  font-size: 1.7rem;
+
+  font-size: 1.55rem;
+
   font-weight: 700;
-  color: var(--accent);
-  margin: 2rem 0 1rem;
+
+  line-height: 1.6;
+
+  color: var(--text-primary) !important;
+
+  margin: 2.5rem 0 1rem;
+
+  position: relative;
 }
-h3 { font-size: 1.4rem; font-weight: 700; color: var(--text-primary); margin: 1.5rem 0 0.8rem; }
-h4 { font-size: 1.2rem; font-weight: 600; color: var(--text-secondary); }
-p { color: var(--text-secondary); margin-bottom: 1.2rem; }
+
+
+h2::before {
+
+  content: "";
+
+  display: inline-block;
+
+  width: 5px;
+
+  height: 1.35em;
+
+  background: var(--accent);
+
+  border-radius: 10px;
+
+  margin-left: .65rem;
+
+  vertical-align: -0.25em;
+}
+
+
+h3 {
+
+  font-size: 1.3rem;
+
+  font-weight: 700;
+
+  color: var(--text-primary) !important;
+
+  margin: 2rem 0 .8rem;
+}
+
+
+h4,
+h5,
+h6 {
+
+  color: var(--text-secondary) !important;
+
+}
+
+
+p {
+
+  color: var(--text-secondary);
+
+  margin-bottom: 1.25rem;
+
+}
+
+
+/* =========================================================
+   06 — LINKS
+   ========================================================= */
 
 a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: all var(--transition);
-  border-bottom: 1px solid transparent;
-}
-a:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
 
-/* ----- Header (Top Navbar) ----- */
+  color: var(--accent) !important;
+
+  text-decoration: none;
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background var(--transition);
+}
+
+
+a:hover {
+
+  color: var(--accent-hover) !important;
+
+  border-bottom-color: var(--accent-light);
+}
+
+
+/* Internal links */
+
+.internal-link {
+
+  color: var(--accent) !important;
+
+  border-bottom: 1px dashed rgba(40,122,87,.35);
+
+}
+
+
+.internal-link:hover {
+
+  background: var(--accent-soft);
+
+  border-radius: 4px;
+
+  border-bottom-color: var(--accent);
+}
+
+
+/* =========================================================
+   07 — TOP NAVIGATION
+   ========================================================= */
+
+/*
+   When the real Digital Garden header is used,
+   this styling gives it a clean floating navigation appearance.
+*/
+
 .site-header {
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0.75rem 2rem;
+
   position: sticky;
+
   top: 0;
-  z-index: 100;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: var(--shadow-sm);
+
+  z-index: 1000;
+
+  width: 100%;
+
+  padding: .65rem 1.5rem;
+
+  background: rgba(255,255,255,.88);
+
+  border-bottom: 1px solid var(--border-light);
+
+  box-shadow: 0 2px 14px rgba(30,50,40,.035);
+
+  backdrop-filter: blur(14px);
+
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    background var(--transition),
+    border var(--transition);
 }
+
+
 html.dark .site-header {
-  background: rgba(15, 23, 42, 0.9);
+
+  background: rgba(20,27,23,.88);
 }
+
+
 .header-inner {
-  max-width: 1200px;
+
+  max-width: var(--content-width);
+
+  min-height: 58px;
+
   margin: 0 auto;
+
   display: flex;
+
   align-items: center;
-  justify-content: space-between;
+
   gap: 1.5rem;
 }
+
+
+/* Site name */
+
 .site-logo {
-  font-weight: 800;
-  font-size: 1.3rem;
-  color: var(--text-primary) !important;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-}
-.header-search {
-  flex: 1;
-  max-width: 400px;
-}
-.search-input {
-  width: 100%;
-  padding: 0.6rem 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  background: var(--bg-body);
-  font-family: var(--font);
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  transition: all var(--transition);
-}
-.search-input:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: var(--bg-surface);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.header-nav a {
-  font-weight: 500;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-}
-.header-nav a:hover {
-  background: var(--bg-hover);
-  color: var(--accent);
-}
-.theme-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.3rem;
-  padding: 0.4rem;
-  border-radius: 50%;
-  transition: background var(--transition);
-}
-.theme-toggle:hover { background: var(--bg-hover); }
 
-/* ----- Layout & Sidebar ----- */
-.main-wrapper {
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  gap: 2rem;
-}
-/* If the template uses a sidebar with class .sidebar-left, adjust it */
-.sidebar-left, aside.sidebar {
-  width: 260px;
   flex-shrink: 0;
-  background: var(--bg-sidebar);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  height: fit-content;
-  position: sticky;
-  top: 80px;
-  transition: background var(--transition), border var(--transition);
-}
-.sidebar-left .search-container,
-.sidebar-left .site-title {
-  display: none;   /* چون جستجو و عنوان به هدر منتقل شده‌اند */
-}
-.content {
-  flex: 1;
-  min-width: 0;
+
+  font-size: 1.15rem;
+
+  font-weight: 800;
+
+  color: var(--text-primary) !important;
+
+  border: none !important;
+
+  white-space: nowrap;
 }
 
-/* ----- Note Cards & Content ----- */
-article, .note-content, .content-card {
-  background: var(--bg-surface);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-sm);
+
+.site-logo:hover {
+
+  color: var(--accent) !important;
+
+}
+
+
+/* Search */
+
+.header-search {
+
+  flex: 1;
+
+  max-width: 360px;
+
+  margin-right: auto;
+}
+
+
+.search-input {
+
+  width: 100%;
+
+  padding: .58rem 1rem;
+
+  background: var(--bg-body);
+
+  color: var(--text-primary);
+
   border: 1px solid var(--border);
+
+  border-radius: var(--radius-xl);
+
+  outline: none;
+
+  font-size: .9rem;
+
+  transition:
+    border var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.search-input::placeholder {
+
+  color: var(--text-muted);
+}
+
+
+.search-input:focus {
+
+  background: var(--bg-surface);
+
+  border-color: var(--accent-light);
+
+  box-shadow:
+    0 0 0 3px var(--accent-soft);
+}
+
+
+/* Navigation */
+
+.header-nav {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: .25rem;
+
+  white-space: nowrap;
+}
+
+
+.header-nav a {
+
+  padding: .45rem .75rem;
+
+  border-radius: var(--radius-sm);
+
+  color: var(--text-secondary) !important;
+
+  font-size: .9rem;
+
+  font-weight: 500;
+
+  border: none !important;
+}
+
+
+.header-nav a:hover {
+
+  color: var(--accent) !important;
+
+  background: var(--bg-hover);
+}
+
+
+/* Theme button */
+
+.theme-toggle {
+
+  width: 38px;
+
+  height: 38px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  background: var(--bg-surface);
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
   transition: all var(--transition);
 }
-article:hover { box-shadow: var(--shadow); border-color: var(--accent-light); }
+
+
+.theme-toggle:hover {
+
+  color: var(--accent);
+
+  background: var(--accent-soft);
+
+  border-color: var(--accent-light);
+
+}
+
+
+/* =========================================================
+   08 — MAIN LAYOUT
+   ========================================================= */
+
+.main-wrapper {
+
+  width: 100%;
+
+  max-width: var(--content-width);
+
+  margin: 0 auto;
+
+  padding: 3rem 2rem 4rem;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 3.5rem;
+}
+
+
+/* =========================================================
+   09 — SIDEBAR
+   ========================================================= */
+
+.sidebar-left,
+aside.sidebar,
+.sidebar,
+.left-sidebar,
+.right-sidebar,
+.side-panel,
+.sidenav,
+.folder-container,
+.nav-folder,
+.tree,
+.file-tree,
+.note-sidebar,
+.explorer,
+.vault-tree {
+
+  background: var(--bg-sidebar) !important;
+
+  color: var(--text-secondary) !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* Main sidebar */
+
+.sidebar-left,
+aside.sidebar {
+
+  width: var(--sidebar-width);
+
+  min-width: var(--sidebar-width);
+
+  flex-shrink: 0;
+
+  padding: 1rem 0;
+
+  position: sticky;
+
+  top: 85px;
+
+  border-radius: var(--radius-lg);
+
+}
+
+
+/* Remove old visual box */
+
+.sidebar-left::before,
+aside.sidebar::before {
+
+  display: none;
+}
+
+
+/* Sidebar items */
+
+.sidebar-left a,
+aside.sidebar a {
+
+  display: block;
+
+  padding: .55rem .9rem;
+
+  margin: 2px 0;
+
+  border: none !important;
+
+  border-radius: var(--radius-sm);
+
+  color: var(--text-secondary) !important;
+
+  font-size: .9rem;
+}
+
+
+.sidebar-left a:hover,
+aside.sidebar a:hover {
+
+  background: var(--bg-hover);
+
+  color: var(--accent) !important;
+}
+
+
+/* Active sidebar item */
+
+.sidebar-left a.active,
+aside.sidebar a.active {
+
+  background: var(--bg-active);
+
+  color: var(--accent) !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   10 — CONTENT AREA
+   ========================================================= */
+
+.content {
+
+  flex: 1;
+
+  min-width: 0;
+
+  max-width: var(--reading-width);
+
+}
+
+
+/*
+   Important:
+   Remove the "boxed website" feeling.
+*/
+
+article,
+.note-content,
+.content-card {
+
+  width: 100%;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  border-radius: 0;
+
+  padding: 0;
+
+  margin-bottom: 3rem;
+}
+
+
+/* Reading text */
+
+article p,
+.note-content p {
+
+  max-width: 100%;
+
+  font-size: 1rem;
+
+  line-height: 2.15;
+}
+
+
+/* =========================================================
+   11 — NOTE LIST
+   ========================================================= */
 
 .note-list-item {
-  background: var(--bg-surface);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition);
+
   display: block;
+
+  padding: 1.15rem 1.35rem;
+
+  margin-bottom: .75rem;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow-sm);
+
+  color: inherit;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    background var(--transition);
+}
+
+
+.note-list-item:hover {
+
+  transform: translateY(-2px);
+
+  background: var(--bg-surface);
+
+  border-color: var(--accent-light);
+
+  box-shadow: var(--shadow);
+}
+
+
+.note-list-item h3 {
+
+  margin: 0 0 .25rem;
+
+  color: var(--text-primary) !important;
+
+  font-size: 1.1rem;
+}
+
+
+.note-list-item p {
+
+  margin: 0;
+
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   12 — GRAPH
+   ========================================================= */
+
+.graph {
+
+  position: relative;
+
+  background: var(--bg-surface) !important;
+
+  border: 1px solid var(--border-light) !important;
+
+  border-radius: var(--radius-lg);
+
+  padding: 1.25rem;
+
+  margin: 2.5rem 0;
+
+  box-shadow: var(--shadow-sm);
+
+  overflow: hidden;
+}
+
+
+.graph h3 {
+
+  margin-top: 0;
+
+  color: var(--text-primary) !important;
+}
+
+
+/* Graph canvas */
+
+.graph canvas,
+.graph svg {
+
+  max-width: 100%;
+
+  border-radius: var(--radius);
+}
+
+
+/* =========================================================
+   13 — BACKLINKS
+   ========================================================= */
+
+.backlinks {
+
+  margin-top: 3rem;
+
+  padding-top: 1.5rem;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  border-top: 1px solid var(--border-light) !important;
+
+  border-radius: 0;
+
+  box-shadow: none !important;
+}
+
+
+.backlinks h3 {
+
+  color: var(--text-primary) !important;
+
+  font-size: 1rem;
+
+  margin-bottom: 1rem;
+}
+
+
+.backlinks a {
+
+  display: inline-block;
+
+  padding: .35rem .7rem;
+
+  margin: .2rem;
+
+  background: var(--accent-soft);
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
+
+  font-size: .85rem;
+}
+
+
+.backlinks a:hover {
+
+  border-color: var(--accent-light);
+
+  background: var(--bg-active);
+}
+
+
+/* =========================================================
+   14 — TAGS
+   ========================================================= */
+
+.tags-cloud {
+
+  margin: 2rem 0;
+
+  padding: 1rem 0;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+}
+
+
+.tags-cloud a {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: .35rem .75rem;
+
+  margin: .25rem;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-light);
+
+  border-radius: 999px;
+
+  color: var(--text-secondary) !important;
+
+  font-size: .82rem;
+}
+
+
+.tags-cloud a:hover {
+
+  color: var(--accent) !important;
+
+  border-color: var(--accent-light);
+
+  background: var(--accent-soft);
+}
+
+
+/* =========================================================
+   15 — BLOCKQUOTES
+   ========================================================= */
+
+blockquote {
+
+  margin: 2rem 0;
+
+  padding: 1.1rem 1.4rem;
+
+  background: var(--accent-soft);
+
+  border: none;
+
+  border-right: 4px solid var(--accent);
+
+  border-radius: var(--radius);
+
+  color: var(--text-secondary);
+}
+
+
+blockquote p {
+
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   16 — CODE
+   ========================================================= */
+
+code {
+
+  padding: .15rem .4rem;
+
+  background: var(--bg-hover);
+
+  color: var(--accent-hover);
+
+  border-radius: 5px;
+
+  font-size: .9em;
+}
+
+
+pre {
+
+  margin: 1.5rem 0;
+
+  padding: 1.25rem;
+
+  background: #202822 !important;
+
+  color: #e8eee9;
+
+  border-radius: var(--radius);
+
+  overflow-x: auto;
+
+  direction: ltr;
+
+  text-align: left;
+
+  box-shadow: var(--shadow);
+}
+
+
+pre code {
+
+  background: transparent;
+
   color: inherit;
 }
-.note-list-item:hover {
-  transform: translateY(-2px);
+
+
+/* =========================================================
+   17 — TABLES
+   ========================================================= */
+
+table {
+
+  width: 100%;
+
+  margin: 2rem 0;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border-light);
+
+  border-radius: var(--radius);
+
+  background: var(--bg-surface);
+}
+
+
+th {
+
+  background: var(--bg-hover);
+
+  color: var(--text-primary);
+
+  font-weight: 700;
+}
+
+
+th,
+td {
+
+  padding: .75rem 1rem;
+
+  border-bottom: 1px solid var(--border-light);
+
+  text-align: right;
+}
+
+
+tr:last-child td {
+
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   18 — IMAGES
+   ========================================================= */
+
+.note-content img,
+article img {
+
+  max-width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  margin: 2rem auto;
+
+  border-radius: var(--radius-lg);
+
   box-shadow: var(--shadow);
-  border-color: var(--accent-light);
+}
+
+
+/* =========================================================
+   19 — HORIZONTAL RULE
+   ========================================================= */
+
+hr {
+
+  border: 0;
+
+  border-top: 1px solid var(--border-light);
+
+  margin: 3rem 0;
+}
+
+
+/* =========================================================
+   20 — FOOTER
+   ========================================================= */
+
+.site-footer {
+
+  width: 100%;
+
+  max-width: var(--content-width);
+
+  margin: 3rem auto 0;
+
+  padding: 1.5rem 2rem;
+
+  text-align: center;
+
+  background: transparent !important;
+
+  border-top: 1px solid var(--border-light);
+
+  color: var(--text-muted);
+
+  font-size: .82rem;
+}
+
+
+.site-footer p {
+
+  margin: 0;
+
+  color: var(--text-muted);
+}
+
+
+.site-footer a {
+
+  color: var(--text-secondary) !important;
+}
+
+
+/* =========================================================
+   21 — SEARCH RESULTS
+   ========================================================= */
+
+.search-container,
+.search-results {
+
+  background: var(--bg-surface) !important;
+
+  color: var(--text-primary);
+
+  border-color: var(--border) !important;
+
+  border-radius: var(--radius-lg);
+}
+
+
+.search-result {
+
+  padding: .8rem 1rem;
+
+  border-bottom: 1px solid var(--border-light);
+}
+
+
+.search-result:hover {
+
   background: var(--bg-hover);
 }
-.note-list-item h3 {
-  margin-bottom: 0.3rem;
+
+
+/* =========================================================
+   22 — TABLE OF CONTENTS
+   ========================================================= */
+
+.toc {
+
+  padding: 1rem;
+
+  margin-bottom: 2rem;
+
+  background: var(--bg-sidebar);
+
+  border-radius: var(--radius);
+
+  border: none;
+}
+
+
+.toc a {
+
+  color: var(--text-muted) !important;
+
+  font-size: .85rem;
+
+  border: none !important;
+}
+
+
+.toc a:hover {
+
+  color: var(--accent) !important;
+}
+
+
+/* =========================================================
+   23 — CALLOUTS
+   ========================================================= */
+
+.callout {
+
+  margin: 1.5rem 0;
+
+  border-radius: var(--radius);
+
+  border: 1px solid var(--border-light);
+
+  background: var(--bg-surface);
+}
+
+
+/* =========================================================
+   24 — SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+
+  width: 7px;
+
+  height: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+
+  background: var(--bg-body);
+}
+
+
+::-webkit-scrollbar-thumb {
+
+  background: #c8d2cb;
+
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: var(--accent-light);
+}
+
+
+html.dark ::-webkit-scrollbar-thumb {
+
+  background: #46554c;
+}
+
+
+/* =========================================================
+   25 — SELECTION
+   ========================================================= */
+
+::selection {
+
+  background: var(--accent-soft);
+
   color: var(--text-primary);
 }
 
-/* ----- Graph, Backlinks, Tags pages ----- */
-.graph, .backlinks, .tags-cloud {
-  background: var(--bg-surface);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+
+/* =========================================================
+   26 — MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .main-wrapper {
+
+    flex-direction: column;
+
+    gap: 1.5rem;
+
+    padding: 2rem 1.25rem 3rem;
+  }
+
+
+  .sidebar-left,
+  aside.sidebar {
+
+    width: 100%;
+
+    min-width: 0;
+
+    position: static;
+
+    padding: .5rem 0;
+  }
+
+
+  .content {
+
+    max-width: 100%;
+  }
+
+
+  .site-header {
+
+    padding: .6rem 1rem;
+  }
+
+
+  .header-inner {
+
+    flex-wrap: wrap;
+
+    gap: .6rem;
+  }
+
+
+  .header-search {
+
+    order: 3;
+
+    flex-basis: 100%;
+
+    max-width: none;
+  }
+
+
+  .header-nav {
+
+    gap: 0;
+  }
+
+
+  .header-nav a {
+
+    padding: .4rem .5rem;
+
+    font-size: .8rem;
+  }
+
+
+  h1 {
+
+    font-size: 1.8rem;
+  }
+
+
+  h2 {
+
+    font-size: 1.4rem;
+  }
 }
-.backlinks h3 { color: var(--accent); }
 
-/* ----- Footer ----- */
-.site-footer {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  margin-top: 4rem;
-  font-size: 0.9rem;
+
+/* =========================================================
+   27 — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .site-logo {
+
+    font-size: 1rem;
+  }
+
+
+  .header-nav a {
+
+    display: none;
+  }
+
+
+  .main-wrapper {
+
+    padding-left: 1rem;
+
+    padding-right: 1rem;
+  }
+
+
+  article p,
+  .note-content p {
+
+    font-size: .97rem;
+
+    line-height: 2;
+  }
 }
-.site-footer p { color: var(--text-muted); }
 
-/* ----- Scrollbar ----- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-body); }
-::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
 
-/* ----- Responsive ----- */
-@media (max-width: 768px) {
-  .main-wrapper { flex-direction: column; }
-  .sidebar-left { width: 100%; position: static; }
-  .header-inner { flex-wrap: wrap; gap: 1rem; }
-  .header-search { max-width: 100%; order: 3; }
+/* =========================================================
+   28 — REMOVE OLD SIDEBAR BOX EFFECTS
+   ========================================================= */
+
+.sidebar-left *,
+aside.sidebar * {
+
+  box-shadow: none !important;
 }
 
-/* همهٔ کلاس‌های احتمالی سایدبار */
-.sidebar, .left-sidebar, .right-sidebar, .side-panel, .sidenav, .folder-container, .nav-folder, .tree, .file-tree, .note-sidebar, .explorer, .vault-tree {
-  background: var(--bg-sidebar) !important;
-  color: var(--text-primary) !important;
-  width: 280px !important;
-  border-right: 1px solid var(--border) !important;
+
+.sidebar-left,
+aside.sidebar {
+
+  border-left: none !important;
+
+  border-right: none !important;
+}
+
+
+/* =========================================================
+   29 — CLEAN DIGITAL GARDEN COMPONENTS
+   ========================================================= */
+
+.filetree,
+.file-tree,
+.nav-folder,
+.folder-container {
+
+  background: transparent !important;
+
+  border: none !important;
+}
+
+
+.filetree a,
+.file-tree a,
+.nav-folder a {
+
+  border: none !important;
+}
+
+
+/* =========================================================
+   30 — FINAL POLISH
+   ========================================================= */
+
+/* Prevent overly wide text */
+
+.markdown-preview-view,
+.note-content {
+
+  max-width: 100%;
+
+}
+
+
+/* Better focus */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+
+  outline: 2px solid var(--accent-light);
+
+  outline-offset: 3px;
+}
+
+
+/* Smooth theme transitions */
+
+body,
+.site-header,
+article,
+.note-list-item,
+.sidebar-left,
+aside.sidebar,
+input,
+.graph,
+table,
+blockquote {
+
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
 }
