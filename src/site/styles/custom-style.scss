@@ -1,6 +1,5 @@
 /* =========================================================
    MASOUD SHEKARI — DIGITAL GARDEN
-   Personal Knowledge Garden
    Custom UI / UX
    ========================================================= */
 
@@ -13,55 +12,41 @@
 
 
 /* =========================================================
-   2. DESIGN TOKENS
+   2. COLORS & DESIGN
    ========================================================= */
 
 :root {
 
-  /* Typography */
   --font: 'Vazirmatn', Tahoma, sans-serif;
 
-  /* Main colors */
   --accent-color: #26734d;
   --interactive-accent: #26734d;
   --interactive-accent-hover: #1d5d3e;
 
-  /* Backgrounds */
   --background-primary: #f8faf8;
   --background-secondary: #f1f5f2;
   --background-tertiary: #e9f0eb;
-  --background-primary-alt: #fbfcfb;
 
-  /* Surfaces */
   --surface: #ffffff;
   --surface-soft: #f6f9f7;
   --surface-hover: #edf5f0;
 
-  /* Text */
   --text-normal: #26352d;
   --text-muted: #68776f;
   --text-faint: #929e97;
 
-  /* Accent surfaces */
   --accent-soft: #e3f0e8;
   --accent-softer: #eef6f1;
 
-  /* Borders */
   --background-modifier-border: #dce6df;
   --background-modifier-border-hover: #c5d5cb;
 
-  /* Shadows */
   --shadow-soft: 0 2px 12px rgba(38, 51, 44, 0.05);
   --shadow-medium: 0 8px 28px rgba(38, 51, 44, 0.08);
 
-  /* Radius */
   --radius-small: 7px;
   --radius-medium: 12px;
   --radius-large: 18px;
-
-  /* Layout */
-  --dg-content-max-width: 1080px;
-  --dg-filetree-width: 300px;
 }
 
 
@@ -74,7 +59,6 @@ html.dark {
   --background-primary: #151c18;
   --background-secondary: #1b241e;
   --background-tertiary: #222d26;
-  --background-primary-alt: #18211c;
 
   --surface: #1b241f;
   --surface-soft: #202a24;
@@ -93,9 +77,6 @@ html.dark {
 
   --background-modifier-border: #2d3931;
   --background-modifier-border-hover: #3d4b42;
-
-  --shadow-soft: 0 2px 14px rgba(0, 0, 0, .16);
-  --shadow-medium: 0 10px 30px rgba(0, 0, 0, .25);
 }
 
 
@@ -140,7 +121,7 @@ body.theme-dark {
 
 
 /* =========================================================
-   6. SIDEBAR / FILE TREE
+   6. SIDEBAR
    ========================================================= */
 
 .filetree-wrapper,
@@ -162,10 +143,13 @@ body.theme-dark {
   border-radius: var(--radius-medium);
 
   border: 1px solid var(--background-modifier-border) !important;
+
+  /* جلوگیری از ورود محتوای اصلی به فضای Sidebar */
+  box-sizing: border-box;
 }
 
 
-/* Sidebar links */
+/* فاصله کمتر بین نوشته‌های Sidebar */
 
 .filetree-sidebar a,
 .filetree-wrapper a {
@@ -178,17 +162,17 @@ body.theme-dark {
 
   border-radius: var(--radius-small);
 
-  padding: .48rem .8rem;
+  padding: .30rem .75rem;
 
-  margin: 3px 7px;
+  margin: 1px 7px;
+
+  line-height: 1.55;
 
   transition:
     color .18s ease,
     background .18s ease;
 }
 
-
-/* Sidebar hover */
 
 .filetree-sidebar a:hover,
 .filetree-wrapper a:hover {
@@ -198,8 +182,6 @@ body.theme-dark {
   background: var(--accent-soft) !important;
 }
 
-
-/* Sidebar active page */
 
 .filetree-sidebar a.active,
 .filetree-wrapper a.active {
@@ -212,8 +194,6 @@ body.theme-dark {
 }
 
 
-/* Folder names */
-
 .filetree-sidebar .folder,
 .filetree-sidebar .folder-name {
 
@@ -222,8 +202,6 @@ body.theme-dark {
   font-weight: 600;
 }
 
-
-/* Remove unwanted nested boxes */
 
 .filetree,
 .file-tree,
@@ -242,23 +220,31 @@ body.theme-dark {
 
 
 /* =========================================================
-   7. MAIN CONTENT
+   7. MAIN CONTENT — IMPORTANT
    ========================================================= */
+
+/*
+   Sidebar در سمت چپ قرار دارد.
+   بنابراین محتوای اصلی باید فضای Sidebar را کنار بگذارد.
+*/
 
 .content {
 
-  width: min(1080px, calc(100% - 60px));
+  width: calc(100% - 360px) !important;
 
-  max-width: 1080px;
+  max-width: 1080px !important;
 
-  margin: 0 auto;
+  margin-right: 0 !important;
+
+  margin-left: 360px !important;
 
   padding: 3rem 2.5rem 5rem;
 
+  box-sizing: border-box;
 }
 
 
-/* Remove card appearance */
+/* جلوگیری از Card شدن محتوا */
 
 .content article,
 .content .markdown-preview-view,
@@ -276,9 +262,11 @@ body.theme-dark {
    8. NOTE TITLE
    ========================================================= */
 
+/* عنوان خودِ یادداشت مشکی */
+
 .content h1 {
 
-  color: var(--accent-color) !important;
+  color: #26352d !important;
 
   font-size: clamp(2rem, 3vw, 2.6rem);
 
@@ -293,6 +281,14 @@ body.theme-dark {
   padding-bottom: 1rem;
 
   border-bottom: 1px solid var(--background-modifier-border);
+}
+
+
+/* Dark mode */
+
+html.dark .content h1 {
+
+  color: var(--text-normal) !important;
 }
 
 
@@ -360,7 +356,7 @@ body.theme-dark {
 
 
 /* =========================================================
-   10. BODY TEXT
+   10. TEXT
    ========================================================= */
 
 .content p {
@@ -403,7 +399,6 @@ body.theme-dark {
 
   border-radius: 3px;
 }
-
 
 .content .internal-link {
 
@@ -483,7 +478,7 @@ body.theme-dark {
 
 
 /* =========================================================
-   14. BACKLINKS / MENTIONED PAGES
+   14. BACKLINKS
    ========================================================= */
 
 .backlinks {
@@ -512,8 +507,6 @@ body.theme-dark {
   margin-bottom: 1rem;
 }
 
-
-/* Backlink items */
 
 .backlinks a {
 
@@ -546,7 +539,9 @@ body.theme-dark {
 }
 
 
-/* Mentioned / related pages */
+/* =========================================================
+   15. MENTIONED / RELATED PAGES
+   ========================================================= */
 
 .content .page-list,
 .content .related-pages,
@@ -589,7 +584,7 @@ body.theme-dark {
 
 
 /* =========================================================
-   15. GRAPH
+   16. GRAPH
    ========================================================= */
 
 .graph {
@@ -616,7 +611,7 @@ body.theme-dark {
 
 
 /* =========================================================
-   16. BLOCKQUOTES
+   17. BLOCKQUOTE
    ========================================================= */
 
 blockquote {
@@ -643,7 +638,7 @@ blockquote p {
 
 
 /* =========================================================
-   17. CODE
+   18. CODE
    ========================================================= */
 
 code {
@@ -685,7 +680,7 @@ pre code {
 
 
 /* =========================================================
-   18. IMAGES
+   19. IMAGES
    ========================================================= */
 
 .content img {
@@ -705,7 +700,7 @@ pre code {
 
 
 /* =========================================================
-   19. TABLES
+   20. TABLES
    ========================================================= */
 
 .content table {
@@ -751,7 +746,7 @@ pre code {
 
 
 /* =========================================================
-   20. HORIZONTAL RULE
+   21. HORIZONTAL LINE
    ========================================================= */
 
 .content hr {
@@ -765,7 +760,7 @@ pre code {
 
 
 /* =========================================================
-   21. SEARCH
+   22. SEARCH
    ========================================================= */
 
 .search-button {
@@ -801,7 +796,57 @@ pre code {
 
 
 /* =========================================================
-   22. TEXT SELECTION
+   23. LOGO / SITE TITLE
+   ========================================================= */
+
+/*
+   آدرس لوگوی خودت را در خط background-image قرار بده.
+*/
+
+.site-title {
+
+  font-size: 0 !important;
+
+  width: 150px !important;
+
+  height: 55px !important;
+
+  display: block !important;
+
+  background-image: url("YOUR-LOGO-URL-HERE") !important;
+
+  background-size: contain !important;
+
+  background-repeat: no-repeat !important;
+
+  background-position: center !important;
+
+  color: transparent !important;
+}
+
+
+/* اگر عنوان داخل لینک باشد */
+
+.site-title a {
+
+  font-size: 0 !important;
+
+  color: transparent !important;
+
+  border: none !important;
+
+  background: transparent !important;
+}
+
+.site-title a:hover {
+
+  background: transparent !important;
+
+}
+
+
+/* =========================================================
+   24. SELECTION
    ========================================================= */
 
 ::selection {
@@ -813,7 +858,7 @@ pre code {
 
 
 /* =========================================================
-   23. SCROLLBAR
+   25. SCROLLBAR
    ========================================================= */
 
 ::-webkit-scrollbar {
@@ -847,16 +892,18 @@ html.dark ::-webkit-scrollbar-thumb {
 
 
 /* =========================================================
-   24. MOBILE
+   26. MOBILE
    ========================================================= */
 
 @media (max-width: 900px) {
 
   .content {
 
-    width: 100%;
+    width: 100% !important;
 
-    max-width: 100%;
+    max-width: 100% !important;
+
+    margin: 0 !important;
 
     padding: 2rem 1.5rem 4rem;
   }
