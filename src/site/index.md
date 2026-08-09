@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مسعود شکری</title>
+<title>باغچه‌ی دیجیتال | تفکر سیستمی، هوش مصنوعی و کار دانشی</title>
 <meta name="description" content="سیستم مدیریت دانش شخصی درباره تفکر سیستمی، هوش مصنوعی، خلاقیت، نوشتن، پژوهش و توسعه فردی.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,11 +225,11 @@ footer a:hover{color:var(--green-400)}
   <div class="wrap nav">
     <a href="/" class="logo">
       <span class="mark">◈</span>
-      <span>مسعود شکری</span>
+      <span>باغچه‌ی دیجیتال</span>
     </a>
     <nav class="nav-links">
       <a href="#pillars">حوزه‌ها</a>
-      <a href="#connect">ارتباط حوزه ها</a>
+      <a href="#connect">چرا این‌ها به هم مربوط‌اند؟</a>
       <a href="#phd">پژوهش</a>
       <a href="/about">درباره من</a>
       <a href="#contact">ارتباط</a>
@@ -268,7 +268,7 @@ footer a:hover{color:var(--green-400)}
     <div class="sec-head">
       <p class="kicker">حوزه‌های دانشی</p>
       <h2>این‌جا درباره‌ی چه می‌نویسم؟</h2>
-      <p> حوزه هایی که هرکدام دروازه‌ای‌اند به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
+      <p>هفت حوزه که هرکدام دروازه‌ای‌اند به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
     </div>
 
     <div class="grid">
@@ -452,8 +452,8 @@ footer a:hover{color:var(--green-400)}
       </div>
     </div>
     <div class="f-bottom">
-      <span>© 1405 — تمام یادداشت‌ها با ♥ در Obsidian نوشته شده‌اند.</span>
-      <span>آخرین به‌روزرسانی: [1405]</span>
+      <span>© ۱۴۰۴ — تمام یادداشت‌ها با ♥ در Obsidian نوشته شده‌اند.</span>
+      <span>آخرین به‌روزرسانی: [تاریخ]</span>
     </div>
   </div>
 </footer>
