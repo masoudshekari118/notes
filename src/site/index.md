@@ -581,94 +581,104 @@
 </div>
 
 <!-- ================= PILLARS (حوزه‌های دانشی) ================= -->
-<section id="pillars">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker">حوزه‌های دانشی</p>
-      <h2>این‌جا درباره‌ی چه می‌نویسم؟</h2>
-      <p>هر حوزه دروازه‌ای است به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
+<!-- ================= حوزه‌های دانشی (نسخه مقاوم) ================= -->
+<section id="pillars" class="my-pillars-section">
+  <div class="my-pillars-wrap">
+    <div class="my-pillars-head">
+      <p class="my-kicker">حوزه‌های دانشی</p>
+      <h2 class="my-title">این‌جا درباره‌ی چه می‌نویسم؟</h2>
+      <p class="my-desc">هر حوزه دروازه‌ای است به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
     </div>
 
-    <div class="pillars-list">
-      <a class="pillar-item" href="#">
-        <span class="ico">◎</span>
-        <div class="content">
-          <h3>تفکر سیستمی</h3>
-          <p>کتاب‌ها، افراد تأثیرگذار، مجلات و همایش‌ها، و روش‌شناسی‌های سیستمی مثل VSM و SSM. عینکی برای دیدن کلیت، روابط و بازخوردها.</p>
+    <div class="my-pillars-grid">
+      <!-- آیتم ۱ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">◎</span>
+        <div class="my-text">
+          <h3 class="my-card-title">تفکر سیستمی</h3>
+          <p class="my-card-desc">کتاب‌ها، افراد تأثیرگذار، مجلات و همایش‌ها، و روش‌شناسی‌های سیستمی مثل VSM و SSM. عینکی برای دیدن کلیت، روابط و بازخوردها.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">◆</span>
-        <div class="content">
-          <h3>هوش مصنوعی و کار دانشی</h3>
-          <p>ابزارها، پرامپت‌های آزموده‌شده، ترفندهای کاربردی — و یک نگاه انتقادی: چطور از AI استفاده کنیم بدون آن‌که اصالتِ فکر کردن را از دست بدهیم.</p>
+      <!-- آیتم ۲ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">◆</span>
+        <div class="my-text">
+          <h3 class="my-card-title">هوش مصنوعی و کار دانشی</h3>
+          <p class="my-card-desc">ابزارها، پرامپت‌های آزموده‌شده، ترفندهای کاربردی — و یک نگاه انتقادی: چطور از AI استفاده کنیم بدون آن‌که اصالتِ فکر کردن را از دست بدهیم.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">✦</span>
-        <div class="content">
-          <h3>خلاقیت و نوآوری</h3>
-          <p>هم مفهوم، هم تکنیک‌های عملی. میراث سایت «نوخلاق» به‌همراه تجربه‌ی یک ترم تدریس این درس.</p>
+      <!-- آیتم ۳ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">✦</span>
+        <div class="my-text">
+          <h3 class="my-card-title">خلاقیت و نوآوری</h3>
+          <p class="my-card-desc">هم مفهوم، هم تکنیک‌های عملی. میراث سایت «نوخلاق» به‌همراه تجربه‌ی یک ترم تدریس این درس.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">◈</span>
-        <div class="content">
-          <h3>توسعه فردی</h3>
-          <p>عادت‌سازی، سیستم‌سازی شخصی، هدف‌گذاری، مدیریت توجه و تمرکز — فقط آنچه خودم تجربه کرده‌ام و واقعاً کار کرده است.</p>
+      <!-- آیتم ۴ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">◈</span>
+        <div class="my-text">
+          <h3 class="my-card-title">توسعه فردی</h3>
+          <p class="my-card-desc">عادت‌سازی، سیستم‌سازی شخصی، هدف‌گذاری، مدیریت توجه و تمرکز — فقط آنچه خودم تجربه کرده‌ام و واقعاً کار کرده است.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">✎</span>
-        <div class="content">
-          <h3>نوشتن و نویسندگی</h3>
-          <p>نوشتن نه فقط ابزار انتقال ایده، که <b>روشی برای فکر کردن</b>. چرایی، تکنیک‌ها و جای نوشتن در فرآیند یادگیری و پژوهش.</p>
+      <!-- آیتم ۵ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">✎</span>
+        <div class="my-text">
+          <h3 class="my-card-title">نوشتن و نویسندگی</h3>
+          <p class="my-card-desc">نوشتن نه فقط ابزار انتقال ایده، که <b>روشی برای فکر کردن</b>. چرایی، تکنیک‌ها و جای نوشتن در فرآیند یادگیری و پژوهش.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">⌕</span>
-        <div class="content">
-          <h3>پژوهش و روش‌شناسی</h3>
-          <p>روش‌ها، شیوه‌ها و ابزارهای پژوهشی؛ خلاصه‌ی آنچه در مسیر دکتری یاد می‌گیرم و به کار می‌بندم.</p>
+      <!-- آیتم ۶ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">⌕</span>
+        <div class="my-text">
+          <h3 class="my-card-title">پژوهش و روش‌شناسی</h3>
+          <p class="my-card-desc">روش‌ها، شیوه‌ها و ابزارهای پژوهشی؛ خلاصه‌ی آنچه در مسیر دکتری یاد می‌گیرم و به کار می‌بندم.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">▤</span>
-        <div class="content">
-          <h3>تدریس</h3>
-          <p>یادداشت‌ها و طرح‌درس‌های مبانی سازمان، بازاریابی، رفتار سازمانی، مهارت‌های حرفه‌ای، تجزیه و تحلیل سیستم‌ها و خلاقیت و نوآوری.</p>
+      <!-- آیتم ۷ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">▤</span>
+        <div class="my-text">
+          <h3 class="my-card-title">تدریس</h3>
+          <p class="my-card-desc">یادداشت‌ها و طرح‌درس‌های مبانی سازمان، بازاریابی، رفتار سازمانی، مهارت‌های حرفه‌ای، تجزیه و تحلیل سیستم‌ها و خلاقیت و نوآوری.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">✧</span>
-        <div class="content">
-          <h3>تجربه‌ها و درس‌ها</h3>
-          <p>روایت صادقانه از مسیرها — از جمله شکست‌ها. چون آنچه جواب نداده، به‌اندازه‌ی موفقیت‌ها آموزنده است.</p>
+      <!-- آیتم ۸ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">✧</span>
+        <div class="my-text">
+          <h3 class="my-card-title">تجربه‌ها و درس‌ها</h3>
+          <p class="my-card-desc">روایت صادقانه از مسیرها — از جمله شکست‌ها. چون آنچه جواب نداده، به‌اندازه‌ی موفقیت‌ها آموزنده است.</p>
         </div>
-        <span class="go">ورود →</span>
+        <span class="my-arrow">ورود →</span>
       </a>
 
-      <a class="pillar-item" href="#">
-        <span class="ico">☷</span>
-        <div class="content">
-          <h3>نقشه‌ی کل یادداشت‌ها</h3>
-          <p>فهرست کامل MOCها و نقطه‌ی ورود به شبکه‌ی پیوندخورده‌ی همه‌ی یادداشت‌های این باغچه.</p>
+      <!-- آیتم ۹ -->
+      <a href="#" class="my-pillar-card">
+        <span class="my-icon">☷</span>
+        <div class="my-text">
+          <h3 class="my-card-title">نقشه‌ی کل یادداشت‌ها</h3>
+          <p class="my-card-desc">فهرست کامل MOCها و نقطه‌ی ورود به شبکه‌ی پیوندخورده‌ی همه‌ی یادداشت‌های این باغچه.</p>
         </div>
-        <span class="go">دیدن نقشه →</span>
+        <span class="my-arrow">دیدن نقشه →</span>
       </a>
     </div>
   </div>
