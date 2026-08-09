@@ -11,7 +11,7 @@
 
   <style>
     /* ============================================================
-       ROOT VARIABLES (همان پالت شما با کمی تنظیم)
+       ROOT VARIABLES
        ============================================================ */
     :root {
       --green-900: #0f3d2e;
@@ -58,7 +58,7 @@
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
     /* ============================================================
-       HEADER (تغییر لوگو به نام خودتان)
+       HEADER
        ============================================================ */
     header {
       position: sticky; top: 0; z-index: 50;
@@ -109,7 +109,7 @@
     }
 
     /* ============================================================
-       HERO (وسط‌چین شدن کامل)
+       HERO
        ============================================================ */
     .hero {
       background:
@@ -118,7 +118,7 @@
         var(--bg);
       padding: 86px 0 72px;
       border-bottom: 1px solid var(--line);
-      text-align: center;           /* ← وسط‌چین اصلی */
+      text-align: center;
     }
     .badge {
       display: inline-flex;
@@ -141,7 +141,7 @@
     h1 {
       font-size: clamp(30px, 4.6vw, 50px);
       line-height: 1.45;
-      margin: 0 auto 20px;          /* ← auto برای وسط‌چین */
+      margin: 0 auto 20px;
       font-weight: 800;
       color: var(--green-900);
       letter-spacing: -.4px;
@@ -155,7 +155,7 @@
       font-size: clamp(16px, 2vw, 19px);
       color: var(--ink-soft);
       max-width: 760px;
-      margin: 0 auto 16px;          /* ← auto */
+      margin: 0 auto 16px;
     }
     .quote {
       border-right: 4px solid var(--green-500);
@@ -166,14 +166,14 @@
       color: var(--green-900);
       font-weight: 600;
       font-size: 17px;
-      margin: 26px auto 32px;       /* ← auto */
+      margin: 26px auto 32px;
       text-align: right;
     }
     .cta {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      justify-content: center;      /* ← وسط‌چین دکمه‌ها */
+      justify-content: center;
     }
     .btn {
       display: inline-flex;
@@ -240,115 +240,104 @@
     }
 
     /* ============================================================
-       PILLARS (حوزه‌های دانشی) — کارت‌های هم‌قد با فلکس
+       PILLARS — طراحی جدید به صورت لیست عمودی
        ============================================================ */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+    .pillars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .card {
+    .pillar-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
       background: #fff;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px 26px;
-      transition: .25s;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;      /* ← ستون برای هم‌قد شدن */
+      border-radius: var(--radius-sm);
+      padding: 16px 24px;
+      transition: all .2s;
+      text-decoration: none;
+      color: inherit;
     }
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green-500), var(--green-400));
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: .3s;
+    .pillar-item:hover {
+      border-color: var(--green-400);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(-4px);
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--green-200);
-    }
-    .card:hover::after { transform: scaleX(1); }
-    .card .ico {
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      display: grid; place-items: center;
-      background: var(--green-100);
-      color: var(--green-700);
-      font-size: 23px;
-      margin-bottom: 16px;
+    .pillar-item .ico {
+      font-size: 28px;
+      width: 48px;
+      text-align: center;
       flex-shrink: 0;
+      color: var(--green-600);
     }
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 18.5px;
+    .pillar-item .content {
+      flex: 1;
+    }
+    .pillar-item .content h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      font-weight: 700;
       color: var(--green-900);
-      font-weight: 800;
     }
-    .card p {
-      margin: 0 0 18px;
-      color: var(--ink-soft);
+    .pillar-item .content p {
+      margin: 0;
       font-size: 15px;
-      flex: 1;                   /* ← پاراگراف را تا انتها پر می‌کند */
+      color: var(--ink-soft);
+      line-height: 1.7;
     }
-    .card .go {
-      font-size: 14px;
+    .pillar-item .go {
       font-weight: 700;
       color: var(--green-600);
-      margin-top: auto;          /* ← لینک را به پایین می‌چسباند */
+      font-size: 14px;
+      white-space: nowrap;
     }
-    .card:hover .go { color: var(--green-800); }
+    .pillar-item:hover .go {
+      color: var(--green-800);
+    }
 
     /* ============================================================
-       CONNECT
+       CONNECT — طراحی جدید با دو ستون و آیکون
        ============================================================ */
-    .connect {
-      background: var(--bg-soft);
-      border-block: 1px solid var(--line);
-    }
     .connect-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: center;
+      align-items: start;
     }
-    .chain {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .connect-text h2 {
+      margin-top: 0;
     }
-    .chain li {
-      position: relative;
-      padding: 0 34px 24px 0;
-      border-right: 2px solid var(--green-200);
+    .connect-text p {
+      color: var(--ink-soft);
+      font-size: 16.5px;
     }
-    .chain li:last-child {
-      border-right-color: transparent;
-      padding-bottom: 0;
+    .connect-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
     }
-    .chain li::before {
-      content: "";
-      position: absolute;
-      right: -8px; top: 8px;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: var(--green-500);
-      border: 3px solid var(--bg-soft);
+    .connect-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
     }
-    .chain b {
+    .connect-item .icon {
+      font-size: 22px;
+      color: var(--green-500);
+      line-height: 1.4;
+    }
+    .connect-item .text b {
       display: block;
       color: var(--green-900);
-      font-size: 16.5px;
-      margin-bottom: 2px;
+      font-size: 16px;
     }
-    .chain span {
+    .connect-item .text span {
       color: var(--ink-soft);
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     /* ============================================================
@@ -384,86 +373,49 @@
     }
 
     /* ============================================================
-       GARDEN (درباره سایت) — کارت‌های متعادل
+       LATEST NOTES — به صورت لیست متنی
        ============================================================ */
-    .garden {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 34px;
-    }
-    .stage {
-      background: #fff;
-      border: 1px dashed var(--green-200);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-align: center;
+    .latest-list {
+      max-width: 800px;
+      margin: 34px auto 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-    }
-    .stage .em {
-      font-size: 32px;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .stage b {
-      display: block;
-      color: var(--green-800);
-      margin-bottom: 6px;
-      font-size: 18px;
-    }
-    .stage span {
-      color: var(--ink-mute);
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
-
-    /* ============================================================
-       آخرین یادداشت‌ها (بخش جدید)
-       ============================================================ */
-    .latest-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 34px;
+      gap: 12px;
     }
     .latest-item {
-      background: #fff;
-      border: 1px solid var(--line);
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--line);
+      transition: background .2s;
       border-radius: var(--radius-sm);
-      padding: 24px 22px;
-      transition: .2s;
     }
     .latest-item:hover {
-      border-color: var(--green-400);
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-3px);
+      background: var(--bg-soft);
     }
     .latest-item .date {
-      font-size: 13px;
-      color: var(--ink-mute);
-      display: block;
-      margin-bottom: 6px;
-    }
-    .latest-item h4 {
-      margin: 0 0 8px;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--green-900);
-    }
-    .latest-item p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: 14.5px;
-      line-height: 1.8;
-    }
-    .latest-item .read-more {
-      display: inline-block;
-      margin-top: 12px;
-      font-weight: 600;
       font-size: 14px;
+      color: var(--ink-mute);
+      white-space: nowrap;
+      min-width: 90px;
+    }
+    .latest-item .title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--green-900);
+      flex: 1;
+    }
+    .latest-item .title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .latest-item .title a:hover {
       color: var(--green-600);
+    }
+    .latest-item .arrow {
+      color: var(--green-400);
+      font-weight: 700;
     }
 
     /* ============================================================
@@ -484,7 +436,7 @@
     }
 
     /* ============================================================
-       FOOTER (تغییر نام)
+       FOOTER
        ============================================================ */
     footer {
       background: var(--green-900);
@@ -525,12 +477,12 @@
        RESPONSIVE
        ============================================================ */
     @media (max-width: 900px) {
-      .grid, .garden, .latest-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
       .connect-grid {
         grid-template-columns: 1fr;
         gap: 32px;
+      }
+      .connect-items {
+        grid-template-columns: 1fr;
       }
       .f-grid {
         grid-template-columns: 1fr 1fr;
@@ -544,7 +496,7 @@
       .menu-btn {
         display: block;
       }
-      .grid, .garden, .latest-grid, .f-grid {
+      .f-grid {
         grid-template-columns: 1fr;
       }
       .hero {
@@ -563,6 +515,24 @@
         font-size: 15px;
         padding: 14px 18px;
       }
+      .pillar-item {
+        flex-wrap: wrap;
+        padding: 16px;
+      }
+      .pillar-item .go {
+        margin-top: 8px;
+        width: 100%;
+        text-align: left;
+      }
+      .latest-item {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .latest-item .date {
+        min-width: unset;
+        width: 100%;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -573,11 +543,11 @@
   <div class="wrap nav">
     <a href="/" class="logo">
       <span class="mark">◈</span>
-      <span>مسعود شکری</span>   <!-- ← تغییر نام -->
+      <span>مسعود شکری</span>
     </a>
     <nav class="nav-links">
       <a href="#pillars">حوزه‌ها</a>
-      <a href="#connect">چرا این‌ها به هم مربوط‌اند؟</a>
+      <a href="#connect">نخِ مشترک</a>
       <a href="#phd">پژوهش</a>
       <a href="#latest">آخرین نوشته‌ها</a>
       <a href="#contact">ارتباط</a>
@@ -586,7 +556,7 @@
   </div>
 </header>
 
-<!-- ================= HERO (وسط‌چین) ================= -->
+<!-- ================= HERO ================= -->
 <div class="hero">
   <div class="wrap">
     <span class="badge"><span class="dot"></span> سیستم مدیریت دانش شخصی — همیشه در حال رشد</span>
@@ -616,97 +586,151 @@
     <div class="sec-head">
       <p class="kicker">حوزه‌های دانشی</p>
       <h2>این‌جا درباره‌ی چه می‌نویسم؟</h2>
-      <p>هفت حوزه که هرکدام دروازه‌ای‌اند به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
+      <p>هر حوزه دروازه‌ای است به مجموعه‌ای از یادداشت‌های به‌هم‌پیوسته.</p>
     </div>
 
-    <div class="grid">
-      <a class="card" href="#">
-        <div class="ico">◎</div>
-        <h3>تفکر سیستمی</h3>
-        <p>کتاب‌ها، افراد تأثیرگذار، مجلات و همایش‌ها، و روش‌شناسی‌های سیستمی مثل VSM و SSM. عینکی برای دیدن کلیت، روابط و بازخوردها.</p>
-        <span class="go">ورود به این حوزه →</span>
+    <div class="pillars-list">
+      <a class="pillar-item" href="#">
+        <span class="ico">◎</span>
+        <div class="content">
+          <h3>تفکر سیستمی</h3>
+          <p>کتاب‌ها، افراد تأثیرگذار، مجلات و همایش‌ها، و روش‌شناسی‌های سیستمی مثل VSM و SSM. عینکی برای دیدن کلیت، روابط و بازخوردها.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">◆</div>
-        <h3>هوش مصنوعی و کار دانشی</h3>
-        <p>ابزارها، پرامپت‌های آزموده‌شده، ترفندهای کاربردی — و یک نگاه انتقادی: چطور از AI استفاده کنیم بدون آن‌که اصالتِ فکر کردن را از دست بدهیم.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">◆</span>
+        <div class="content">
+          <h3>هوش مصنوعی و کار دانشی</h3>
+          <p>ابزارها، پرامپت‌های آزموده‌شده، ترفندهای کاربردی — و یک نگاه انتقادی: چطور از AI استفاده کنیم بدون آن‌که اصالتِ فکر کردن را از دست بدهیم.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">✦</div>
-        <h3>خلاقیت و نوآوری</h3>
-        <p>هم مفهوم، هم تکنیک‌های عملی. میراث سایت «نوخلاق» به‌همراه تجربه‌ی یک ترم تدریس این درس.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">✦</span>
+        <div class="content">
+          <h3>خلاقیت و نوآوری</h3>
+          <p>هم مفهوم، هم تکنیک‌های عملی. میراث سایت «نوخلاق» به‌همراه تجربه‌ی یک ترم تدریس این درس.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">◈</div>
-        <h3>توسعه فردی</h3>
-        <p>عادت‌سازی، سیستم‌سازی شخصی، هدف‌گذاری، مدیریت توجه و تمرکز — فقط آنچه خودم تجربه کرده‌ام و واقعاً کار کرده است.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">◈</span>
+        <div class="content">
+          <h3>توسعه فردی</h3>
+          <p>عادت‌سازی، سیستم‌سازی شخصی، هدف‌گذاری، مدیریت توجه و تمرکز — فقط آنچه خودم تجربه کرده‌ام و واقعاً کار کرده است.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">✎</div>
-        <h3>نوشتن و نویسندگی</h3>
-        <p>نوشتن نه فقط ابزار انتقال ایده، که <b>روشی برای فکر کردن</b>. چرایی، تکنیک‌ها و جای نوشتن در فرآیند یادگیری و پژوهش.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">✎</span>
+        <div class="content">
+          <h3>نوشتن و نویسندگی</h3>
+          <p>نوشتن نه فقط ابزار انتقال ایده، که <b>روشی برای فکر کردن</b>. چرایی، تکنیک‌ها و جای نوشتن در فرآیند یادگیری و پژوهش.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">⌕</div>
-        <h3>پژوهش و روش‌شناسی</h3>
-        <p>روش‌ها، شیوه‌ها و ابزارهای پژوهشی؛ خلاصه‌ی آنچه در مسیر دکتری یاد می‌گیرم و به کار می‌بندم.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">⌕</span>
+        <div class="content">
+          <h3>پژوهش و روش‌شناسی</h3>
+          <p>روش‌ها، شیوه‌ها و ابزارهای پژوهشی؛ خلاصه‌ی آنچه در مسیر دکتری یاد می‌گیرم و به کار می‌بندم.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">▤</div>
-        <h3>تدریس</h3>
-        <p>یادداشت‌ها و طرح‌درس‌های مبانی سازمان، بازاریابی، رفتار سازمانی، مهارت‌های حرفه‌ای، تجزیه و تحلیل سیستم‌ها و خلاقیت و نوآوری.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">▤</span>
+        <div class="content">
+          <h3>تدریس</h3>
+          <p>یادداشت‌ها و طرح‌درس‌های مبانی سازمان، بازاریابی، رفتار سازمانی، مهارت‌های حرفه‌ای، تجزیه و تحلیل سیستم‌ها و خلاقیت و نوآوری.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">✧</div>
-        <h3>تجربه‌ها و درس‌ها</h3>
-        <p>روایت صادقانه از مسیرها — از جمله شکست‌ها. چون آنچه جواب نداده، به‌اندازه‌ی موفقیت‌ها آموزنده است.</p>
-        <span class="go">ورود به این حوزه →</span>
+      <a class="pillar-item" href="#">
+        <span class="ico">✧</span>
+        <div class="content">
+          <h3>تجربه‌ها و درس‌ها</h3>
+          <p>روایت صادقانه از مسیرها — از جمله شکست‌ها. چون آنچه جواب نداده، به‌اندازه‌ی موفقیت‌ها آموزنده است.</p>
+        </div>
+        <span class="go">ورود →</span>
       </a>
 
-      <a class="card" href="#">
-        <div class="ico">☷</div>
-        <h3>نقشه‌ی کل یادداشت‌ها</h3>
-        <p>فهرست کامل MOCها و نقطه‌ی ورود به شبکه‌ی پیوندخورده‌ی همه‌ی یادداشت‌های این باغچه.</p>
+      <a class="pillar-item" href="#">
+        <span class="ico">☷</span>
+        <div class="content">
+          <h3>نقشه‌ی کل یادداشت‌ها</h3>
+          <p>فهرست کامل MOCها و نقطه‌ی ورود به شبکه‌ی پیوندخورده‌ی همه‌ی یادداشت‌های این باغچه.</p>
+        </div>
         <span class="go">دیدن نقشه →</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ================= CONNECT ================= -->
+<!-- ================= CONNECT (نخِ مشترک) ================= -->
 <section id="connect" class="connect">
   <div class="wrap connect-grid">
-    <div>
+    <div class="connect-text">
       <p class="kicker">نخِ مشترک</p>
       <h2>چرا این موضوعات کنار هم‌اند؟</h2>
-      <p style="color:var(--ink-soft)">
+      <p>
         شاید در نگاه اول پراکنده به‌نظر برسند؛ اما هرکدام یک لایه از یک پرسش واحدند:
         <b>چطور می‌شود کارِ فکری را روش‌مندتر انجام داد؟</b>
         این‌جا نه مجموعه‌ای از موضوعات جدا، بلکه یک ذهن با یک دغدغه‌ی مشترک را می‌بینید.
       </p>
     </div>
 
-    <ul class="chain">
-      <li><b>تفکر سیستمی</b><span>عینکِ نگاه: دیدن کلیت، روابط و بازخوردها به‌جای اجزای جدا.</span></li>
-      <li><b>توسعه فردی</b><span>همان تفکر سیستمی، اما در مقیاس فردی؛ وقتی خودم موضوعِ سیستم‌ام.</span></li>
-      <li><b>خلاقیت و نوآوری</b><span>دیدن الگوهای تازه در همان روابط — خروجیِ طبیعی نگاه سیستمی.</span></li>
-      <li><b>هوش مصنوعی</b><span>قدرتمندترین ابزار امروز برای تقویت فکر — به شرط استفاده‌ی سنجیده.</span></li>
-      <li><b>نوشتن</b><span>ابزاری که همه‌ی این‌ها را به هم وصل می‌کند؛ نوشتن یعنی فکر کردن.</span></li>
-      <li><b>پژوهش و تدریس</b><span>محل آزمون و انتقالِ همه‌ی آنچه در بالا آمد.</span></li>
-    </ul>
+    <div class="connect-items">
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>تفکر سیستمی</b>
+          <span>عینکِ نگاه: دیدن کلیت، روابط و بازخوردها به‌جای اجزای جدا.</span>
+        </div>
+      </div>
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>توسعه فردی</b>
+          <span>همان تفکر سیستمی، اما در مقیاس فردی؛ وقتی خودم موضوعِ سیستم‌ام.</span>
+        </div>
+      </div>
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>خلاقیت و نوآوری</b>
+          <span>دیدن الگوهای تازه در همان روابط — خروجیِ طبیعی نگاه سیستمی.</span>
+        </div>
+      </div>
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>هوش مصنوعی</b>
+          <span>قدرتمندترین ابزار امروز برای تقویت فکر — به شرط استفاده‌ی سنجیده.</span>
+        </div>
+      </div>
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>نوشتن</b>
+          <span>ابزاری که همه‌ی این‌ها را به هم وصل می‌کند؛ نوشتن یعنی فکر کردن.</span>
+        </div>
+      </div>
+      <div class="connect-item">
+        <span class="icon">◉</span>
+        <div class="text">
+          <b>پژوهش و تدریس</b>
+          <span>محل آزمون و انتقالِ همه‌ی آنچه در بالا آمد.</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -734,24 +758,7 @@
   </div>
 </section>
 
-<!-- ================= GARDEN (درباره سایت) ================= -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker">درباره‌ی این سایت</p>
-      <h2>این‌جا یک باغچه است، نه یک ویترین</h2>
-      <p>قرار نیست همه‌چیز کامل و پرداخته باشد. یادداشت‌ها در مراحل مختلفِ رشد هستند و به‌مرور کامل می‌شوند.</p>
-    </div>
-
-    <div class="garden">
-      <div class="stage"><span class="em">🌱</span><b>بذر</b><span>ایده‌ی خام و تازه‌کاشته؛ هنوز در حال شکل‌گیری.</span></div>
-      <div class="stage"><span class="em">🌿</span><b>نهال</b><span>در حال رشد؛ ساختار گرفته اما هنوز کامل نیست.</span></div>
-      <div class="stage"><span class="em">🌳</span><b>درخت</b><span>پخته، ویرایش‌شده و آماده‌ی استفاده.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= آخرین یادداشت‌ها (بخش جدید) ================= -->
+<!-- ================= LATEST NOTES (متنی) ================= -->
 <section id="latest" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
@@ -760,30 +767,22 @@
       <p>هر نوشته یک قدم در مسیر روش‌مندتر شدنِ فکر است.</p>
     </div>
 
-    <div class="latest-grid">
-      <!-- نمونه ۱ – لینک را با آدرس واقعی جایگزین کنید -->
-      <a href="#" class="latest-item" style="display:block; color:inherit;">
+    <div class="latest-list">
+      <div class="latest-item">
         <span class="date">۱۴۰۴/۰۲/۱۵</span>
-        <h4>چرا VSM را برای رساله‌ام انتخاب کردم؟</h4>
-        <p>مروری بر دلایل روش‌شناختی و عملی برای انتخاب مدل سیستم زنده در پژوهش ترکیبی.</p>
-        <span class="read-more">مطالعهٔ یادداشت →</span>
-      </a>
-
-      <!-- نمونه ۲ -->
-      <a href="#" class="latest-item" style="display:block; color:inherit;">
+        <span class="title"><a href="#">چرا VSM را برای رساله‌ام انتخاب کردم؟</a></span>
+        <span class="arrow">←</span>
+      </div>
+      <div class="latest-item">
         <span class="date">۱۴۰۴/۰۲/۱۰</span>
-        <h4>پرامپت‌نویسی برای پژوهشگران</h4>
-        <p>چطور از هوش مصنوعی برای خلاصه‌سازی، ایده‌پردازی و تحلیل استفاده کنم بدون افت کیفیت.</p>
-        <span class="read-more">مطالعهٔ یادداشت →</span>
-      </a>
-
-      <!-- نمونه ۳ -->
-      <a href="#" class="latest-item" style="display:block; color:inherit;">
+        <span class="title"><a href="#">پرامپت‌نویسی برای پژوهشگران</a></span>
+        <span class="arrow">←</span>
+      </div>
+      <div class="latest-item">
         <span class="date">۱۴۰۴/۰۲/۰۵</span>
-        <h4>عادت نوشتن روزانه؛ چگونه شروع کردم</h4>
-        <p>تجربه‌ی شخصی من از ایجاد عادت نوشتن و تأثیر آن بر وضوح فکر و یادگیری.</p>
-        <span class="read-more">مطالعهٔ یادداشت →</span>
-      </a>
+        <span class="title"><a href="#">عادت نوشتن روزانه؛ چگونه شروع کردم</a></span>
+        <span class="arrow">←</span>
+      </div>
     </div>
   </div>
 </section>
@@ -799,8 +798,8 @@
         که دوست دارد بهتر فکر کند و بهتر یاد بگیرد — خوش‌آمدید.
       </p>
       <div class="cta" style="justify-content:center">
-        <a class="btn btn-primary" href="#">عضویت در کانال نوفکر</a>
-        <a class="btn btn-ghost" href="mailto:you@example.com">ارسال ایمیل</a>
+        <a class="btn btn-primary" href="https://ble.ir/nofekr_ir">عضویت در کانال نوفکر</a>
+        <a class="btn btn-ghost" href="mailto:mshekari95@gmail.com">ارسال ایمیل</a>
       </div>
     </div>
   </div>
@@ -835,8 +834,8 @@
       </div>
     </div>
     <div class="f-bottom">
-      <span>© ۱۴۰۴ — تمام یادداشت‌ها با ♥ در Obsidian نوشته شده‌اند.</span>
-      <span>آخرین به‌روزرسانی: ۱۴۰۴/۰۲/۲۰</span>
+      <span>© 1405 — تمام یادداشت‌ها با ♥ در Obsidian نوشته شده‌اند.</span>
+      <span>آخرین به‌روزرسانی: 1405</span>
     </div>
   </div>
 </footer>
