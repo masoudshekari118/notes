@@ -1,279 +1,170 @@
 /* =========================================================
    MASOUD SHEKARI — DIGITAL GARDEN
-   Note Page UI / UX
+   Note Page UI / UX — Improved Custom Styles
    Light & Dark Theme
    ========================================================= */
 
-
 /* ---------------------------------------------------------
-   01. FONT
+   1. FONT
    --------------------------------------------------------- */
-
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
-
 /* ---------------------------------------------------------
-   02. LIGHT THEME
+   2. LIGHT THEME (اصلاح رنگ‌ها)
    --------------------------------------------------------- */
-
 :root {
-
   --font: 'Vazirmatn', Tahoma, sans-serif;
 
-  /* Backgrounds */
+  /* رنگ‌های پس‌زمینه */
   --background-primary: #f5f7f5;
   --background-secondary: #eef2ef;
   --background-tertiary: #e8ede9;
-
   --background-primary-alt: #f8faf8;
 
-  /* Surfaces */
+  /* سطوح */
   --surface: #ffffff;
   --surface-soft: #f8faf8;
   --surface-hover: #eef5f0;
 
-  /* Text */
+  /* رنگ‌های متن */
   --text-normal: #26332c;
   --text-muted: #718078;
   --text-faint: #9aa69f;
 
-  /* Accent */
+  /* رنگ اصلی (سبز) */
   --interactive-accent: #287a57;
   --interactive-accent-hover: #1f6849;
   --accent-color: #287a57;
-
   --accent-soft: #e4f0e8;
   --accent-softer: #eef6f1;
 
-  /* Borders */
+  /* حاشیه‌ها */
   --background-modifier-border: #dfe7e2;
   --background-modifier-border-hover: #cbd8d0;
 
-  /* Shadows */
+  /* سایه‌ها */
   --shadow-soft: 0 2px 12px rgba(38, 51, 44, .045);
   --shadow-medium: 0 8px 28px rgba(38, 51, 44, .07);
 
-  /* Radius */
+  /* گردی گوشه */
   --radius-small: 7px;
   --radius-medium: 12px;
   --radius-large: 18px;
 
-  /* Layout */
-  --dg-content-max-width: 1180px;
-  --dg-filetree-width: 3500px;
-
+  /* عرض نوار کناری (افزایش یافته) */
+  --dg-filetree-width: 300px;
 }
 
-
 /* ---------------------------------------------------------
-   03. DARK THEME
+   3. DARK THEME (اصلاح رنگ‌ها)
    --------------------------------------------------------- */
-
 html.dark {
-
   --background-primary: #151b17;
   --background-secondary: #1a221d;
   --background-tertiary: #202a23;
-
   --background-primary-alt: #182019;
-
   --surface: #1b241e;
   --surface-soft: #202a23;
   --surface-hover: #26332b;
-
   --text-normal: #e6ece8;
   --text-muted: #b0bdb5;
   --text-faint: #7e8c84;
-
   --interactive-accent: #70b996;
   --interactive-accent-hover: #8ac8a8;
   --accent-color: #70b996;
-
   --accent-soft: #20392b;
   --accent-softer: #1c3025;
-
   --background-modifier-border: #2c3830;
   --background-modifier-border-hover: #3a4940;
-
   --shadow-soft: 0 2px 14px rgba(0,0,0,.15);
   --shadow-medium: 0 10px 30px rgba(0,0,0,.25);
 }
 
-
 /* ---------------------------------------------------------
-   04. GLOBAL
+   4. GLOBAL (اندازه فونت بزرگ‌تر)
    --------------------------------------------------------- */
-
 html {
-  font-size: 18px;
+  font-size: 19px;          /* افزایش سایز پایه */
   scroll-behavior: smooth;
 }
 
-
 body {
-
   font-family: var(--font) !important;
-
   direction: rtl;
-
   background: var(--background-primary) !important;
-
   color: var(--text-normal) !important;
-
   line-height: 2;
-
-  transition:
-    background-color .25s ease,
-    color .25s ease;
-
+  transition: background-color .25s ease, color .25s ease;
 }
-
-
-/* Force font */
 
 *,
 *::before,
 *::after {
-
   font-family: var(--font) !important;
-
 }
 
-
 /* ---------------------------------------------------------
-   05. MAIN PAGE BACKGROUND
+   5. حذف حاشیه‌های اضافی و یکپارچه‌سازی پس‌زمینه
    --------------------------------------------------------- */
-
-/*
-   Removes the old strong separation between
-   sidebar and note content.
-*/
-
 body,
 body.theme-light,
 body.theme-dark {
-
   background: var(--background-primary) !important;
-
 }
-
-
-/* Main Digital Garden wrapper */
-
 .content-wrapper,
 .content {
-
   background: transparent !important;
-
 }
 
-
-
 /* ---------------------------------------------------------
-   07. FILE TREE / LEFT NAVIGATION
+   6. نوار کناری (فهرست نوشته‌ها) — افزایش عرض و رنگ‌بندی
    --------------------------------------------------------- */
-
-/*
-   The old Digital Garden sidebar is intentionally
-   made light and visually integrated with the page.
-*/
-
 .filetree-wrapper,
 .filetree-sidebar {
-
-  background: var(--background-primary) !important;
-
-  border: none !important;
-
+  background: var(--background-secondary) !important; /* کمی متفاوت از پس‌زمینه اصلی */
+  border-left: 1px solid var(--background-modifier-border) !important; /* خط جداکننده */
   box-shadow: none !important;
-
+  padding: 1rem 0.5rem !important;
 }
-
-
-/* File tree width */
 
 .filetree-sidebar {
-
-  width: 350px !important;
-
+  width: var(--dg-filetree-width) !important;
+  min-width: var(--dg-filetree-width) !important;
+  max-width: var(--dg-filetree-width) !important;
 }
 
-
-/* Remove vertical separator */
-
-.filetree-sidebar {
-
-  border-right: none !important;
-
-  border-left: none !important;
-
-}
-
-
-/* File tree links */
-
+/* آیتم‌های نوار */
 .filetree-sidebar a,
 .filetree-wrapper a {
-
   color: var(--text-muted) !important;
-
   background: transparent !important;
-
   border: none !important;
-
   border-radius: var(--radius-small);
-
-  padding: .42rem .75rem;
-
-  margin: 2px 0;
-
-  transition:
-    color .18s ease,
-    background .18s ease;
-
+  padding: 0.5rem 0.9rem;
+  margin: 3px 0;
+  transition: color .18s ease, background .18s ease;
+  display: block;
+  font-size: 0.95rem;
 }
-
-
-/* Hover */
-
 .filetree-sidebar a:hover,
 .filetree-wrapper a:hover {
-
   color: var(--accent-color) !important;
-
   background: var(--accent-softer) !important;
-
 }
-
-
-/* Active */
-
 .filetree-sidebar a.active,
 .filetree-wrapper a.active {
-
   color: var(--accent-color) !important;
-
   background: var(--accent-soft) !important;
-
   font-weight: 600;
-
 }
-
-
-/* Folder names */
-
+/* نام پوشه‌ها */
 .filetree-sidebar .folder,
 .filetree-sidebar .folder-name {
-
   color: var(--text-normal) !important;
-
+  font-weight: 600;
 }
 
-
-/* ---------------------------------------------------------
-   08. REMOVE OLD SIDEBAR BOXES
-   --------------------------------------------------------- */
-
+/* حذف استایل‌های اضافی داخل نوار */
 .filetree,
 .file-tree,
 .nav-folder,
@@ -281,751 +172,481 @@ body.theme-dark {
 .tree,
 .sidenav,
 .explorer {
-
   background: transparent !important;
-
   border: none !important;
-
   box-shadow: none !important;
-
 }
-
 
 /* ---------------------------------------------------------
-   09. MAIN CONTENT
+   7. محتوای اصلی — اصلاح فاصله از راست و چینش
    --------------------------------------------------------- */
-
 .content {
-
-  max-width: 800px;
-
-  margin-left: auto;
-
-  margin-right: auto;
-
+  max-width: 820px;          /* کمی پهن‌تر */
+  margin: 0 auto;            /* وسط‌چین */
   padding: 2rem 2.5rem 4rem;
-
+  background: transparent !important;
 }
 
-
-/*
-   Remove the old card-like appearance.
-*/
-
+/* حذف استایل کارت‌گونه */
 .content article,
 .content .markdown-preview-view,
 .content .note-content {
-
   background: transparent !important;
-
   border: none !important;
-
   box-shadow: none !important;
-
 }
 
-
 /* ---------------------------------------------------------
-   10. NOTE TITLE
+   8. عنوان اصلی سایت (اسم شما) — حذف رنگ زرد
    --------------------------------------------------------- */
-
-.content h1 {
-
+/* فرض می‌کنیم عنوان اصلی در یک کلاس .site-title یا h1 خاص قرار دارد */
+.site-title,
+.navbar-brand,
+.logo,
+header h1,
+header .title {
+  color: var(--accent-color) !important; /* سبز به جای زرد */
+  background: transparent !important;
+}
+/* اگر عنوان به صورت h1 داخل هدر است */
+header h1,
+header .site-title {
+  color: var(--accent-color) !important;
+}
+/* در صورت وجود هر گونه رنگ زرد در جستجو */
+.search-highlight,
+.search-term,
+mark {
+  background: var(--accent-soft) !important; /* سبز ملایم */
   color: var(--text-normal) !important;
-
-  font-size: clamp(1.9rem, 3vw, 2.45rem);
-
-  font-weight: 800;
-
-  line-height: 1.55;
-
-  letter-spacing: -.025em;
-
-  margin: 0 0 1.5rem;
-
-  padding-bottom: 1.1rem;
-
-  border-bottom: 1px solid var(--background-modifier-border);
-
 }
 
-
 /* ---------------------------------------------------------
-   11. HEADINGS
+   9. تیترهای درون متن — همرنگ با تم اصلی
    --------------------------------------------------------- */
+.content h1 {
+  color: var(--accent-color) !important; /* سبز برای h1 */
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: -.025em;
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 2px solid var(--accent-color);
+}
 
 .content h2 {
-
-  color: var(--text-normal) !important;
-
-  font-size: 1.5rem;
-
+  color: var(--accent-color) !important; /* سبز */
+  font-size: 1.6rem;
   font-weight: 700;
-
   line-height: 1.6;
-
   margin-top: 2.7rem;
-
   margin-bottom: 1rem;
-
 }
-
-
 .content h2::before {
-
   content: "";
-
   display: inline-block;
-
-  width: 4px;
-
+  width: 5px;
   height: 1.15em;
-
   background: var(--accent-color);
-
   border-radius: 10px;
-
   margin-left: .65rem;
-
   vertical-align: -.2em;
-
 }
-
 
 .content h3 {
-
-  color: var(--text-normal) !important;
-
-  font-size: 1.25rem;
-
+  color: var(--accent-color) !important; /* سبز */
+  font-size: 1.35rem;
   font-weight: 700;
-
   margin-top: 2rem;
-
+}
+/* در صورت نیاز h4 تا h6 نیز */
+.content h4,
+.content h5,
+.content h6 {
+  color: var(--text-normal) !important;
 }
 
-
 /* ---------------------------------------------------------
-   12. PARAGRAPHS
+   10. پاراگراف‌ها — فونت کمی بزرگ‌تر
    --------------------------------------------------------- */
-
 .content p {
-
   color: var(--text-normal) !important;
-
-  font-size: 1rem;
-
+  font-size: 1.05rem;        /* افزایش */
   line-height: 2.15;
-
   margin-bottom: 1.3rem;
-
 }
 
-
 /* ---------------------------------------------------------
-   13. LINKS
+   11. لینک‌ها
    --------------------------------------------------------- */
-
 .content a {
-
   color: var(--accent-color) !important;
-
   text-decoration: none;
-
   border-bottom: 1px dashed rgba(40,122,87,.35);
-
-  transition:
-    color .18s ease,
-    background .18s ease,
-    border-color .18s ease;
-
+  transition: color .18s ease, background .18s ease, border-color .18s ease;
 }
-
-
 .content a:hover {
-
   color: var(--interactive-accent-hover) !important;
-
   background: var(--accent-softer);
-
   border-bottom-color: var(--accent-color);
-
   border-radius: 3px;
-
 }
-
-
-/* ---------------------------------------------------------
-   14. INTERNAL LINKS
-   --------------------------------------------------------- */
-
 .content .internal-link {
-
   color: var(--accent-color) !important;
-
   border-bottom: 1px dashed rgba(40,122,87,.35);
-
 }
 
-
 /* ---------------------------------------------------------
-   15. TAGS
+   12. برچسب‌ها (Tags)
    --------------------------------------------------------- */
-
 .tag {
-
   display: inline-flex !important;
-
   align-items: center;
-
-  padding: .22rem .7rem !important;
-
+  padding: .25rem .8rem !important;
   margin: .15rem .1rem;
-
   border-radius: 999px !important;
-
   background: var(--accent-soft) !important;
-
   color: var(--accent-color) !important;
-
   border: 1px solid transparent !important;
-
   font-size: .8rem;
-
   text-decoration: none !important;
-
 }
-
-
 .tag:hover {
-
   background: var(--accent-softer) !important;
-
   border-color: var(--accent-color) !important;
-
 }
 
-
 /* ---------------------------------------------------------
-   16. TABLE OF CONTENTS
+   13. فهرست مطالب (TOC)
    --------------------------------------------------------- */
-
 .toc {
-
   background: var(--accent-softer) !important;
-
   border: 1px solid var(--background-modifier-border) !important;
-
   border-radius: var(--radius-medium) !important;
-
   padding: 1rem 1.2rem !important;
-
   margin: 0 0 2rem !important;
-
   box-shadow: none !important;
-
 }
-
-
 .toc a {
-
   color: var(--text-muted) !important;
-
   border: none !important;
-
-  font-size: .88rem;
-
+  font-size: .9rem;
 }
-
-
 .toc a:hover {
-
   color: var(--accent-color) !important;
-
   background: transparent !important;
-
 }
 
-
 /* ---------------------------------------------------------
-   17. GRAPH
+   14. گراف — کوچک‌تر و با قابلیت زوم (ابعاد کاهش یافته)
    --------------------------------------------------------- */
-
 .graph {
-
   background: var(--surface) !important;
-
   border: 1px solid var(--background-modifier-border) !important;
-
   border-radius: var(--radius-large) !important;
-
-  padding: 1rem !important;
-
-  margin: 3rem 0 !important;
-
+  padding: 0.8rem !important;
+  margin: 2rem 0 1.5rem !important; /* فاصله کمتر */
   box-shadow: var(--shadow-soft) !important;
-
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  min-height: 200px;          /* ارتفاع کمتر برای نمایش بهتر */
+  max-height: 350px;          /* محدود کردن ارتفاع */
+  overflow: hidden;
 }
-
-
 #graph-component {
-
   background: transparent !important;
-
   border-radius: var(--radius-medium);
-
+  width: 100% !important;
+  height: 100% !important;
 }
 
-
 /* ---------------------------------------------------------
-   18. BACKLINKS / CONNECTED PAGES
+   15. صفحات مرتبط (Backlinks) — در بالای گراف و تمام عرض
    --------------------------------------------------------- */
-
 .backlinks {
-
-  margin-top: 3rem !important;
-
-  padding-top: 1.7rem !important;
-
+  margin-top: 2.5rem !important;
+  padding-top: 1.5rem !important;
   background: transparent !important;
-
   border: none !important;
-
   border-top: 1px solid var(--background-modifier-border) !important;
-
   box-shadow: none !important;
-
+  width: 100%;
 }
-
-
 .backlinks h3 {
-
   color: var(--text-normal) !important;
-
-  font-size: 1.05rem;
-
+  font-size: 1.1rem;
   font-weight: 700;
-
   margin-bottom: 1rem;
-
 }
-
-
-/* Backlink items */
-
 .backlinks a {
-
   display: inline-flex;
-
-  padding: .35rem .75rem;
-
+  padding: .35rem .85rem;
   margin: .2rem;
-
   background: var(--surface);
-
   border: 1px solid var(--background-modifier-border);
-
   border-radius: 999px;
-
   color: var(--text-muted) !important;
-
-  font-size: .82rem;
-
+  font-size: .85rem;
 }
-
-
 .backlinks a:hover {
-
   background: var(--accent-soft);
-
   color: var(--accent-color) !important;
-
   border-color: var(--accent-color);
-
 }
 
-
-/* ---------------------------------------------------------
-   19. CONNECTED / MENTIONED PAGES
-   --------------------------------------------------------- */
-
+/* لیست صفحات مرتبط به صورت بلوکی */
 .content .page-list,
 .content .related-pages,
 .content .backlinks-list {
-
   margin-top: 1rem;
-
+  width: 100%;
 }
-
-
 .content .page-list a,
 .content .related-pages a,
 .content .backlinks-list a {
-
   display: block;
-
   padding: .65rem .85rem;
-
   margin-bottom: .45rem;
-
   background: var(--surface);
-
   border: 1px solid var(--background-modifier-border);
-
   border-radius: var(--radius-medium);
-
   color: var(--text-secondary) !important;
-
   border-bottom-width: 1px;
-
 }
-
-
 .content .page-list a:hover,
 .content .related-pages a:hover,
 .content .backlinks-list a:hover {
-
   background: var(--accent-softer);
-
   border-color: var(--accent-color);
-
   transform: translateX(-2px);
-
 }
 
-
 /* ---------------------------------------------------------
-   20. BLOCKQUOTE
+   16. نقل قول (Blockquote)
    --------------------------------------------------------- */
-
 blockquote {
-
   margin: 2rem 0;
-
   padding: 1rem 1.3rem;
-
   background: var(--accent-softer) !important;
-
   border: none !important;
-
   border-right: 4px solid var(--accent-color) !important;
-
   border-radius: var(--radius-medium);
-
   color: var(--text-muted);
-
 }
-
-
 blockquote p {
-
   margin-bottom: 0;
-
 }
 
-
 /* ---------------------------------------------------------
-   21. CODE
+   17. کد
    --------------------------------------------------------- */
-
 code {
-
   background: var(--accent-softer) !important;
-
-  color: var(--accent-hover) !important;
-
+  color: var(--accent-color) !important;
   padding: .12rem .4rem;
-
   border-radius: 5px;
-
 }
-
-
 pre {
-
   background: #202822 !important;
-
   color: #e8eee9 !important;
-
   padding: 1.25rem;
-
   border-radius: var(--radius-medium);
-
   overflow-x: auto;
-
   direction: ltr;
-
   text-align: left;
-
   box-shadow: var(--shadow-medium);
-
 }
-
-
 pre code {
-
   background: transparent !important;
-
   color: inherit !important;
-
 }
 
-
 /* ---------------------------------------------------------
-   22. IMAGES
+   18. تصاویر
    --------------------------------------------------------- */
-
 .content img {
-
   display: block;
-
   max-width: 100%;
-
   height: auto;
-
   margin: 2rem auto;
-
   border-radius: var(--radius-large);
-
   box-shadow: var(--shadow-medium);
-
 }
-
 
 /* ---------------------------------------------------------
-   23. TABLE
+   19. جدول
    --------------------------------------------------------- */
-
 .content table {
-
   width: 100%;
-
   margin: 2rem 0;
-
   border-collapse: separate;
-
   border-spacing: 0;
-
   background: var(--surface);
-
   border: 1px solid var(--background-modifier-border);
-
   border-radius: var(--radius-medium);
-
   overflow: hidden;
-
 }
-
-
 .content th {
-
   background: var(--accent-softer);
-
   color: var(--text-normal);
-
   font-weight: 700;
-
 }
-
-
 .content th,
 .content td {
-
   padding: .75rem 1rem;
-
   border-bottom: 1px solid var(--background-modifier-border);
-
 }
-
-
 .content tr:last-child td {
-
   border-bottom: none;
-
 }
 
-
 /* ---------------------------------------------------------
-   24. HORIZONTAL LINE
+   20. خط افقی
    --------------------------------------------------------- */
-
 .content hr {
-
   border: none;
-
   border-top: 1px solid var(--background-modifier-border);
-
   margin: 3rem 0;
-
 }
 
-
 /* ---------------------------------------------------------
-   25. SEARCH
+   21. جستجو — حذف کامل زرد
    --------------------------------------------------------- */
-
 .search-button {
-
   color: var(--text-muted) !important;
-
   background: var(--surface) !important;
-
   border: 1px solid var(--background-modifier-border) !important;
-
   border-radius: 999px !important;
-
 }
-
-
 .search-button:hover {
-
   color: var(--accent-color) !important;
-
   background: var(--accent-softer) !important;
-
   border-color: var(--accent-color) !important;
-
 }
-
-
 .search-box {
-
   background: var(--surface) !important;
-
   border: 1px solid var(--background-modifier-border) !important;
-
   border-radius: var(--radius-large) !important;
-
   box-shadow: var(--shadow-medium) !important;
-
 }
-
+/* هر گونه هایلایت زرد در جستجو */
+.search-results .search-highlight,
+.search-results mark {
+  background: var(--accent-soft) !important;
+  color: var(--text-normal) !important;
+}
 
 /* ---------------------------------------------------------
-   27. SELECTION
+   22. دکمه بازگشت به بالا (فلش) — نیاز به المان HTML با کلاس .back-to-top
    --------------------------------------------------------- */
-
-::selection {
-
-  background: var(--accent-soft);
-
-  color: var(--text-normal);
-
-}
-
-
-/* ---------------------------------------------------------
-   28. SCROLLBAR
-   --------------------------------------------------------- */
-
-::-webkit-scrollbar {
-
-  width: 7px;
-
-  height: 7px;
-
-}
-
-
-::-webkit-scrollbar-track {
-
-  background: var(--background-primary);
-
-}
-
-
-::-webkit-scrollbar-thumb {
-
-  background: #c7d2cb;
-
-  border-radius: 20px;
-
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;        /* در RTL چپ */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   background: var(--accent-color);
-
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-medium);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all .25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0.8;
+}
+.back-to-top:hover {
+  background: var(--interactive-accent-hover);
+  transform: scale(1.05);
+  opacity: 1;
+}
+.back-to-top:active {
+  transform: scale(0.95);
+}
+/* در حالت dark */
+html.dark .back-to-top {
+  background: var(--accent-color);
+  color: #151b17;
+}
+html.dark .back-to-top:hover {
+  background: var(--interactive-accent-hover);
 }
 
+/* ---------------------------------------------------------
+   23. انتخاب متن
+   --------------------------------------------------------- */
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-normal);
+}
 
+/* ---------------------------------------------------------
+   24. اسکرول بار
+   --------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #c7d2cb;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
 html.dark ::-webkit-scrollbar-thumb {
-
   background: #45534b;
-
 }
 
-
 /* ---------------------------------------------------------
-   29. REMOVE HEAVY BORDERS
+   25. واکنش‌گرایی (Responsive)
    --------------------------------------------------------- */
-
-.filetree-sidebar,
-.sidebar,
-.filetree-wrapper,
-.content,
-.graph,
-.backlinks {
-
-  box-shadow: none;
-
-}
-
-
-/* ---------------------------------------------------------
-   30. RESPONSIVE
-   --------------------------------------------------------- */
-
 @media (max-width: 900px) {
-
   .content {
-
     max-width: 100%;
-
     padding: 1.5rem 1.25rem 3rem;
-
   }
-
-
   .filetree-sidebar {
-
     width: 100% !important;
-
+    min-width: unset !important;
+    max-width: unset !important;
+    border-left: none !important;
+    border-bottom: 1px solid var(--background-modifier-border) !important;
   }
-
+  .graph {
+    max-height: 250px;
+    min-height: 150px;
+  }
 }
-
 
 @media (max-width: 600px) {
-
   .content {
-
     padding: 1.25rem 1rem 2.5rem;
-
   }
-
-
   .content h1 {
-
     font-size: 1.75rem;
-
   }
-
-
   .content h2 {
-
-    font-size: 1.35rem;
-
+    font-size: 1.4rem;
   }
-
-
   .content p {
-
-    font-size: .96rem;
-
+    font-size: 1rem;
     line-height: 2;
-
   }
-
+  .back-to-top {
+    bottom: 1rem;
+    left: 1rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
 }
