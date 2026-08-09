@@ -60,7 +60,7 @@
 
   /* Layout */
   --dg-content-max-width: 1180px;
-  --dg-filetree-width: 260px;
+  --dg-filetree-width: 3500px;
 
 }
 
@@ -105,7 +105,7 @@ html.dark {
    --------------------------------------------------------- */
 
 html {
-  font-size: 16px;
+  font-size: 18px;
   scroll-behavior: smooth;
 }
 
@@ -168,59 +168,6 @@ body.theme-dark {
 }
 
 
-/* ---------------------------------------------------------
-   06. NAVBAR
-   --------------------------------------------------------- */
-
-.navbar {
-
-  background: rgba(255,255,255,.92) !important;
-
-  border-bottom: 1px solid var(--background-modifier-border) !important;
-
-  box-shadow: var(--shadow-soft) !important;
-
-  backdrop-filter: blur(14px);
-
-  -webkit-backdrop-filter: blur(14px);
-
-  z-index: 1000;
-
-}
-
-
-html.dark .navbar {
-
-  background: rgba(21,27,23,.92) !important;
-
-}
-
-
-/* Navbar links */
-
-.navbar a {
-
-  color: var(--text-muted) !important;
-
-  border: none !important;
-
-  transition:
-    color .18s ease,
-    background .18s ease;
-
-}
-
-
-.navbar a:hover {
-
-  color: var(--accent-color) !important;
-
-  background: var(--accent-softer);
-
-  border-radius: var(--radius-small);
-
-}
-
 
 /* ---------------------------------------------------------
    07. FILE TREE / LEFT NAVIGATION
@@ -247,7 +194,7 @@ html.dark .navbar {
 
 .filetree-sidebar {
 
-  width: 270px !important;
+  width: 350px !important;
 
 }
 
@@ -950,38 +897,6 @@ pre code {
   border-radius: var(--radius-large) !important;
 
   box-shadow: var(--shadow-medium) !important;
-
-}
-
-
-/* ---------------------------------------------------------
-   26. FOOTER
-   --------------------------------------------------------- */
-
-.site-footer {
-
-  max-width: var(--dg-content-max-width);
-
-  margin: 4rem auto 0;
-
-  padding: 1.4rem 2rem;
-
-  text-align: center;
-
-  background: transparent !important;
-
-  border-top: 1px solid var(--background-modifier-border) !important;
-
-  color: var(--text-faint) !important;
-
-  font-size: .8rem;
-
-}
-
-
-.site-footer p {
-
-  color: var(--text-faint) !important;
 
 }
 
