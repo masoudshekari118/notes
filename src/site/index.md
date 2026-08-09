@@ -836,7 +836,7 @@
     </div>
     <div class="f-bottom">
       <span>© ۱۴۰۴ — تمام یادداشت‌ها با ♥ در Obsidian نوشته شده‌اند.</span>
-      <span>آخرین به‌روزرسانی: ۱۴۰۴/۰۲/۲۰</span>
+      <span>آخرین به‌روزرسانی: 1405</span>
     </div>
   </div>
 </footer>
