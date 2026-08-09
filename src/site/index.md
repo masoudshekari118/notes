@@ -534,6 +534,132 @@
         font-size: 13px;
       }
     }
+
+/* ============================================================
+   استایل‌های مقاوم برای بخش حوزه‌های دانشی
+   (با کلاس‌های کاملاً اختصاصی و !important در صورت نیاز)
+   ============================================================ */
+
+.my-pillars-section {
+  padding: 76px 0 !important;
+  background: transparent !important;
+}
+
+.my-pillars-wrap {
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+
+.my-pillars-head {
+  text-align: center !important;
+  margin-bottom: 42px !important;
+}
+
+.my-kicker {
+  color: #218a63 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 0 10px 0 !important;
+}
+
+.my-title {
+  font-size: clamp(24px, 3vw, 32px) !important;
+  margin: 0 0 12px 0 !important;
+  color: #0f3d2e !important;
+  font-weight: 800 !important;
+}
+
+.my-desc {
+  color: #42574f !important;
+  margin: 0 !important;
+  font-size: 16.5px !important;
+}
+
+/* ===== گرید آیتم‌ها ===== */
+.my-pillars-grid {
+  display: grid !important;
+  grid-template-columns: repeat(1, 1fr) !important;
+  gap: 16px !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+/* ===== هر کارت ===== */
+.my-pillar-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2efe8 !important;
+  border-radius: 12px !important;
+  padding: 16px 24px !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+}
+
+.my-pillar-card:hover {
+  border-color: #5cbf98 !important;
+  box-shadow: 0 1px 2px rgba(15,61,46,.06), 0 4px 14px rgba(15,61,46,.05) !important;
+  transform: translateX(-4px) !important;
+}
+
+/* ===== آیکون ===== */
+.my-icon {
+  font-size: 28px !important;
+  width: 48px !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+  color: #218a63 !important;
+}
+
+/* ===== متن ===== */
+.my-text {
+  flex: 1 !important;
+}
+
+.my-card-title {
+  margin: 0 0 4px 0 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0f3d2e !important;
+}
+
+.my-card-desc {
+  margin: 0 !important;
+  font-size: 15px !important;
+  color: #42574f !important;
+  line-height: 1.7 !important;
+}
+
+/* ===== فلش انتها ===== */
+.my-arrow {
+  font-weight: 700 !important;
+  color: #218a63 !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+
+.my-pillar-card:hover .my-arrow {
+  color: #14503b !important;
+}
+
+/* ===== واکنش‌گرایی ===== */
+@media (max-width: 640px) {
+  .my-pillar-card {
+    flex-wrap: wrap !important;
+    padding: 16px !important;
+  }
+  .my-arrow {
+    width: 100% !important;
+    text-align: left !important;
+    margin-top: 6px !important;
+  }
+}
+
   </style>
 </head>
 <body>
