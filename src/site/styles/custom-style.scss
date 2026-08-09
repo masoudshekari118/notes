@@ -1,376 +1,989 @@
 /* =========================================================
-   FINAL FIX — LAYOUT + GREEN BRAND COLOR
+   MASOUD SHEKARI — DIGITAL GARDEN
+   Note Page UI / UX
+   Light & Dark Theme
    ========================================================= */
 
 
 /* ---------------------------------------------------------
-   01. BRAND COLOR
+   01. FONT
+   --------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+
+/* ---------------------------------------------------------
+   02. LIGHT THEME
    --------------------------------------------------------- */
 
 :root {
 
-  --brand-green: #176b45;
-  --brand-green-dark: #0f5134;
-  --brand-green-light: #2f8a60;
-  --brand-green-soft: #e6f2eb;
+  --font: 'Vazirmatn', Tahoma, sans-serif;
 
-  --yellow: #176b45;
-  --yellow-light: #2f8a60;
-  --interactive-accent: #176b45;
-  --interactive-accent-hover: #0f5134;
-  --accent-color: #176b45;
+  /* Backgrounds */
+  --background-primary: #f5f7f5;
+  --background-secondary: #eef2ef;
+  --background-tertiary: #e8ede9;
+
+  --background-primary-alt: #f8faf8;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --surface-soft: #f8faf8;
+  --surface-hover: #eef5f0;
+
+  /* Text */
+  --text-normal: #26332c;
+  --text-muted: #718078;
+  --text-faint: #9aa69f;
+
+  /* Accent */
+  --interactive-accent: #287a57;
+  --interactive-accent-hover: #1f6849;
+  --accent-color: #287a57;
+
+  --accent-soft: #e4f0e8;
+  --accent-softer: #eef6f1;
+
+  /* Borders */
+  --background-modifier-border: #dfe7e2;
+  --background-modifier-border-hover: #cbd8d0;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 12px rgba(38, 51, 44, .045);
+  --shadow-medium: 0 8px 28px rgba(38, 51, 44, .07);
+
+  /* Radius */
+  --radius-small: 7px;
+  --radius-medium: 12px;
+  --radius-large: 18px;
+
+  /* Layout */
+  --dg-content-max-width: 1180px;
+  --dg-filetree-width: 3500px;
 
 }
 
 
-/* Dark mode */
+/* ---------------------------------------------------------
+   03. DARK THEME
+   --------------------------------------------------------- */
 
 html.dark {
 
-  --brand-green: #63b98d;
-  --brand-green-dark: #82caa5;
-  --brand-green-light: #8bd0aa;
-  --brand-green-soft: #1d3a2b;
+  --background-primary: #151b17;
+  --background-secondary: #1a221d;
+  --background-tertiary: #202a23;
 
-  --yellow: #63b98d;
-  --yellow-light: #82caa5;
-  --interactive-accent: #63b98d;
-  --interactive-accent-hover: #82caa5;
-  --accent-color: #63b98d;
+  --background-primary-alt: #182019;
 
+  --surface: #1b241e;
+  --surface-soft: #202a23;
+  --surface-hover: #26332b;
+
+  --text-normal: #e6ece8;
+  --text-muted: #b0bdb5;
+  --text-faint: #7e8c84;
+
+  --interactive-accent: #70b996;
+  --interactive-accent-hover: #8ac8a8;
+  --accent-color: #70b996;
+
+  --accent-soft: #20392b;
+  --accent-softer: #1c3025;
+
+  --background-modifier-border: #2c3830;
+  --background-modifier-border-hover: #3a4940;
+
+  --shadow-soft: 0 2px 14px rgba(0,0,0,.15);
+  --shadow-medium: 0 10px 30px rgba(0,0,0,.25);
 }
 
 
 /* ---------------------------------------------------------
-   02. SITE NAME — MASOUD SHEKARI
+   04. GLOBAL
    --------------------------------------------------------- */
 
-.navbar a,
-.navbar .site-title,
-.navbar .site-name,
-.navbar .logo,
-.navbar .navbar-brand {
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
 
-  color: var(--brand-green) !important;
+
+body {
+
+  font-family: var(--font) !important;
+
+  direction: rtl;
+
+  background: var(--background-primary) !important;
+
+  color: var(--text-normal) !important;
+
+  line-height: 2;
+
+  transition:
+    background-color .25s ease,
+    color .25s ease;
 
 }
 
 
-.navbar a:hover,
-.navbar .site-title:hover,
-.navbar .site-name:hover,
-.navbar .logo:hover,
-.navbar .navbar-brand:hover {
+/* Force font */
 
-  color: var(--brand-green-dark) !important;
+*,
+*::before,
+*::after {
+
+  font-family: var(--font) !important;
 
 }
 
 
 /* ---------------------------------------------------------
-   03. REMOVE YELLOW / GOLD ACCENTS
+   05. MAIN PAGE BACKGROUND
    --------------------------------------------------------- */
 
 /*
-   Digital Garden may use its own accent variables.
-   Override all common accent variables here.
+   Removes the old strong separation between
+   sidebar and note content.
 */
 
-:root {
+body,
+body.theme-light,
+body.theme-dark {
 
-  --dg-green: var(--brand-green);
-  --dg-accent: var(--brand-green);
-
-  --link-color: var(--brand-green);
-  --link-color-hover: var(--brand-green-dark);
-
-  --color-accent: var(--brand-green);
-  --color-accent-hover: var(--brand-green-dark);
+  background: var(--background-primary) !important;
 
 }
 
 
-/* Links */
+/* Main Digital Garden wrapper */
 
-a,
-a:visited {
+.content-wrapper,
+.content {
 
-  color: var(--brand-green) !important;
-
-}
-
-
-a:hover {
-
-  color: var(--brand-green-dark) !important;
+  background: transparent !important;
 
 }
 
 
-/* Buttons */
 
-button {
+/* ---------------------------------------------------------
+   07. FILE TREE / LEFT NAVIGATION
+   --------------------------------------------------------- */
 
-  color: var(--brand-green);
+/*
+   The old Digital Garden sidebar is intentionally
+   made light and visually integrated with the page.
+*/
+
+.filetree-wrapper,
+.filetree-sidebar {
+
+  background: var(--background-primary) !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
 
 }
 
 
-/* Search */
+/* File tree width */
+
+.filetree-sidebar {
+
+  width: 350px !important;
+
+}
+
+
+/* Remove vertical separator */
+
+.filetree-sidebar {
+
+  border-right: none !important;
+
+  border-left: none !important;
+
+}
+
+
+/* File tree links */
+
+.filetree-sidebar a,
+.filetree-wrapper a {
+
+  color: var(--text-muted) !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  border-radius: var(--radius-small);
+
+  padding: .42rem .75rem;
+
+  margin: 2px 0;
+
+  transition:
+    color .18s ease,
+    background .18s ease;
+
+}
+
+
+/* Hover */
+
+.filetree-sidebar a:hover,
+.filetree-wrapper a:hover {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-softer) !important;
+
+}
+
+
+/* Active */
+
+.filetree-sidebar a.active,
+.filetree-wrapper a.active {
+
+  color: var(--accent-color) !important;
+
+  background: var(--accent-soft) !important;
+
+  font-weight: 600;
+
+}
+
+
+/* Folder names */
+
+.filetree-sidebar .folder,
+.filetree-sidebar .folder-name {
+
+  color: var(--text-normal) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   08. REMOVE OLD SIDEBAR BOXES
+   --------------------------------------------------------- */
+
+.filetree,
+.file-tree,
+.nav-folder,
+.folder-container,
+.tree,
+.sidenav,
+.explorer {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   09. MAIN CONTENT
+   --------------------------------------------------------- */
+
+.content {
+
+  max-width: 800px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  padding: 2rem 2.5rem 4rem;
+
+}
+
+
+/*
+   Remove the old card-like appearance.
+*/
+
+.content article,
+.content .markdown-preview-view,
+.content .note-content {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   10. NOTE TITLE
+   --------------------------------------------------------- */
+
+.content h1 {
+
+  color: var(--text-normal) !important;
+
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
+
+  font-weight: 800;
+
+  line-height: 1.55;
+
+  letter-spacing: -.025em;
+
+  margin: 0 0 1.5rem;
+
+  padding-bottom: 1.1rem;
+
+  border-bottom: 1px solid var(--background-modifier-border);
+
+}
+
+
+/* ---------------------------------------------------------
+   11. HEADINGS
+   --------------------------------------------------------- */
+
+.content h2 {
+
+  color: var(--text-normal) !important;
+
+  font-size: 1.5rem;
+
+  font-weight: 700;
+
+  line-height: 1.6;
+
+  margin-top: 2.7rem;
+
+  margin-bottom: 1rem;
+
+}
+
+
+.content h2::before {
+
+  content: "";
+
+  display: inline-block;
+
+  width: 4px;
+
+  height: 1.15em;
+
+  background: var(--accent-color);
+
+  border-radius: 10px;
+
+  margin-left: .65rem;
+
+  vertical-align: -.2em;
+
+}
+
+
+.content h3 {
+
+  color: var(--text-normal) !important;
+
+  font-size: 1.25rem;
+
+  font-weight: 700;
+
+  margin-top: 2rem;
+
+}
+
+
+/* ---------------------------------------------------------
+   12. PARAGRAPHS
+   --------------------------------------------------------- */
+
+.content p {
+
+  color: var(--text-normal) !important;
+
+  font-size: 1rem;
+
+  line-height: 2.15;
+
+  margin-bottom: 1.3rem;
+
+}
+
+
+/* ---------------------------------------------------------
+   13. LINKS
+   --------------------------------------------------------- */
+
+.content a {
+
+  color: var(--accent-color) !important;
+
+  text-decoration: none;
+
+  border-bottom: 1px dashed rgba(40,122,87,.35);
+
+  transition:
+    color .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+
+}
+
+
+.content a:hover {
+
+  color: var(--interactive-accent-hover) !important;
+
+  background: var(--accent-softer);
+
+  border-bottom-color: var(--accent-color);
+
+  border-radius: 3px;
+
+}
+
+
+/* ---------------------------------------------------------
+   14. INTERNAL LINKS
+   --------------------------------------------------------- */
+
+.content .internal-link {
+
+  color: var(--accent-color) !important;
+
+  border-bottom: 1px dashed rgba(40,122,87,.35);
+
+}
+
+
+/* ---------------------------------------------------------
+   15. TAGS
+   --------------------------------------------------------- */
+
+.tag {
+
+  display: inline-flex !important;
+
+  align-items: center;
+
+  padding: .22rem .7rem !important;
+
+  margin: .15rem .1rem;
+
+  border-radius: 999px !important;
+
+  background: var(--accent-soft) !important;
+
+  color: var(--accent-color) !important;
+
+  border: 1px solid transparent !important;
+
+  font-size: .8rem;
+
+  text-decoration: none !important;
+
+}
+
+
+.tag:hover {
+
+  background: var(--accent-softer) !important;
+
+  border-color: var(--accent-color) !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   16. TABLE OF CONTENTS
+   --------------------------------------------------------- */
+
+.toc {
+
+  background: var(--accent-softer) !important;
+
+  border: 1px solid var(--background-modifier-border) !important;
+
+  border-radius: var(--radius-medium) !important;
+
+  padding: 1rem 1.2rem !important;
+
+  margin: 0 0 2rem !important;
+
+  box-shadow: none !important;
+
+}
+
+
+.toc a {
+
+  color: var(--text-muted) !important;
+
+  border: none !important;
+
+  font-size: .88rem;
+
+}
+
+
+.toc a:hover {
+
+  color: var(--accent-color) !important;
+
+  background: transparent !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   17. GRAPH
+   --------------------------------------------------------- */
+
+.graph {
+
+  background: var(--surface) !important;
+
+  border: 1px solid var(--background-modifier-border) !important;
+
+  border-radius: var(--radius-large) !important;
+
+  padding: 1rem !important;
+
+  margin: 3rem 0 !important;
+
+  box-shadow: var(--shadow-soft) !important;
+
+}
+
+
+#graph-component {
+
+  background: transparent !important;
+
+  border-radius: var(--radius-medium);
+
+}
+
+
+/* ---------------------------------------------------------
+   18. BACKLINKS / CONNECTED PAGES
+   --------------------------------------------------------- */
+
+.backlinks {
+
+  margin-top: 3rem !important;
+
+  padding-top: 1.7rem !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  border-top: 1px solid var(--background-modifier-border) !important;
+
+  box-shadow: none !important;
+
+}
+
+
+.backlinks h3 {
+
+  color: var(--text-normal) !important;
+
+  font-size: 1.05rem;
+
+  font-weight: 700;
+
+  margin-bottom: 1rem;
+
+}
+
+
+/* Backlink items */
+
+.backlinks a {
+
+  display: inline-flex;
+
+  padding: .35rem .75rem;
+
+  margin: .2rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--background-modifier-border);
+
+  border-radius: 999px;
+
+  color: var(--text-muted) !important;
+
+  font-size: .82rem;
+
+}
+
+
+.backlinks a:hover {
+
+  background: var(--accent-soft);
+
+  color: var(--accent-color) !important;
+
+  border-color: var(--accent-color);
+
+}
+
+
+/* ---------------------------------------------------------
+   19. CONNECTED / MENTIONED PAGES
+   --------------------------------------------------------- */
+
+.content .page-list,
+.content .related-pages,
+.content .backlinks-list {
+
+  margin-top: 1rem;
+
+}
+
+
+.content .page-list a,
+.content .related-pages a,
+.content .backlinks-list a {
+
+  display: block;
+
+  padding: .65rem .85rem;
+
+  margin-bottom: .45rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--background-modifier-border);
+
+  border-radius: var(--radius-medium);
+
+  color: var(--text-secondary) !important;
+
+  border-bottom-width: 1px;
+
+}
+
+
+.content .page-list a:hover,
+.content .related-pages a:hover,
+.content .backlinks-list a:hover {
+
+  background: var(--accent-softer);
+
+  border-color: var(--accent-color);
+
+  transform: translateX(-2px);
+
+}
+
+
+/* ---------------------------------------------------------
+   20. BLOCKQUOTE
+   --------------------------------------------------------- */
+
+blockquote {
+
+  margin: 2rem 0;
+
+  padding: 1rem 1.3rem;
+
+  background: var(--accent-softer) !important;
+
+  border: none !important;
+
+  border-right: 4px solid var(--accent-color) !important;
+
+  border-radius: var(--radius-medium);
+
+  color: var(--text-muted);
+
+}
+
+
+blockquote p {
+
+  margin-bottom: 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   21. CODE
+   --------------------------------------------------------- */
+
+code {
+
+  background: var(--accent-softer) !important;
+
+  color: var(--accent-hover) !important;
+
+  padding: .12rem .4rem;
+
+  border-radius: 5px;
+
+}
+
+
+pre {
+
+  background: #202822 !important;
+
+  color: #e8eee9 !important;
+
+  padding: 1.25rem;
+
+  border-radius: var(--radius-medium);
+
+  overflow-x: auto;
+
+  direction: ltr;
+
+  text-align: left;
+
+  box-shadow: var(--shadow-medium);
+
+}
+
+
+pre code {
+
+  background: transparent !important;
+
+  color: inherit !important;
+
+}
+
+
+/* ---------------------------------------------------------
+   22. IMAGES
+   --------------------------------------------------------- */
+
+.content img {
+
+  display: block;
+
+  max-width: 100%;
+
+  height: auto;
+
+  margin: 2rem auto;
+
+  border-radius: var(--radius-large);
+
+  box-shadow: var(--shadow-medium);
+
+}
+
+
+/* ---------------------------------------------------------
+   23. TABLE
+   --------------------------------------------------------- */
+
+.content table {
+
+  width: 100%;
+
+  margin: 2rem 0;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  background: var(--surface);
+
+  border: 1px solid var(--background-modifier-border);
+
+  border-radius: var(--radius-medium);
+
+  overflow: hidden;
+
+}
+
+
+.content th {
+
+  background: var(--accent-softer);
+
+  color: var(--text-normal);
+
+  font-weight: 700;
+
+}
+
+
+.content th,
+.content td {
+
+  padding: .75rem 1rem;
+
+  border-bottom: 1px solid var(--background-modifier-border);
+
+}
+
+
+.content tr:last-child td {
+
+  border-bottom: none;
+
+}
+
+
+/* ---------------------------------------------------------
+   24. HORIZONTAL LINE
+   --------------------------------------------------------- */
+
+.content hr {
+
+  border: none;
+
+  border-top: 1px solid var(--background-modifier-border);
+
+  margin: 3rem 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   25. SEARCH
+   --------------------------------------------------------- */
 
 .search-button {
 
-  color: var(--brand-green) !important;
+  color: var(--text-muted) !important;
+
+  background: var(--surface) !important;
+
+  border: 1px solid var(--background-modifier-border) !important;
+
+  border-radius: 999px !important;
 
 }
 
 
 .search-button:hover {
 
-  color: var(--brand-green-dark) !important;
+  color: var(--accent-color) !important;
+
+  background: var(--accent-softer) !important;
+
+  border-color: var(--accent-color) !important;
 
 }
 
 
-/* Active navigation */
+.search-box {
 
-.navbar .active,
-.navbar a.active {
+  background: var(--surface) !important;
 
-  color: var(--brand-green) !important;
+  border: 1px solid var(--background-modifier-border) !important;
 
-}
+  border-radius: var(--radius-large) !important;
 
-
-/* ---------------------------------------------------------
-   04. FIX MAIN PAGE WIDTH
-   --------------------------------------------------------- */
-
-/*
-   The important issue:
-   Sidebar + content were wider than the available viewport.
-
-   We allow the layout to shrink instead of forcing
-   horizontal overflow.
-*/
-
-.main-wrapper,
-.content-wrapper,
-.page-container {
-
-  width: 100% !important;
-
-  max-width: 100% !important;
-
-  min-width: 0 !important;
-
-}
-
-
-/* Main flex container */
-
-.main-wrapper {
-
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 2rem;
-
-  padding-left: 2rem;
-
-  padding-right: 2rem;
+  box-shadow: var(--shadow-medium) !important;
 
 }
 
 
 /* ---------------------------------------------------------
-   05. SIDEBAR WIDTH
+   27. SELECTION
    --------------------------------------------------------- */
 
-.filetree-sidebar {
+::selection {
 
-  width: 230px !important;
+  background: var(--accent-soft);
 
-  min-width: 230px !important;
-
-  max-width: 230px !important;
-
-  flex: 0 0 230px !important;
+  color: var(--text-normal);
 
 }
 
 
 /* ---------------------------------------------------------
-   06. CONTENT MUST BE ABLE TO SHRINK
+   28. SCROLLBAR
    --------------------------------------------------------- */
 
-.content {
+::-webkit-scrollbar {
 
-  min-width: 0 !important;
+  width: 7px;
 
-  width: auto !important;
-
-  max-width: 820px !important;
-
-  flex: 1 1 auto !important;
+  height: 7px;
 
 }
 
 
-/*
-   Prevent images / tables / code blocks
-   from pushing the entire page wider.
-*/
+::-webkit-scrollbar-track {
 
-.content img,
-.content table,
-.content pre,
-.content iframe {
-
-  max-width: 100% !important;
+  background: var(--background-primary);
 
 }
 
 
-/* Code */
+::-webkit-scrollbar-thumb {
 
-.content pre {
+  background: #c7d2cb;
 
-  overflow-x: auto;
+  border-radius: 20px;
 
 }
 
 
-/* Tables */
+::-webkit-scrollbar-thumb:hover {
 
-.content table {
+  background: var(--accent-color);
 
-  display: block;
+}
 
-  overflow-x: auto;
+
+html.dark ::-webkit-scrollbar-thumb {
+
+  background: #45534b;
 
 }
 
 
 /* ---------------------------------------------------------
-   07. TEXT MUST NEVER HIDE BEHIND SIDEBAR
+   29. REMOVE HEAVY BORDERS
    --------------------------------------------------------- */
 
-.content p,
-.content h1,
-.content h2,
-.content h3,
-.content h4,
-.content h5,
-.content h6,
-.content li {
+.filetree-sidebar,
+.sidebar,
+.filetree-wrapper,
+.content,
+.graph,
+.backlinks {
 
-  max-width: 100%;
-
-  overflow-wrap: break-word;
-
-  word-wrap: break-word;
+  box-shadow: none;
 
 }
 
 
 /* ---------------------------------------------------------
-   08. REMOVE EXCESSIVE RIGHT/LEFT SPACE
+   30. RESPONSIVE
    --------------------------------------------------------- */
 
-.content {
-
-  margin-left: 0 !important;
-
-  margin-right: 0 !important;
-
-}
-
-
-/* ---------------------------------------------------------
-   09. WIDE DESKTOP
-   --------------------------------------------------------- */
-
-@media (min-width: 1200px) {
-
-  .main-wrapper {
-
-    gap: 3rem;
-
-    padding-left: 3rem;
-
-    padding-right: 3rem;
-
-  }
-
-
-  .filetree-sidebar {
-
-    width: 240px !important;
-
-    min-width: 240px !important;
-
-    flex-basis: 240px !important;
-
-  }
-
+@media (max-width: 900px) {
 
   .content {
 
-    max-width: 850px !important;
+    max-width: 100%;
 
-  }
-
-}
-
-
-/* ---------------------------------------------------------
-   10. MEDIUM SCREENS
-   --------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-
-  .main-wrapper {
-
-    gap: 1.5rem;
-
-    padding-left: 1.25rem;
-
-    padding-right: 1.25rem;
-
-  }
-
-
-  .filetree-sidebar {
-
-    width: 210px !important;
-
-    min-width: 210px !important;
-
-    flex-basis: 210px !important;
-
-  }
-
-
-  .content {
-
-    max-width: none !important;
-
-  }
-
-}
-
-
-/* ---------------------------------------------------------
-   11. TABLET
-   --------------------------------------------------------- */
-
-@media (max-width: 850px) {
-
-  .main-wrapper {
-
-    display: block;
+    padding: 1.5rem 1.25rem 3rem;
 
   }
 
@@ -379,101 +992,39 @@ button {
 
     width: 100% !important;
 
-    min-width: 0 !important;
-
-    max-width: none !important;
-
-    display: block;
-
-    position: static !important;
-
-    margin-bottom: 1.5rem;
-
-  }
-
-
-  .content {
-
-    width: 100% !important;
-
-    max-width: 100% !important;
-
   }
 
 }
 
-
-/* ---------------------------------------------------------
-   12. FINAL GREEN OVERRIDES
-   --------------------------------------------------------- */
-
-/* Common yellow / accent elements */
-
-.color-yellow,
-.color-gold,
-.text-yellow,
-.text-gold,
-.is-yellow,
-.is-gold {
-
-  color: var(--brand-green) !important;
-
-}
-
-
-/* SVG icons */
-
-svg {
-
-  --yellow: var(--brand-green);
-
-}
-
-
-svg [fill="#EAB308"],
-svg [fill="#eab308"],
-svg [fill="#FACC15"],
-svg [fill="#facc15"],
-svg [fill="yellow"],
-svg [fill="gold"] {
-
-  fill: var(--brand-green) !important;
-
-}
-
-
-svg [stroke="#EAB308"],
-svg [stroke="#eab308"],
-svg [stroke="#FACC15"],
-svg [stroke="#facc15"],
-svg [stroke="yellow"],
-svg [stroke="gold"] {
-
-  stroke: var(--brand-green) !important;
-
-}
-
-
-/* ---------------------------------------------------------
-   13. MOBILE
-   --------------------------------------------------------- */
 
 @media (max-width: 600px) {
 
-  .main-wrapper {
+  .content {
 
-    padding-left: 1rem;
-
-    padding-right: 1rem;
+    padding: 1.25rem 1rem 2.5rem;
 
   }
 
 
-  .content {
+  .content h1 {
 
-    padding-left: 0;
+    font-size: 1.75rem;
 
-    padding-right: 0;
+  }
+
+
+  .content h2 {
+
+    font-size: 1.35rem;
+
+  }
+
+
+  .content p {
+
+    font-size: .96rem;
+
+    line-height: 2;
 
   }
 
