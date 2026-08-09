@@ -1,27 +1,125 @@
+<link href="/styles/custom-style.css" rel="stylesheet">
 
-<!DOCTYPE html>
-<html lang="{{ meta.mainLanguage }}">
-    <head>
-        <title>Nothing here</title>
-        <link href="/styles/digital-garden-base.css" rel="stylesheet">
-        {%-if meta.themeStyle%}
-            <link href="/styles/obsidian-base.css" rel="stylesheet">
-    	    <link href="{{meta.themeStyle}}" rel="stylesheet">
-        {% else %}
-            <link href="/styles/style.css" rel="stylesheet">
-        {%endif%}
+<style>
+    .error-page {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1.5rem;
+        direction: rtl;
+    }
 
-        <link href="/styles/custom-style.css" rel="stylesheet">
-    </head>
-    <body class="theme-{{meta.baseTheme}} markdown-preview-view">
-        <div class="content centered">
+    .error-box {
+        width: min(680px, 100%);
+        text-align: center;
+        padding: 3.5rem 2.5rem;
+        background: var(--surface, #ffffff);
+        border: 1px solid var(--background-modifier-border, #dce6df);
+        border-radius: 24px;
+        box-shadow: var(--shadow-soft, 0 8px 30px rgba(38, 51, 44, .06));
+    }
 
-            {%-if not meta.themeStyle%}
-                <div class="font-bg"> &#x1F60E; </div>
-            {%endif%}
-            <h1>There is nothing here</h1>
-            <p>If you got here from a link, this note is probably not made public</p>
-            <a href="/">Go back home</a>
+    .error-icon {
+        width: 86px;
+        height: 86px;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--accent-soft, #e3f0e8);
+        color: var(--accent-color, #26734d);
+        font-size: 2.6rem;
+    }
+
+    .error-code {
+        margin: 0;
+        color: var(--accent-color, #26734d);
+        font-size: 5rem;
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -.05em;
+    }
+
+    .error-title {
+        margin: 1.2rem 0 .8rem;
+        color: var(--text-normal, #26352d);
+        font-size: 1.7rem;
+        font-weight: 700;
+    }
+
+    .error-text {
+        max-width: 500px;
+        margin: 0 auto 1.8rem;
+        color: var(--text-muted, #68776f);
+        font-size: 1rem;
+        line-height: 2;
+    }
+
+    .home-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        padding: .7rem 1.4rem;
+        border-radius: 10px;
+        background: var(--accent-color, #26734d);
+        color: #fff !important;
+        text-decoration: none !important;
+        border: none !important;
+        font-weight: 600;
+        transition: all .2s ease;
+    }
+
+    .home-button:hover {
+        background: var(--interactive-accent-hover, #1d5d3e);
+        color: #fff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(38, 115, 77, .18);
+    }
+
+    .error-note {
+        margin-top: 1.8rem;
+        color: var(--text-faint, #929e97);
+        font-size: .8rem;
+    }
+</style>
+
+</head>
+
+<body class="theme-{{meta.baseTheme}} markdown-preview-view">
+
+    <main class="error-page">
+
+        <div class="error-box">
+
+            <div class="error-icon">
+                🌿
+            </div>
+
+            <p class="error-code">404</p>
+
+            <h1 class="error-title">
+                این یادداشت را پیدا نکردیم
+            </h1>
+
+            <p class="error-text">
+                به نظر می‌رسد این صفحه هنوز منتشر نشده،
+                جابه‌جا شده یا مسیرش تغییر کرده است.
+                شاید بهتر باشد از باغ یادداشت‌ها دوباره شروع کنیم.
+            </p>
+
+            <a class="home-button" href="/">
+                ← بازگشت به صفحه اصلی
+            </a>
+
+            <p class="error-note">
+                هر یادداشت، جایی در این باغ دارد.
+            </p>
+
         </div>
-    </body>
-</html>
+
+    </main>
+
+</body>
