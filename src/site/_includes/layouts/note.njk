@@ -2,99 +2,264 @@
 permalink: "notes/{{ page.fileSlug | slugify }}/"
 ---
 <!DOCTYPE html>
-<html lang="{{ meta.mainLanguage }}">
-  <head>
-    <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
-    {%include "components/pageheader.njk"%}
-    {% for imp in dynamics.common.head %}
-      {% include imp %}
-    {% endfor %}
-    {% for imp in dynamics.notes.head %}
-      {% include imp %}
-    {% endfor %}
-  </head>
-  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {% if settings.dgShowFileTree !== true %}no-filetree{% endif %} {% if settings.dgHomeLink === true and settings.dgShowFileTree !== true %}has-navbar{% endif %} {{meta.bodyClasses}}">
-    {%include "components/notegrowthhistory.njk"%}
-    
-    {% if settings.dgShowFileTree !== true %}
-      {%include "components/navbar.njk"%}
-    {%else%}
-      {%include "components/filetree.njk"%}
-    {% endif %}
+<html lang="{{ meta.mainLanguage }}" dir="rtl">
 
-    {% if settings.dgEnableSearch === true %}
-      {%include "components/searchContainer.njk"%}
-    {% endif %}
+<head>
+  <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
 
-    <main class="content cm-s-obsidian print {{contentClasses}}">
-      <header>
+  {% include "components/pageheader.njk" %}
+
+  {% for imp in dynamics.common.head %}
+    {% include imp %}
+  {% endfor %}
+
+  {% for imp in dynamics.notes.head %}
+    {% include imp %}
+  {% endfor %}
+</head>
+
+<body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {% if settings.dgShowFileTree !== true %}no-filetree{% endif %} {% if settings.dgHomeLink === true and settings.dgShowFileTree !== true %}has-navbar{% endif %} {{meta.bodyClasses}}">
+
+  {% include "components/notegrowthhistory.njk" %}
+
+  {% if settings.dgShowFileTree !== true %}
+    {% include "components/navbar.njk" %}
+  {% else %}
+    {% include "components/filetree.njk" %}
+  {% endif %}
+
+  {% if settings.dgEnableSearch === true %}
+    {% include "components/searchContainer.njk" %}
+  {% endif %}
+
+
+  <main class="content cm-s-obsidian print {{contentClasses}}">
+
+    <article class="note-page">
+
+      {# =========================
+         NOTE HEADER
+         ========================= #}
+
+      <header class="note-header">
+
         {% if settings.dgShowInlineTitle === true %}
-          <h1 data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</h1>
+          <h1
+            class="note-title"
+            data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">
+            {% if title %}
+              {{ title }}
+            {% else %}
+              {{ page.fileSlug }}
+            {% endif %}
+          </h1>
         {% endif %}
-        <div class="header-meta">
-          {% if settings.dgShowTags === true and tags %}
-            <div class="header-tags">
-              {% for tag in tags %}
-                {% if tag != 'gardenEntry' and tag !='note' %}
-                  <a class="tag" onclick="toggleTagSearch(this)">
-                    #{{tag}}
-                  </a>
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endif %}
-          {%- if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated -%}
-          <div class="timestamps">
-            {%- if meta.timestampSettings.showCreated and created -%}
-            <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
-            {%- endif -%}
-            {%- if meta.timestampSettings.showUpdated and updated -%}
-            <div><i data-lucide="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
-            {%- endif -%}
+
+
+        {% if settings.dgShowTags === true and tags %}
+          <div class="note-tags">
+            {% for tag in tags %}
+              {% if tag != 'gardenEntry' and tag != 'note' %}
+                <a class="tag" onclick="toggleTagSearch(this)">
+                  #{{tag}}
+                </a>
+              {% endif %}
+            {% endfor %}
           </div>
-          {%- endif -%}
-        </div>
-      {% for imp in dynamics.common.header %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.header %}
-        {% include imp %}
-      {% endfor %}
+        {% endif %}
+
+
+        {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
+          <div class="note-meta">
+
+            {% if meta.timestampSettings.showCreated and created %}
+              <span class="note-meta-item">
+                <i data-lucide="calendar-plus"></i>
+                <span class="human-date" data-date="{{created}}"></span>
+              </span>
+            {% endif %}
+
+            {% if meta.timestampSettings.showUpdated and updated %}
+              <span class="note-meta-item">
+                <i data-lucide="calendar-clock"></i>
+                <span class="human-date" data-date="{{updated}}"></span>
+              </span>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+
+        {% for imp in dynamics.common.header %}
+          {% include imp %}
+        {% endfor %}
+
+        {% for imp in dynamics.notes.header %}
+          {% include imp %}
+        {% endfor %}
+
       </header>
-      {% for imp in dynamics.common.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {{ content | hideDataview | taggify | link | safe}}
-      {% for imp in dynamics.common.afterContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.afterContent %}
-        {% include imp %}
-      {% endfor %}
-    </main>
 
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true or dynamics.sidebar.top.length > 0 or dynamics.sidebar.bottom.length > 0%}
-      {%include "components/sidebar.njk"%}
-    {% endif %}
 
-    {% if settings.dgLinkPreview === true %}
-      {%include "components/linkPreview.njk"%}
-    {% endif %}
-    {% include "components/references.njk" %}
-    {% include "components/timestamps.njk" %}
-    {% for imp in dynamics.common.footer %}
-      {% include imp %}
-    {% endfor %}
-    {% for imp in dynamics.notes.footer %}
-      {% include imp %}
-    {% endfor %}
-    {%include "components/lucideIcons.njk"%}
-    {% if contentClasses and "canvas-page" in contentClasses %}
-      {%include "components/canvasScript.njk"%}
-    {% endif %}
-    {% include "components/basesScript.njk" %}
-  </body>
+      {# =========================
+         NOTE BODY
+         ========================= #}
+
+      <div class="note-body">
+
+        {% for imp in dynamics.common.beforeContent %}
+          {% include imp %}
+        {% endfor %}
+
+        {% for imp in dynamics.notes.beforeContent %}
+          {% include imp %}
+        {% endfor %}
+
+
+        {{ content | hideDataview | taggify | link | safe }}
+
+
+        {% for imp in dynamics.common.afterContent %}
+          {% include imp %}
+        {% endfor %}
+
+        {% for imp in dynamics.notes.afterContent %}
+          {% include imp %}
+        {% endfor %}
+
+      </div>
+
+
+      {# =========================
+         NOTE FOOTER
+         ========================= #}
+
+      <footer class="note-footer">
+
+        {% if settings.dgShowBacklinks === true %}
+
+          {% set currentNode = graph.nodes[page.url] or graph.nodes[graph.homeAlias] %}
+
+          {% if currentNode and currentNode.backLinks.length > 0 %}
+
+            <section class="note-section note-backlinks">
+
+              <div class="note-section-heading">
+                <span class="note-section-icon">
+                  <i data-lucide="link-2"></i>
+                </span>
+
+                <div>
+                  <h2>{{ meta.uiStrings.backlinkHeader }}</h2>
+                  <p>یادداشت‌هایی که به این مطلب مرتبط شده‌اند</p>
+                </div>
+              </div>
+
+
+              <div class="note-related-grid">
+
+                {% for backlink in currentNode.backLinks %}
+
+                  {% if graph.nodes[backlink].url != page.url and not graph.nodes[backlink].private %}
+
+                    <a
+                      href="{{graph.nodes[backlink].url}}"
+                      class="note-related-card">
+
+                      <span class="note-related-card-icon">
+                        <i data-lucide="arrow-up-left"></i>
+                      </span>
+
+                      <span class="note-related-card-content">
+
+                        <span class="note-related-card-title">
+                          {{graph.nodes[backlink].title}}
+                        </span>
+
+                        <span class="note-related-card-label">
+                          مشاهده یادداشت
+                        </span>
+
+                      </span>
+
+                    </a>
+
+                  {% endif %}
+
+                {% endfor %}
+
+              </div>
+
+            </section>
+
+          {% endif %}
+
+        {% endif %}
+
+
+        {# =========================
+           DYNAMIC FOOTER
+           ========================= #}
+
+        {% for imp in dynamics.common.footerContent %}
+          {% include imp %}
+        {% endfor %}
+
+        {% for imp in dynamics.notes.footerContent %}
+          {% include imp %}
+        {% endfor %}
+
+      </footer>
+
+    </article>
+
+  </main>
+
+
+  {# =========================
+     SIDEBAR / KNOWLEDGE TOOLS
+     ========================= #}
+
+  {% if settings.dgShowBacklinks === true
+     or settings.dgShowLocalGraph === true
+     or settings.dgShowToc === true
+     or dynamics.sidebar.top.length > 0
+     or dynamics.sidebar.bottom.length > 0 %}
+
+    {% include "components/sidebar.njk" %}
+
+  {% endif %}
+
+
+  {% if settings.dgLinkPreview === true %}
+    {% include "components/linkPreview.njk" %}
+  {% endif %}
+
+
+  {% include "components/references.njk" %}
+
+  {% include "components/timestamps.njk" %}
+
+
+  {% for imp in dynamics.common.footer %}
+    {% include imp %}
+  {% endfor %}
+
+  {% for imp in dynamics.notes.footer %}
+    {% include imp %}
+  {% endfor %}
+
+
+  {% include "components/lucideIcons.njk" %}
+
+
+  {% if contentClasses and "canvas-page" in contentClasses %}
+    {% include "components/canvasScript.njk" %}
+  {% endif %}
+
+
+  {% include "components/basesScript.njk" %}
+
+</body>
+
 </html>
