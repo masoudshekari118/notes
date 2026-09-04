@@ -1,231 +1,157 @@
 <aside class="site-sidebar">
 
-  <div class="sidebar">
-
-    <div class="sidebar-container">
+  <div class="sidebar-container">
 
 
-      {# =========================
-         DYNAMIC SIDEBAR TOP
-         ========================= #}
+    {% if dynamics.sidebar.top.length > 0 %}
 
-      {% for imp in dynamics.sidebar.top %}
-        {% include imp %}
-      {% endfor %}
+      <section class="sidebar-section">
 
+        <div class="sidebar-section-header">
 
-      {# =========================
-         LOCAL GRAPH
-         ========================= #}
+          <span class="sidebar-section-icon">
+            <i data-lucide="layers-3"></i>
+          </span>
 
-      {% if settings.dgShowLocalGraph === true %}
+          <span class="sidebar-section-title">
+            بخش‌های مرتبط
+          </span>
 
-        <section class="sidebar-section sidebar-graph">
+        </div>
 
-          <div class="sidebar-section-header">
+        <div class="sidebar-section-content">
 
-            <div class="sidebar-section-icon">
-              <i data-lucide="share-2"></i>
-            </div>
+          {% for imp in dynamics.sidebar.top %}
 
-            <div class="sidebar-section-title">
-              <span>ارتباطات این یادداشت</span>
-            </div>
+            {% include imp %}
 
-          </div>
+          {% endfor %}
 
-          <div class="sidebar-section-content">
-            {% include "components/graphScript.njk" %}
-          </div>
+        </div>
 
-        </section>
+      </section>
 
-      {% endif %}
+    {% endif %}
 
 
-      {# =========================
-         TABLE OF CONTENTS
-         ========================= #}
+    {% if settings.dgShowLocalGraph === true %}
 
-      {% if settings.dgShowToc === true %}
+      <section class="sidebar-section">
 
-        {% set tocHtml = (content and (content | hideDataview | link | toc)) %}
+        <div class="sidebar-section-header">
 
-        {% if tocHtml %}
+          <span class="sidebar-section-icon">
+            <i data-lucide="network"></i>
+          </span>
 
-          <section class="sidebar-section sidebar-toc">
+          <span class="sidebar-section-title">
+            ارتباطات یادداشت
+          </span>
 
-            <div class="sidebar-section-header">
+        </div>
 
-              <div class="sidebar-section-icon">
-                <i data-lucide="list"></i>
-              </div>
+        <div class="sidebar-section-content sidebar-graph">
 
-              <div class="sidebar-section-title">
-                <span>در این یادداشت</span>
-              </div>
+          {% include "components/graphScript.njk" %}
 
-            </div>
+        </div>
 
-            <div class="sidebar-section-content">
+      </section>
 
-              <div class="toc-container">
-                {{ tocHtml | safe }}
-              </div>
-
-            </div>
-
-          </section>
+    {% endif %}
 
 
-          <script>
-            (function () {
+    {% if settings.dgShowBacklinks === true %}
 
-              const tocLinks = document.querySelectorAll(
-                '.toc-container a[href^="#"]'
-              );
+      <section class="sidebar-section">
 
-              if (!tocLinks.length) return;
+        <div class="sidebar-section-header">
 
-              const headings = Array.from(tocLinks)
-                .map(link => {
+          <span class="sidebar-section-icon">
+            <i data-lucide="link-2"></i>
+          </span>
 
-                  const id = decodeURIComponent(
-                    link.getAttribute('href').slice(1)
-                  );
+          <span class="sidebar-section-title">
+            یادداشت‌های مرتبط
+          </span>
 
-                  return {
-                    link,
-                    target: document.getElementById(id)
-                  };
+        </div>
 
-                })
-                .filter(item => item.target);
+        <div class="sidebar-section-content">
 
-
-              function updateActive() {
-
-                let current = headings[0];
-
-                for (const heading of headings) {
-
-                  if (
-                    heading.target.getBoundingClientRect().top <= 140
-                  ) {
-                    current = heading;
-                  }
-
-                }
-
-                tocLinks.forEach(link => {
-                  link.classList.remove('toc-active');
-                });
-
-                if (current) {
-                  current.link.classList.add('toc-active');
-                }
-
-              }
-
-
-              window.addEventListener(
-                'scroll',
-                updateActive,
-                { passive: true }
-              );
-
-              updateActive();
-
-            })();
-          </script>
-
-        {% endif %}
-
-      {% endif %}
-
-
-      {# =========================
-         BACKLINKS
-         ========================= #}
-
-      {% if settings.dgShowBacklinks === true %}
-
-        <section class="sidebar-section sidebar-backlinks">
-
-          <div class="sidebar-section-header">
-
-            <div class="sidebar-section-icon">
-              <i data-lucide="link-2"></i>
-            </div>
-
-            <div class="sidebar-section-title">
-              <span>یادداشت‌های مرتبط</span>
-            </div>
-
-          </div>
-
-
-          <div class="sidebar-section-content">
+          <div class="sidebar-backlink-list">
 
             {% set currentNode = graph.nodes[page.url] or graph.nodes[graph.homeAlias] %}
-
 
             {% if currentNode %}
 
               {% if currentNode.backLinks.length === 0 %}
 
                 <div class="sidebar-empty">
-
-                  <i data-lucide="link"></i>
-
-                  <span>
-                    {{ meta.uiStrings.noBacklinksMessage }}
-                  </span>
-
-                </div>
-
-              {% else %}
-
-                <div class="sidebar-backlink-list">
-
-                  {% for backlink in currentNode.backLinks %}
-
-                    {% if graph.nodes[backlink].url != page.url
-                       and not graph.nodes[backlink].private %}
-
-                      <a
-                        href="{{ graph.nodes[backlink].url }}"
-                        class="sidebar-backlink-card"
-                        data-note-icon="{{ graph.nodes[backlink].noteIcon }}"
-                      >
-
-                        <span class="sidebar-backlink-icon">
-                          <i data-lucide="arrow-up-left"></i>
-                        </span>
-
-                        <span class="sidebar-backlink-content">
-
-                          <span class="sidebar-backlink-title">
-                            {{ graph.nodes[backlink].title }}
-                          </span>
-
-                          <span class="sidebar-backlink-label">
-                            یادداشت مرتبط
-                          </span>
-
-                        </span>
-
-                      </a>
-
-                    {% endif %}
-
-                  {% endfor %}
-
+                  هنوز یادداشت مرتبطی وجود ندارد.
                 </div>
 
               {% endif %}
 
+
+              {% for backlink in currentNode.backLinks %}
+
+                {% if graph.nodes[backlink].url != page.url and not graph.nodes[backlink].private %}
+
+                  <div class="sidebar-backlink-card">
+
+                    <a
+                      href="{{ graph.nodes[backlink].url }}"
+                      class="sidebar-backlink">
+
+                      {{ graph.nodes[backlink].title }}
+
+                    </a>
+
+                  </div>
+
+                {% endif %}
+
+              {% endfor %}
+
             {% endif %}
+
+          </div>
+
+        </div>
+
+      </section>
+
+    {% endif %}
+
+
+    {% if settings.dgShowToc === true %}
+
+      {% set tocHtml = (content and (content | hideDataview | link | toc)) %}
+
+      {% if tocHtml %}
+
+        <section class="sidebar-section sidebar-left-toc">
+
+          <div class="sidebar-section-header">
+
+            <span class="sidebar-section-icon">
+              <i data-lucide="list-tree"></i>
+            </span>
+
+            <span class="sidebar-section-title">
+              فهرست این یادداشت
+            </span>
+
+          </div>
+
+          <div class="sidebar-section-content">
+
+            <div class="sidebar-toc">
+
+              {{ tocHtml | safe }}
+
+            </div>
 
           </div>
 
@@ -233,17 +159,23 @@
 
       {% endif %}
 
-
-      {# =========================
-         DYNAMIC SIDEBAR BOTTOM
-         ========================= #}
-
-      {% for imp in dynamics.sidebar.bottom %}
-        {% include imp %}
-      {% endfor %}
+    {% endif %}
 
 
-    </div>
+    {% for imp in dynamics.sidebar.bottom %}
+
+      <section class="sidebar-section">
+
+        <div class="sidebar-section-content">
+
+          {% include imp %}
+
+        </div>
+
+      </section>
+
+    {% endfor %}
+
 
   </div>
 
