@@ -1,82 +1,250 @@
-<aside>
-      <div class="sidebar">
-            <div class="sidebar-container">
-                  {% for imp in dynamics.sidebar.top %}
-                        {% include imp %}
-                  {% endfor %}
-                  {%if settings.dgShowLocalGraph === true%}
-                        {%include "components/graphScript.njk"%}
-                  {%endif%}
+<aside class="site-sidebar">
 
-                  {%if settings.dgShowToc === true%}
-                        {%set tocHtml= (content and (content | hideDataview | link | toc)) %}
-                        {%if tocHtml %}
-                              <div class="toc">
-                                    <div class="toc-title-container">
-                                          <div class="toc-title">
-                                                {% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}
-                                          </div>
-                                    </div>
-                                    <div class="toc-container">
-                                          {{ tocHtml | safe }}
-                                    </div>
-                              </div>
-                              <script>
-                                    (function() {
-                                          const tocLinks = document.querySelectorAll('.toc-container a[href^="#"]');
-                                          if (!tocLinks.length) return;
+  <div class="sidebar">
 
-                                          const headings = Array.from(tocLinks).map(link => {
-                                                const id = decodeURIComponent(link.getAttribute('href').slice(1));
-                                                return { link, target: document.getElementById(id) };
-                                          }).filter(h => h.target);
+    <div class="sidebar-container">
 
-                                          function updateActive() {
-                                                let current = headings[0];
-                                                for (const h of headings) {
-                                                      if (h.target.getBoundingClientRect().top <= 100) {
-                                                            current = h;
-                                                      }
-                                                }
-                                                tocLinks.forEach(l => l.classList.remove('toc-active'));
-                                                if (current) current.link.classList.add('toc-active');
-                                          }
 
-                                          window.addEventListener('scroll', updateActive, { passive: true });
-                                          updateActive();
-                                    })();
-                              </script>
-                        {%endif%}
+      {# =========================
+         DYNAMIC SIDEBAR TOP
+         ========================= #}
 
-                  {%endif%}
+      {% for imp in dynamics.sidebar.top %}
+        {% include imp %}
+      {% endfor %}
 
-                        {%if settings.dgShowBacklinks === true %}
-                              {%if settings.dgShowBacklinks === true %}
-                              <div class="backlinks">
-                                    <div class="backlink-title">{{ meta.uiStrings.backlinkHeader }}</div>
-                                          <div class="backlink-list">
-                                          {%- set currentNode = graph.nodes[page.url] or graph.nodes[graph.homeAlias] -%}
-                                          {%- if currentNode -%}
-                                                {%- if currentNode.backLinks.length === 0 -%}
-                                                      <div class="backlink-card">
-                                                            <span class="no-backlinks-message">{{ meta.uiStrings.noBacklinksMessage }}</span>
-                                                      </div>
-                                                {%- endif -%}
-                                                {%- for backlink in currentNode.backLinks -%}
-                                                      {%- if graph.nodes[backlink].url != page.url and not graph.nodes[backlink].private -%}
-                                                      <div class="backlink-card">
-                                                            {%- if not meta.noteIconsSettings.backlinks -%}<i  data-lucide="link"></i> {%- endif -%}<a href="{{graph.nodes[backlink].url}}" data-note-icon="{{graph.nodes[backlink].noteIcon}}" class="backlink">{{graph.nodes[backlink].title}}</a>
-                                                      </div>
-                                                      {%- endif -%}
-                                                {%- endfor -%}
-                                          {%- endif -%}
-                                    </div>
-                              </div>
-                        {%endif%}
-                  {%endif%}
-                  {% for imp in dynamics.sidebar.bottom %}
-                        {% include imp %}
-                  {% endfor %}
+
+      {# =========================
+         LOCAL GRAPH
+         ========================= #}
+
+      {% if settings.dgShowLocalGraph === true %}
+
+        <section class="sidebar-section sidebar-graph">
+
+          <div class="sidebar-section-header">
+
+            <div class="sidebar-section-icon">
+              <i data-lucide="share-2"></i>
             </div>
-      </div>
+
+            <div class="sidebar-section-title">
+              <span>ارتباطات این یادداشت</span>
+            </div>
+
+          </div>
+
+          <div class="sidebar-section-content">
+            {% include "components/graphScript.njk" %}
+          </div>
+
+        </section>
+
+      {% endif %}
+
+
+      {# =========================
+         TABLE OF CONTENTS
+         ========================= #}
+
+      {% if settings.dgShowToc === true %}
+
+        {% set tocHtml = (content and (content | hideDataview | link | toc)) %}
+
+        {% if tocHtml %}
+
+          <section class="sidebar-section sidebar-toc">
+
+            <div class="sidebar-section-header">
+
+              <div class="sidebar-section-icon">
+                <i data-lucide="list"></i>
+              </div>
+
+              <div class="sidebar-section-title">
+                <span>در این یادداشت</span>
+              </div>
+
+            </div>
+
+            <div class="sidebar-section-content">
+
+              <div class="toc-container">
+                {{ tocHtml | safe }}
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <script>
+            (function () {
+
+              const tocLinks = document.querySelectorAll(
+                '.toc-container a[href^="#"]'
+              );
+
+              if (!tocLinks.length) return;
+
+              const headings = Array.from(tocLinks)
+                .map(link => {
+
+                  const id = decodeURIComponent(
+                    link.getAttribute('href').slice(1)
+                  );
+
+                  return {
+                    link,
+                    target: document.getElementById(id)
+                  };
+
+                })
+                .filter(item => item.target);
+
+
+              function updateActive() {
+
+                let current = headings[0];
+
+                for (const heading of headings) {
+
+                  if (
+                    heading.target.getBoundingClientRect().top <= 140
+                  ) {
+                    current = heading;
+                  }
+
+                }
+
+                tocLinks.forEach(link => {
+                  link.classList.remove('toc-active');
+                });
+
+                if (current) {
+                  current.link.classList.add('toc-active');
+                }
+
+              }
+
+
+              window.addEventListener(
+                'scroll',
+                updateActive,
+                { passive: true }
+              );
+
+              updateActive();
+
+            })();
+          </script>
+
+        {% endif %}
+
+      {% endif %}
+
+
+      {# =========================
+         BACKLINKS
+         ========================= #}
+
+      {% if settings.dgShowBacklinks === true %}
+
+        <section class="sidebar-section sidebar-backlinks">
+
+          <div class="sidebar-section-header">
+
+            <div class="sidebar-section-icon">
+              <i data-lucide="link-2"></i>
+            </div>
+
+            <div class="sidebar-section-title">
+              <span>یادداشت‌های مرتبط</span>
+            </div>
+
+          </div>
+
+
+          <div class="sidebar-section-content">
+
+            {% set currentNode = graph.nodes[page.url] or graph.nodes[graph.homeAlias] %}
+
+
+            {% if currentNode %}
+
+              {% if currentNode.backLinks.length === 0 %}
+
+                <div class="sidebar-empty">
+
+                  <i data-lucide="link"></i>
+
+                  <span>
+                    {{ meta.uiStrings.noBacklinksMessage }}
+                  </span>
+
+                </div>
+
+              {% else %}
+
+                <div class="sidebar-backlink-list">
+
+                  {% for backlink in currentNode.backLinks %}
+
+                    {% if graph.nodes[backlink].url != page.url
+                       and not graph.nodes[backlink].private %}
+
+                      <a
+                        href="{{ graph.nodes[backlink].url }}"
+                        class="sidebar-backlink-card"
+                        data-note-icon="{{ graph.nodes[backlink].noteIcon }}"
+                      >
+
+                        <span class="sidebar-backlink-icon">
+                          <i data-lucide="arrow-up-left"></i>
+                        </span>
+
+                        <span class="sidebar-backlink-content">
+
+                          <span class="sidebar-backlink-title">
+                            {{ graph.nodes[backlink].title }}
+                          </span>
+
+                          <span class="sidebar-backlink-label">
+                            یادداشت مرتبط
+                          </span>
+
+                        </span>
+
+                      </a>
+
+                    {% endif %}
+
+                  {% endfor %}
+
+                </div>
+
+              {% endif %}
+
+            {% endif %}
+
+          </div>
+
+        </section>
+
+      {% endif %}
+
+
+      {# =========================
+         DYNAMIC SIDEBAR BOTTOM
+         ========================= #}
+
+      {% for imp in dynamics.sidebar.bottom %}
+        {% include imp %}
+      {% endfor %}
+
+
+    </div>
+
+  </div>
+
 </aside>
