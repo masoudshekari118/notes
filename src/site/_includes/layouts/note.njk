@@ -1,11 +1,22 @@
 ---
 permalink: "notes/{{ page.fileSlug | slugify }}/"
 ---
+
 <!DOCTYPE html>
-<html lang="{{ meta.mainLanguage }}" dir="rtl">
+
+<html
+  lang="{{ meta.mainLanguage }}"
+  dir="rtl">
 
 <head>
-  <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
+
+  <title>
+    {% if title %}
+      {{ title }}
+    {% else %}
+      {{ page.fileSlug }}
+    {% endif %}
+  </title>
 
   {% include "components/pageheader.njk" %}
 
@@ -16,225 +27,213 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   {% for imp in dynamics.notes.head %}
     {% include imp %}
   {% endfor %}
+
 </head>
 
-<body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {% if settings.dgShowFileTree !== true %}no-filetree{% endif %} {% if settings.dgHomeLink === true and settings.dgShowFileTree !== true %}has-navbar{% endif %} {{meta.bodyClasses}}">
 
-  {% include "components/notegrowthhistory.njk" %}
-
-  {% if settings.dgShowFileTree !== true %}
-    {% include "components/navbar.njk" %}
-  {% else %}
-    {% include "components/filetree.njk" %}
-  {% endif %}
-
-  {% if settings.dgEnableSearch === true %}
-    {% include "components/searchContainer.njk" %}
-  {% endif %}
+<body
+  class="theme-{{meta.baseTheme}}
+  markdown-preview-view
+  markdown-rendered
+  markdown-preview-section
+  {{meta.bodyClasses}}">
 
 
-  <main class="content cm-s-obsidian print {{contentClasses}}">
+  <!-- =========================
+       HEADER
+       ========================= -->
 
-    <article class="note-page">
-
-      {# =========================
-         NOTE HEADER
-         ========================= #}
-
-      <header class="note-header">
-
-        {% if settings.dgShowInlineTitle === true %}
-          <h1
-            class="note-title"
-            data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">
-            {% if title %}
-              {{ title }}
-            {% else %}
-              {{ page.fileSlug }}
-            {% endif %}
-          </h1>
-        {% endif %}
+  {% include "components/navbar.njk" %}
 
 
-        {% if settings.dgShowTags === true and tags %}
-          <div class="note-tags">
-            {% for tag in tags %}
-              {% if tag != 'gardenEntry' and tag != 'note' %}
-                <a class="tag" onclick="toggleTagSearch(this)">
-                  #{{tag}}
-                </a>
+  <!-- =========================
+       PAGE LAYOUT
+       ========================= -->
+
+  <div class="note-layout">
+
+
+    <!-- =========================
+         RIGHT COLUMN
+         FILETREE
+         ========================= -->
+
+    <aside class="note-right-column">
+
+      {% if settings.dgShowFileTree !== false %}
+
+        {% include "components/filetree.njk" %}
+
+      {% endif %}
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
+
+    <main class="note-main">
+
+      <article class="note-page">
+
+
+        <header class="note-header">
+
+          {% if settings.dgShowInlineTitle === true %}
+
+            <h1 class="note-title">
+
+              {% if title %}
+                {{ title }}
+              {% else %}
+                {{ page.fileSlug }}
               {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
 
-
-        {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
-          <div class="note-meta">
-
-            {% if meta.timestampSettings.showCreated and created %}
-              <span class="note-meta-item">
-                <i data-lucide="calendar-plus"></i>
-                <span class="human-date" data-date="{{created}}"></span>
-              </span>
-            {% endif %}
-
-            {% if meta.timestampSettings.showUpdated and updated %}
-              <span class="note-meta-item">
-                <i data-lucide="calendar-clock"></i>
-                <span class="human-date" data-date="{{updated}}"></span>
-              </span>
-            {% endif %}
-
-          </div>
-        {% endif %}
-
-
-        {% for imp in dynamics.common.header %}
-          {% include imp %}
-        {% endfor %}
-
-        {% for imp in dynamics.notes.header %}
-          {% include imp %}
-        {% endfor %}
-
-      </header>
-
-
-      {# =========================
-         NOTE BODY
-         ========================= #}
-
-      <div class="note-body">
-
-        {% for imp in dynamics.common.beforeContent %}
-          {% include imp %}
-        {% endfor %}
-
-        {% for imp in dynamics.notes.beforeContent %}
-          {% include imp %}
-        {% endfor %}
-
-
-        {{ content | hideDataview | taggify | link | safe }}
-
-
-        {% for imp in dynamics.common.afterContent %}
-          {% include imp %}
-        {% endfor %}
-
-        {% for imp in dynamics.notes.afterContent %}
-          {% include imp %}
-        {% endfor %}
-
-      </div>
-
-
-      {# =========================
-         NOTE FOOTER
-         ========================= #}
-
-      <footer class="note-footer">
-
-        {% if settings.dgShowBacklinks === true %}
-
-          {% set currentNode = graph.nodes[page.url] or graph.nodes[graph.homeAlias] %}
-
-          {% if currentNode and currentNode.backLinks.length > 0 %}
-
-            <section class="note-section note-backlinks">
-
-              <div class="note-section-heading">
-                <span class="note-section-icon">
-                  <i data-lucide="link-2"></i>
-                </span>
-
-                <div>
-                  <h2>{{ meta.uiStrings.backlinkHeader }}</h2>
-                  <p>یادداشت‌هایی که به این مطلب مرتبط شده‌اند</p>
-                </div>
-              </div>
-
-
-              <div class="note-related-grid">
-
-                {% for backlink in currentNode.backLinks %}
-
-                  {% if graph.nodes[backlink].url != page.url and not graph.nodes[backlink].private %}
-
-                    <a
-                      href="{{graph.nodes[backlink].url}}"
-                      class="note-related-card">
-
-                      <span class="note-related-card-icon">
-                        <i data-lucide="arrow-up-left"></i>
-                      </span>
-
-                      <span class="note-related-card-content">
-
-                        <span class="note-related-card-title">
-                          {{graph.nodes[backlink].title}}
-                        </span>
-
-                        <span class="note-related-card-label">
-                          مشاهده یادداشت
-                        </span>
-
-                      </span>
-
-                    </a>
-
-                  {% endif %}
-
-                {% endfor %}
-
-              </div>
-
-            </section>
+            </h1>
 
           {% endif %}
 
-        {% endif %}
+
+          {% if settings.dgShowTags === true and tags %}
+
+            <div class="note-tags">
+
+              {% for tag in tags %}
+
+                {% if tag != 'gardenEntry' and tag != 'note' %}
+
+                  <a
+                    class="tag"
+                    onclick="toggleTagSearch(this)">
+
+                    #{{ tag }}
+
+                  </a>
+
+                {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+          {% endif %}
 
 
-        {# =========================
-           DYNAMIC FOOTER
-           ========================= #}
+          {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
 
-        {% for imp in dynamics.common.footerContent %}
-          {% include imp %}
-        {% endfor %}
+            <div class="note-meta">
 
-        {% for imp in dynamics.notes.footerContent %}
-          {% include imp %}
-        {% endfor %}
+              {% if meta.timestampSettings.showCreated and created %}
 
-      </footer>
+                <span>
 
-    </article>
+                  <i data-lucide="calendar-plus"></i>
 
-  </main>
+                  <span
+                    class="human-date"
+                    data-date="{{ created }}">
+                  </span>
+
+                </span>
+
+              {% endif %}
 
 
-  {# =========================
-     SIDEBAR / KNOWLEDGE TOOLS
-     ========================= #}
+              {% if meta.timestampSettings.showUpdated and updated %}
 
-  {% if settings.dgShowBacklinks === true
-     or settings.dgShowLocalGraph === true
-     or settings.dgShowToc === true
-     or dynamics.sidebar.top.length > 0
-     or dynamics.sidebar.bottom.length > 0 %}
+                <span>
 
-    {% include "components/sidebar.njk" %}
+                  <i data-lucide="calendar-clock"></i>
 
-  {% endif %}
+                  <span
+                    class="human-date"
+                    data-date="{{ updated }}">
+                  </span>
+
+                </span>
+
+              {% endif %}
+
+            </div>
+
+          {% endif %}
+
+
+          {% for imp in dynamics.common.header %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.header %}
+            {% include imp %}
+          {% endfor %}
+
+        </header>
+
+
+        <div class="note-content">
+
+          {% for imp in dynamics.common.beforeContent %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.beforeContent %}
+            {% include imp %}
+          {% endfor %}
+
+
+          {{ content | hideDataview | taggify | link | safe }}
+
+
+          {% for imp in dynamics.common.afterContent %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.afterContent %}
+            {% include imp %}
+          {% endfor %}
+
+        </div>
+
+
+      </article>
+
+    </main>
+
+
+    <!-- =========================
+         LEFT COLUMN
+         RELATIONSHIPS / GRAPH
+         ========================= -->
+
+    <aside class="note-left-column">
+
+      {% if settings.dgShowBacklinks === true
+         or settings.dgShowLocalGraph === true
+         or settings.dgShowToc === true
+         or dynamics.sidebar.top.length > 0
+         or dynamics.sidebar.bottom.length > 0 %}
+
+        {% include "components/sidebar.njk" %}
+
+      {% endif %}
+
+    </aside>
+
+
+  </div>
+
+
+  <!-- =========================
+       FOOTER
+       ========================= -->
+
+  {% include "components/footer.njk" %}
 
 
   {% if settings.dgLinkPreview === true %}
     {% include "components/linkPreview.njk" %}
   {% endif %}
-
 
   {% include "components/references.njk" %}
 
@@ -254,7 +253,9 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
 
   {% if contentClasses and "canvas-page" in contentClasses %}
+
     {% include "components/canvasScript.njk" %}
+
   {% endif %}
 
 
