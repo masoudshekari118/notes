@@ -3,12 +3,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 ---
 
 <!DOCTYPE html>
-
-<html
-  lang="{{ meta.mainLanguage }}"
-  dir="rtl">
+<html lang="{{ meta.mainLanguage }}" dir="rtl">
 
 <head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
     {% if title %}
@@ -16,6 +16,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% else %}
       {{ page.fileSlug }}
     {% endif %}
+    | مسعود شکری
   </title>
 
   {% include "components/pageheader.njk" %}
@@ -32,181 +33,160 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
 
 <body
-  class="theme-{{meta.baseTheme}}
-  markdown-preview-view
-  markdown-rendered
-  markdown-preview-section
-  {{meta.bodyClasses}}">
+  class="theme-{{ meta.baseTheme }} {{ meta.bodyClasses }}"
+>
 
 
   <!-- =========================
-       HEADER
+       NAVBAR
        ========================= -->
 
   {% include "components/navbar.njk" %}
 
 
   <!-- =========================
-       PAGE LAYOUT
+       NOTE PAGE
        ========================= -->
 
-  <div class="note-layout">
+  <div class="note-container">
 
 
     <!-- =========================
-         RIGHT COLUMN
-         FILETREE
+         ARTICLE HEADER
          ========================= -->
 
-    <aside class="note-right-column">
+    <header class="note-header">
 
-      {% if settings.dgShowFileTree !== false %}
+      {% if settings.dgShowInlineTitle === true %}
 
-        {% include "components/filetree.njk" %}
+        <h1 class="note-title">
+
+          {% if title %}
+            {{ title }}
+          {% else %}
+            {{ page.fileSlug }}
+          {% endif %}
+
+        </h1>
 
       {% endif %}
 
-    </aside>
 
+      <!-- TAGS -->
 
-    <!-- =========================
-         MAIN CONTENT
-         ========================= -->
+      {% if settings.dgShowTags === true and tags %}
 
-    <main class="note-main">
+        <div class="note-tags">
 
-      <article class="note-page">
+          {% for tag in tags %}
 
+            {% if tag != 'gardenEntry' and tag != 'note' %}
 
-        <header class="note-header">
+              <a
+                class="tag"
+                onclick="toggleTagSearch(this)"
+              >
+                #{{ tag }}
+              </a>
 
-          {% if settings.dgShowInlineTitle === true %}
+            {% endif %}
 
-            <h1 class="note-title">
-
-              {% if title %}
-                {{ title }}
-              {% else %}
-                {{ page.fileSlug }}
-              {% endif %}
-
-            </h1>
-
-          {% endif %}
-
-
-          {% if settings.dgShowTags === true and tags %}
-
-            <div class="note-tags">
-
-              {% for tag in tags %}
-
-                {% if tag != 'gardenEntry' and tag != 'note' %}
-
-                  <a
-                    class="tag"
-                    onclick="toggleTagSearch(this)">
-
-                    #{{ tag }}
-
-                  </a>
-
-                {% endif %}
-
-              {% endfor %}
-
-            </div>
-
-          {% endif %}
-
-
-          {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
-
-            <div class="note-meta">
-
-              {% if meta.timestampSettings.showCreated and created %}
-
-                <span>
-
-                  <i data-lucide="calendar-plus"></i>
-
-                  <span
-                    class="human-date"
-                    data-date="{{ created }}">
-                  </span>
-
-                </span>
-
-              {% endif %}
-
-
-              {% if meta.timestampSettings.showUpdated and updated %}
-
-                <span>
-
-                  <i data-lucide="calendar-clock"></i>
-
-                  <span
-                    class="human-date"
-                    data-date="{{ updated }}">
-                  </span>
-
-                </span>
-
-              {% endif %}
-
-            </div>
-
-          {% endif %}
-
-
-          {% for imp in dynamics.common.header %}
-            {% include imp %}
-          {% endfor %}
-
-          {% for imp in dynamics.notes.header %}
-            {% include imp %}
-          {% endfor %}
-
-        </header>
-
-
-        <div class="note-content markdown-body">
-
-          {% for imp in dynamics.common.beforeContent %}
-            {% include imp %}
-          {% endfor %}
-
-          {% for imp in dynamics.notes.beforeContent %}
-            {% include imp %}
-          {% endfor %}
-
-
-          {{ content | hideDataview | taggify | link | safe }}
-
-
-          {% for imp in dynamics.common.afterContent %}
-            {% include imp %}
-          {% endfor %}
-
-          {% for imp in dynamics.notes.afterContent %}
-            {% include imp %}
           {% endfor %}
 
         </div>
 
+      {% endif %}
 
-      </article>
+
+      <!-- DATES -->
+
+      {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
+
+        <div class="note-meta">
+
+          {% if meta.timestampSettings.showCreated and created %}
+
+            <span class="note-date">
+
+              <i data-lucide="calendar-plus"></i>
+
+              <span
+                class="human-date"
+                data-date="{{ created }}"
+              ></span>
+
+            </span>
+
+          {% endif %}
+
+
+          {% if meta.timestampSettings.showUpdated and updated %}
+
+            <span class="note-date">
+
+              <i data-lucide="calendar-clock"></i>
+
+              <span
+                class="human-date"
+                data-date="{{ updated }}"
+              ></span>
+
+            </span>
+
+          {% endif %}
+
+        </div>
+
+      {% endif %}
+
+
+      {% for imp in dynamics.common.header %}
+        {% include imp %}
+      {% endfor %}
+
+      {% for imp in dynamics.notes.header %}
+        {% include imp %}
+      {% endfor %}
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTENT
+         ========================= -->
+
+    <main class="note-content">
+
+      {% for imp in dynamics.common.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+
+      {% for imp in dynamics.notes.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+
+
+      {{ content | hideDataview | taggify | link | safe }}
+
+
+      {% for imp in dynamics.common.afterContent %}
+        {% include imp %}
+      {% endfor %}
+
+      {% for imp in dynamics.notes.afterContent %}
+        {% include imp %}
+      {% endfor %}
 
     </main>
 
 
+
     <!-- =========================
-         LEFT COLUMN
-         RELATIONSHIPS / GRAPH
+         NOTE FOOTER
          ========================= -->
 
-    <aside class="note-left-column">
+    <div class="note-footer">
 
       {% if settings.dgShowBacklinks === true
          or settings.dgShowLocalGraph === true
@@ -218,10 +198,11 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
       {% endif %}
 
-    </aside>
+    </div>
 
 
   </div>
+
 
 
   <!-- =========================
@@ -260,6 +241,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
 
   {% include "components/basesScript.njk" %}
+
 
 </body>
 
