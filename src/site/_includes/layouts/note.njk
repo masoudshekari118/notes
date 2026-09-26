@@ -32,10 +32,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 </head>
 
 
-<body
-  class="theme-{{ meta.baseTheme }} {{ meta.bodyClasses }}"
->
-
+<body class="theme-{{ meta.baseTheme }} {{ meta.bodyClasses }}">
 
   <!-- =========================
        NAVBAR
@@ -45,148 +42,17 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
 
   <!-- =========================
-       NOTE PAGE
+       NOTE LAYOUT
        ========================= -->
 
-  <div class="note-container">
+  <div class="note-layout">
 
 
     <!-- =========================
-         ARTICLE HEADER
+         LEFT COLUMN
          ========================= -->
 
-    <header class="note-header">
-
-      {% if settings.dgShowInlineTitle === true %}
-
-        <h1 class="note-title">
-
-          {% if title %}
-            {{ title }}
-          {% else %}
-            {{ page.fileSlug }}
-          {% endif %}
-
-        </h1>
-
-      {% endif %}
-
-
-      <!-- TAGS -->
-
-      {% if settings.dgShowTags === true and tags %}
-
-        <div class="note-tags">
-
-          {% for tag in tags %}
-
-            {% if tag != 'gardenEntry' and tag != 'note' %}
-
-              <a
-                class="tag"
-                onclick="toggleTagSearch(this)"
-              >
-                #{{ tag }}
-              </a>
-
-            {% endif %}
-
-          {% endfor %}
-
-        </div>
-
-      {% endif %}
-
-
-      <!-- DATES -->
-
-      {% if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated %}
-
-        <div class="note-meta">
-
-          {% if meta.timestampSettings.showCreated and created %}
-
-            <span class="note-date">
-
-              <i data-lucide="calendar-plus"></i>
-
-              <span
-                class="human-date"
-                data-date="{{ created }}"
-              ></span>
-
-            </span>
-
-          {% endif %}
-
-
-          {% if meta.timestampSettings.showUpdated and updated %}
-
-            <span class="note-date">
-
-              <i data-lucide="calendar-clock"></i>
-
-              <span
-                class="human-date"
-                data-date="{{ updated }}"
-              ></span>
-
-            </span>
-
-          {% endif %}
-
-        </div>
-
-      {% endif %}
-
-
-      {% for imp in dynamics.common.header %}
-        {% include imp %}
-      {% endfor %}
-
-      {% for imp in dynamics.notes.header %}
-        {% include imp %}
-      {% endfor %}
-
-    </header>
-
-
-
-    <!-- =========================
-         CONTENT
-         ========================= -->
-
-    <main class="note-content">
-
-      {% for imp in dynamics.common.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-
-      {% for imp in dynamics.notes.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-
-
-      {{ content | hideDataview | taggify | link | safe }}
-
-
-      {% for imp in dynamics.common.afterContent %}
-        {% include imp %}
-      {% endfor %}
-
-      {% for imp in dynamics.notes.afterContent %}
-        {% include imp %}
-      {% endfor %}
-
-    </main>
-
-
-
-    <!-- =========================
-         NOTE FOOTER
-         ========================= -->
-
-    <div class="note-footer">
+    <aside class="note-left-column">
 
       {% if settings.dgShowBacklinks === true
          or settings.dgShowLocalGraph === true
@@ -198,7 +64,177 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
       {% endif %}
 
-    </div>
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN ARTICLE
+         ========================= -->
+
+    <main class="note-main">
+
+      <article class="note-page">
+
+
+        <!-- ARTICLE HEADER -->
+
+        <header class="note-header">
+
+          {% if settings.dgShowInlineTitle === true %}
+
+            <h1 class="note-title">
+
+              {% if title %}
+                {{ title }}
+              {% else %}
+                {{ page.fileSlug }}
+              {% endif %}
+
+            </h1>
+
+          {% endif %}
+
+
+          <!-- TAGS -->
+
+          {% if settings.dgShowTags === true and tags %}
+
+            <div class="note-tags">
+
+              {% for tag in tags %}
+
+                {% if tag != 'gardenEntry' and tag != 'note' %}
+
+                  <a
+                    class="tag"
+                    onclick="toggleTagSearch(this)"
+                  >
+                    #{{ tag }}
+                  </a>
+
+                {% endif %}
+
+              {% endfor %}
+
+            </div>
+
+          {% endif %}
+
+
+          <!-- DATES -->
+
+          {% if meta.timestampSettings.showCreated
+             or meta.timestampSettings.showUpdated %}
+
+            <div class="note-meta">
+
+              {% if meta.timestampSettings.showCreated and created %}
+
+                <span class="note-date">
+
+                  <i data-lucide="calendar-plus"></i>
+
+                  <span
+                    class="human-date"
+                    data-date="{{ created }}"
+                  ></span>
+
+                </span>
+
+              {% endif %}
+
+
+              {% if meta.timestampSettings.showUpdated and updated %}
+
+                <span class="note-date">
+
+                  <i data-lucide="calendar-clock"></i>
+
+                  <span
+                    class="human-date"
+                    data-date="{{ updated }}"
+                  ></span>
+
+                </span>
+
+              {% endif %}
+
+            </div>
+
+          {% endif %}
+
+
+          {% for imp in dynamics.common.header %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.header %}
+            {% include imp %}
+          {% endfor %}
+
+        </header>
+
+
+
+        <!-- =========================
+             ARTICLE CONTENT
+             ========================= -->
+
+        <div class="note-content">
+
+          {% for imp in dynamics.common.beforeContent %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.beforeContent %}
+            {% include imp %}
+          {% endfor %}
+
+
+          {{ content | hideDataview | taggify | link | safe }}
+
+
+          {% for imp in dynamics.common.afterContent %}
+            {% include imp %}
+          {% endfor %}
+
+          {% for imp in dynamics.notes.afterContent %}
+            {% include imp %}
+          {% endfor %}
+
+        </div>
+
+
+      </article>
+
+    </main>
+
+
+
+    <!-- =========================
+         RIGHT COLUMN
+         ========================= -->
+
+    <aside class="note-right-column">
+
+      <!--
+        محل فهرست درختی / File Tree
+        در صورت فعال بودن در تنظیمات Digital Garden
+        محتوای مربوطه اینجا قرار می‌گیرد.
+      -->
+
+      {% if dynamics.sidebar.top.length > 0 %}
+
+        {% for item in dynamics.sidebar.top %}
+
+          {% include item %}
+
+        {% endfor %}
+
+      {% endif %}
+
+    </aside>
 
 
   </div>
@@ -241,7 +277,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
 
   {% include "components/basesScript.njk" %}
-
 
 </body>
 
