@@ -1,17 +1,14 @@
 /* =========================================================
    MASOUD SHEKARI
-    پژوهشگر، مدرس دانشگاه، مشاور 
+   پژوهشگر، مدرس دانشگاه، مشاور
+   نسخه بازنویسی‌شده و اصلاح‌شده
    ========================================================= */
-
-@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap");
-
 
 /* =========================================================
    VARIABLES
    ========================================================= */
 
 :root {
-
   --green-900: #173f34;
   --green-800: #1f5d4a;
   --green-700: #28745d;
@@ -37,7 +34,43 @@
   --radius-md: 12px;
   --radius-lg: 16px;
 
-  --font: "Vazirmatn", sans-serif;
+  --font: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+
+  /* --- ابعاد ساختاری --- */
+  --navbar-height: 72px;
+  --content-width: 760px;
+  --container-width: 1240px;
+
+  /* --- فاصله‌ها --- */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 55px;
+
+  /* --- تایپوگرافی --- */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 18px;
+  --text-lg: 20px;
+}
+
+@media (max-width: 500px) {
+  :root {
+    --navbar-height: 62px;
+    --text-base: 16px;
+  }
+}
+
+
+/* =========================================================
+   RESET & BOX-SIZING
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 
@@ -48,33 +81,51 @@
 html {
   direction: rtl;
   scroll-behavior: smooth;
-  font-family: var(--font), sans-serif;
+  overflow-x: clip;
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   direction: rtl;
   margin: 0;
+  padding: 0;
 
   background: var(--bg) !important;
   color: var(--text) !important;
 
-  font-family: var(--font), sans-serif !important;
-  font-size: 19px;
+  font-family: var(--font) !important;
+  font-size: var(--text-base);
   line-height: 1.9;
 
-  overflow-x: hidden;
+  overflow-x: clip;
+  min-height: 100vh;
 }
 
 button,
 input,
 textarea,
 select {
-  font-family: var(--font), sans-serif !important;
+  font-family: var(--font) !important;
 }
 
 a {
   color: var(--green-800);
   text-decoration: none;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus برای دسترس‌پذیری */
+:focus-visible {
+  outline: 2px solid var(--green-700);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 
@@ -97,15 +148,17 @@ a {
   border-bottom: 1px solid var(--border-light);
 }
 
-.navbar-inner {
-  width: min(1240px, calc(100% - 48px));
+@supports not (backdrop-filter: blur(1px)) {
+  .site-navbar { background: var(--bg); }
+}
 
-  min-height: 72px;
+.navbar-inner {
+  width: min(var(--container-width), calc(100% - 48px));
+  min-height: var(--navbar-height);
 
   margin: 0 auto;
 
   display: flex;
-
   align-items: center;
   justify-content: space-between;
 
@@ -114,10 +167,8 @@ a {
 
 .navbar-brand {
   color: var(--green-900) !important;
-
   font-size: 19px;
   font-weight: 800;
-
   white-space: nowrap;
 }
 
@@ -127,40 +178,30 @@ a {
 
 .navbar-actions {
   display: flex;
-
   align-items: center;
-
   gap: 4px;
-
   flex-wrap: wrap;
 }
 
 .navbar-action {
   min-height: 36px;
-
   padding: 6px 11px;
 
   display: inline-flex;
-
   align-items: center;
-
   gap: 6px;
 
   border: 0;
   border-radius: 8px;
-
   background: transparent;
 
   color: var(--text-secondary) !important;
-
   font-size: 13px;
   font-weight: 500;
 
   cursor: pointer;
 
-  transition:
-    background .2s ease,
-    color .2s ease;
+  transition: background .2s ease, color .2s ease;
 }
 
 .navbar-action:hover {
@@ -168,30 +209,15 @@ a {
   color: var(--green-800) !important;
 }
 
-.navbar-search-button {
-  border: 0;
-}
-
 
 /* =========================================================
    NOTE PAGE
    ========================================================= */
 
-/*
-   مهم:
-   این بخش با note.njk جدید کار می‌کند.
-*/
-
 .note-container {
-
-  width: min(1440px, calc(100% - 48px));
-
+  width: min(var(--container-width), calc(100% - 48px));
   margin: 0 auto;
-
-  padding: 55px 0 80px;
-
-  box-sizing: border-box;
-
+  padding: var(--space-xl) 0 80px;
 }
 
 
@@ -200,32 +226,19 @@ a {
    ========================================================= */
 
 .note-header {
-
-  width: min(760px, 100%);
-
+  width: min(var(--content-width), 100%);
   margin: 0 auto 35px;
-
   padding-bottom: 25px;
-
   border-bottom: 1px solid var(--border);
-
-  box-sizing: border-box;
 }
 
 .note-title {
-
   margin: 0 0 18px;
-
   color: var(--green-900);
-
   font-size: clamp(30px, 4vw, 44px);
-
   font-weight: 800;
-
   line-height: 1.45;
-
   letter-spacing: -.5px;
-
   overflow-wrap: break-word;
 }
 
@@ -235,45 +248,32 @@ a {
    ========================================================= */
 
 .note-tags {
-
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 7px;
-
   margin-bottom: 15px;
 }
 
 .note-tags .tag {
-
   display: inline-flex;
-
   padding: 4px 10px;
 
   border: 1px solid var(--border);
-
   border-radius: 999px;
 
   background: var(--accent-softer);
-
   color: var(--green-800);
 
-  font-size: 12px;
-
+  font-size: var(--text-xs);
   line-height: 1.6;
 
   cursor: pointer;
 
-  transition:
-    background .2s ease,
-    color .2s ease;
+  transition: background .2s ease, color .2s ease;
 }
 
 .note-tags .tag:hover {
-
   background: var(--accent-soft);
-
   color: var(--green-900);
 }
 
@@ -283,26 +283,19 @@ a {
    ========================================================= */
 
 .note-meta {
-
   display: flex;
-
   align-items: center;
-
   flex-wrap: wrap;
-
   gap: 15px;
 
   color: var(--text-muted);
-
-  font-size: 14px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
 }
 
 .note-meta span {
-
   display: inline-flex;
-
   align-items: center;
-
   gap: 5px;
 }
 
@@ -312,56 +305,31 @@ a {
    ========================================================= */
 
 .note-content {
-
-  /*
-     مهم‌ترین قسمت:
-     عرض متن عمداً محدود شده تا مقاله
-     از راست تا چپ صفحه کشیده نشود.
-  */
-
-  width: min(760px, 100%);
-
+  width: min(var(--content-width), 100%);
   margin: 0 auto;
 
-  box-sizing: border-box;
-
   color: var(--text) !important;
-
-  font-family: var(--font), sans-serif !important;
-
-  font-size: 18px !important;
-
+  font-family: var(--font) !important;
+  font-size: var(--text-base) !important;
   line-height: 2.15 !important;
 
   direction: rtl;
-
   text-align: right;
 
   opacity: 1 !important;
-
   visibility: visible !important;
-
   display: block !important;
 
   overflow-wrap: break-word;
-
-  word-break: normal;
+  word-break: break-word;
 }
-
-
-/*
-   جلوگیری از تأثیر بعضی استایل‌های عمومی
-   Digital Garden / Obsidian
-*/
 
 .note-content *,
 .note-content p,
 .note-content div,
 .note-content span,
 .note-content li {
-
-  font-family: var(--font), sans-serif;
-
+  font-family: var(--font);
   visibility: visible;
 }
 
@@ -371,13 +339,9 @@ a {
    ========================================================= */
 
 .note-content p {
-
   margin: 0 0 1.45em;
-
   color: var(--text);
-
   font-size: inherit;
-
   line-height: inherit;
 }
 
@@ -392,53 +356,18 @@ a {
 .note-content h4,
 .note-content h5,
 .note-content h6 {
-
   color: var(--green-900);
-
   font-weight: 700;
-
   line-height: 1.6;
-
-  scroll-margin-top: 100px;
+  scroll-margin-top: calc(var(--navbar-height) + 28px);
 }
 
-.note-content h1 {
-
-  margin: 2em 0 .8em;
-
-  font-size: 34px;
-}
-
-.note-content h2 {
-
-  margin: 2.3em 0 .8em;
-
-  font-size: 29px;
-}
-
-.note-content h3 {
-
-  margin: 2em 0 .7em;
-
-  color: var(--green-800);
-
-  font-size: 23px;
-}
-
-.note-content h4 {
-
-  margin: 1.7em 0 .6em;
-
-  font-size: 19px;
-}
-
+.note-content h1 { margin: 2em 0 .8em; font-size: 34px; }
+.note-content h2 { margin: 2.3em 0 .8em; font-size: 29px; }
+.note-content h3 { margin: 2em 0 .7em; color: var(--green-800); font-size: 23px; }
+.note-content h4 { margin: 1.7em 0 .6em; font-size: 19px; }
 .note-content h5,
-.note-content h6 {
-
-  margin: 1.5em 0 .6em;
-
-  font-size: 17px;
-}
+.note-content h6 { margin: 1.5em 0 .6em; font-size: 17px; }
 
 
 /* =========================================================
@@ -447,23 +376,18 @@ a {
 
 .note-content ul,
 .note-content ol {
-
   margin-top: 1em;
   margin-bottom: 1.5em;
-
   padding-right: 28px;
   padding-left: 0;
 }
 
 .note-content li {
-
   margin-bottom: 7px;
-
   padding-right: 3px;
 }
 
 .note-content li > p {
-
   margin-bottom: .5em;
 }
 
@@ -473,25 +397,15 @@ a {
    ========================================================= */
 
 .note-content blockquote {
-
   margin: 30px 0;
-
   padding: 18px 22px;
 
   border-right: 4px solid var(--green-700);
-
   border-left: 0;
-
-  border-radius:
-    0
-    var(--radius-sm)
-    var(--radius-sm)
-    0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 
   background: var(--accent-softer);
-
   color: var(--text-secondary);
-
   font-size: .95em;
 }
 
@@ -505,9 +419,7 @@ a {
    ========================================================= */
 
 .note-content strong {
-
   color: var(--green-900);
-
   font-weight: 700;
 }
 
@@ -521,24 +433,14 @@ a {
    ========================================================= */
 
 .note-content a {
-
   color: var(--green-800);
-
-  border-bottom:
-    1px solid
-    rgba(31, 93, 74, .25);
-
-  transition:
-    color .2s ease,
-    border-color .2s ease;
+  border-bottom: 1px solid rgba(31, 93, 74, .25);
+  transition: color .2s ease, border-color .2s ease;
 }
 
 .note-content a:hover {
-
   color: var(--green-700);
-
-  border-bottom-color:
-    var(--green-700);
+  border-bottom-color: var(--green-700);
 }
 
 
@@ -547,17 +449,22 @@ a {
    ========================================================= */
 
 .note-content img {
-
   display: block;
-
   max-width: 100%;
   height: auto;
-
   margin: 32px auto;
-
   border-radius: var(--radius-md);
-
   box-shadow: var(--shadow-sm);
+}
+
+/* اگر داخل لینک باشند */
+.note-content a img {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.note-content a:hover img {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 
@@ -566,14 +473,9 @@ a {
    ========================================================= */
 
 .note-content hr {
-
   margin: 45px 0;
-
   border: 0;
-
-  border-top:
-    1px solid
-    var(--border);
+  border-top: 1px solid var(--border);
 }
 
 
@@ -582,68 +484,44 @@ a {
    ========================================================= */
 
 .note-content code {
+  padding-block: 2px;
+  padding-inline: 6px;
 
-  padding: 2px 6px;
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   border-radius: 5px;
 
   background: var(--surface-soft);
-
   color: var(--green-900);
 
-  font-family:
-    Consolas,
-    "Courier New",
-    monospace !important;
-
+  font-family: Consolas, "Courier New", monospace !important;
   font-size: .88em;
 
   direction: ltr;
-
   unicode-bidi: plaintext;
 }
 
 .note-content pre {
-
   width: 100%;
-
-  box-sizing: border-box;
-
   overflow-x: auto;
 
   margin: 30px 0;
-
   padding: 20px;
 
   border-radius: var(--radius-md);
-
   background: #202522;
-
   color: #f2f5f2;
 
   direction: ltr;
-
   text-align: left;
-
   line-height: 1.7;
 }
 
 .note-content pre code {
-
   display: block;
-
   padding: 0;
-
   border: 0;
-
   background: transparent;
-
   color: inherit;
-
   font-size: 14px;
 }
 
@@ -653,49 +531,70 @@ a {
    ========================================================= */
 
 .note-content table {
-
   width: 100%;
-
   margin: 30px 0;
-
   border-collapse: collapse;
-
   font-size: .92em;
 }
 
 .note-content th,
 .note-content td {
-
   padding: 10px 12px;
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   text-align: right;
 }
 
 .note-content th {
-
   background: var(--accent-softer);
-
   color: var(--green-900);
-
   font-weight: 700;
 }
 
 
 /* =========================================================
-   CALLOUT
+   CALLOUTS
    ========================================================= */
 
 .callout {
-
   margin: 30px 0;
+  padding: 16px 20px;
 
-  border-radius: var(--radius-md) !important;
+  border-inline-start: 4px solid var(--green-700);
+  border-radius: var(--radius-md);
 
+  background: var(--accent-softer);
+  color: var(--text-secondary);
   box-shadow: none;
+}
+
+.callout-title {
+  color: var(--green-900);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.callout[data-callout="warning"],
+.callout.callout-warning {
+  border-inline-start-color: #c98a2b;
+  background: #fdf6e9;
+}
+
+.callout[data-callout="danger"],
+.callout.callout-danger {
+  border-inline-start-color: #b3402e;
+  background: #fdecea;
+}
+
+.callout[data-callout="info"],
+.callout.callout-info {
+  border-inline-start-color: #2b6cb0;
+  background: #eaf1f8;
+}
+
+.callout[data-callout="tip"],
+.callout.callout-tip {
+  border-inline-start-color: var(--green-700);
+  background: var(--accent-softer);
 }
 
 
@@ -704,10 +603,11 @@ a {
    ========================================================= */
 
 .filetree-system {
-
   position: sticky;
-
-  top: 95px;
+  top: calc(var(--navbar-height) + 23px);
+  max-height: calc(100vh - var(--navbar-height) - 40px);
+  overflow-y: auto;
+  padding-right: 2px;
 }
 
 .filetree-wrapper {
@@ -715,262 +615,159 @@ a {
 }
 
 .filetree-sidebar {
-
   width: 100%;
-
   padding: 22px 16px;
 
-  box-sizing: border-box;
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
 
   background: var(--surface);
-
   box-shadow: var(--shadow-sm);
 }
 
-
-/* SITE ICON */
-
+/* آیکون سایت */
 .filetree-site-icon {
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   margin-bottom: 14px;
 }
 
 .filetree-site-icon img {
-
   width: 78px;
   height: 78px;
-
   object-fit: cover;
-
   border-radius: 50%;
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
 }
 
-
-/* FILETREE HEADING */
-
+/* سربرگ */
 .filetree-heading {
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   margin-bottom: 20px;
-
   text-align: center;
 }
 
 .filetree-heading-title {
-
   color: var(--green-900);
-
   font-size: 15px;
-
   font-weight: 700;
 }
 
 .filetree-heading-subtitle {
-
   margin-top: 3px;
-
   color: var(--text-muted);
-
   font-size: 11px;
 }
 
-
-/* SEARCH */
-
+/* جستجو */
 .filetree-search {
   margin-bottom: 15px;
 }
 
-
-/* FILE LIST */
-
+/* لیست فایل‌ها */
 .filetree-list {
-
-  border-top:
-    1px solid
-    var(--border-light);
-
+  border-top: 1px solid var(--border-light);
   padding-top: 12px;
 }
 
-.filetree-list .folder {
-  width: 100%;
-}
+.filetree-list .folder { width: 100%; }
 
 .filetree-list .filelist {
-
   margin-right: 12px;
-
   padding-right: 10px;
-
-  border-right:
-    1px solid
-    var(--border-light);
+  border-right: 1px solid var(--border-light);
 }
 
-.filetree-list .notelink {
-  margin: 3px 0;
-}
+.filetree-list .notelink { margin: 3px 0; }
 
 .filetree-list .filename {
-
   display: block;
-
   padding: 7px 9px;
-
   border-radius: 7px;
 
   color: var(--text-secondary) !important;
-
   font-size: 12px;
-
   line-height: 1.7;
-
   border: 0;
 
-  transition:
-    background .2s ease,
-    color .2s ease;
+  transition: background .2s ease, color .2s ease;
 }
 
 .filetree-list .filename:hover {
-
   background: var(--accent-softer);
-
   color: var(--green-800) !important;
 }
 
 .filetree-list .active-note .filename {
-
   background: var(--accent-soft);
-
   color: var(--green-900) !important;
-
   font-weight: 700;
 }
 
-
-/* FOLDERS */
-
+/* پوشه‌ها */
 .filetree-list .foldername-wrapper {
-
   display: flex;
-
   align-items: center;
-
   gap: 5px;
-
   padding: 8px 7px;
 
   color: var(--green-900);
-
   cursor: pointer;
-
   font-size: 13px;
-
   font-weight: 700;
 }
 
 .filetree-list .foldername-wrapper svg {
-
   width: 14px;
   height: 14px;
-
   color: var(--green-700);
 }
 
 
 /* =========================================================
    LEGACY THREE COLUMN SUPPORT
+   (اصلاح‌شده — بدون تداخل width)
    ========================================================= */
 
-/*
-   اگر در هر صفحه هنوز note-layout وجود داشته باشد،
-   این بخش آن را نیز درست نگه می‌دارد.
-*/
-
 .note-layout {
-
-  width: min(1440px, calc(100% - 48px));
-
+  /* دیگر width مستقل ندارد؛ داخل note-container قرار می‌گیرد */
+  width: 100%;
   margin: 0 auto;
 
   display: grid;
-
-  grid-template-columns:
-    220px
-    minmax(600px, 760px)
-    220px;
-
-  grid-template-areas:
-    "left main right";
+  grid-template-columns: 220px minmax(0, var(--content-width)) 220px;
+  grid-template-areas: "left main right";
 
   justify-content: center;
-
-  gap: 45px;
-
   align-items: start;
 
-  box-sizing: border-box;
+  gap: 45px;
 }
 
-.note-left-column {
-  grid-area: left;
-
-  min-width: 0;
-}
-
-.note-main {
-  grid-area: main;
-
-  min-width: 0;
-}
-
-.note-right-column {
-  grid-area: right;
-
-  min-width: 0;
-}
+.note-left-column  { grid-area: left;  min-width: 0; }
+.note-main         { grid-area: main;  min-width: 0; }
+.note-right-column { grid-area: right; min-width: 0; }
 
 .note-layout .note-page {
-
   width: 100%;
-
   max-width: none;
-
   margin: 0;
-
   padding: 58px 0 90px;
 }
 
 .note-layout .note-header,
 .note-layout .note-content {
-
   width: 100%;
-
   max-width: none;
+}
+
+/* وقتی note-layout تنها عنصر داخل note-container است */
+.note-container > .note-layout {
+  padding: 0;
 }
 
 
@@ -979,191 +776,118 @@ a {
    ========================================================= */
 
 .site-sidebar {
-
   width: 100%;
-
   padding-top: 58px;
 }
 
 .sidebar-container {
-
   display: flex;
-
   flex-direction: column;
-
   gap: 15px;
 }
 
 .sidebar-section {
-
   overflow: hidden;
-
-  border:
-    1px solid
-    var(--border);
-
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
-
   background: var(--surface);
-
   box-shadow: var(--shadow-sm);
 }
 
 .sidebar-section-header {
-
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
   padding: 11px 13px;
 
-  border-bottom:
-    1px solid
-    var(--border-light);
-
+  border-bottom: 1px solid var(--border-light);
   background: var(--accent-softer);
 }
 
 .sidebar-section-icon {
-
   display: flex;
-
   color: var(--green-800);
 }
 
 .sidebar-section-icon svg {
-
   width: 16px;
   height: 16px;
 }
 
 .sidebar-section-title {
-
   color: var(--green-900);
-
   font-size: 12px;
-
   font-weight: 700;
 }
 
-.sidebar-section-content {
-  padding: 12px;
-}
-
-
-/* GRAPH */
+.sidebar-section-content { padding: 12px; }
 
 .sidebar-graph {
-
   min-height: 170px;
-
   overflow: hidden;
-
   background: var(--bg);
 }
 
-
-/* BACKLINKS */
-
+/* Backlinks */
 .sidebar-backlink-list {
-
   display: flex;
-
   flex-direction: column;
-
   gap: 6px;
 }
 
 .sidebar-backlink-card {
-
   padding: 8px 9px;
-
-  border:
-    1px solid
-    var(--border-light);
-
+  border: 1px solid var(--border-light);
   border-radius: 7px;
-
   background: var(--bg);
 }
 
 .sidebar-backlink {
-
   color: var(--text-secondary) !important;
-
   font-size: 12px;
-
   border: 0 !important;
 }
 
 .sidebar-backlink:hover {
-
   color: var(--green-800) !important;
 }
 
 .sidebar-empty {
-
   color: var(--text-muted);
-
   font-size: 11px;
 }
 
-
 /* TOC */
-
-.sidebar-toc {
-  font-size: 12px;
-}
+.sidebar-toc { font-size: 12px; }
 
 .sidebar-toc ul {
-
   margin: 0;
-
   padding: 0;
-
   list-style: none;
 }
 
-.sidebar-toc li {
-  margin: 2px 0;
-}
+.sidebar-toc li { margin: 2px 0; }
 
 .sidebar-toc a {
-
   display: block;
-
   padding: 5px 8px;
 
   border-right: 2px solid transparent;
-
   color: var(--text-secondary);
-
   border-bottom: 0;
 
-  transition:
-    background .2s ease,
-    color .2s ease,
-    border-color .2s ease;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
 
 .sidebar-toc a:hover {
-
   background: var(--accent-softer);
-
   color: var(--green-800);
 }
 
 .sidebar-toc a.toc-active {
-
-  border-right-color:
-    var(--green-700);
-
+  border-right-color: var(--green-700);
   background: var(--accent-softer);
-
   color: var(--green-800);
-
   font-weight: 600;
 }
 
@@ -1173,78 +897,50 @@ a {
    ========================================================= */
 
 .note-footer {
-
-  width: min(760px, 100%);
-
+  width: min(var(--content-width), 100%);
   margin: 55px auto 0;
-
-  box-sizing: border-box;
 }
 
 
 /* =========================================================
-   FOOTER
+   SITE FOOTER
    ========================================================= */
 
 .site-footer {
-
   margin-top: 40px;
-
-  border-top:
-    1px solid
-    var(--border);
-
+  border-top: 1px solid var(--border);
   background: var(--surface);
 }
 
 .footer-inner {
-
-  width: min(1240px, calc(100% - 48px));
-
+  width: min(var(--container-width), calc(100% - 48px));
   margin: 0 auto;
-
   padding: 42px 0 25px;
 }
 
 .footer-brand-name {
-
   color: var(--green-900) !important;
-
   font-size: 17px;
-
   font-weight: 800;
 }
 
 .footer-description {
-
   margin: 6px 0 25px;
-
   color: var(--text-muted);
-
   font-size: 13px;
 }
 
 .footer-links {
-
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 18px;
-
   padding-bottom: 25px;
-
-  border-bottom:
-    1px solid
-    var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .footer-links a {
-
   color: var(--text-secondary);
-
   font-size: 13px;
-
   border: 0;
 }
 
@@ -1253,17 +949,11 @@ a {
 }
 
 .footer-bottom {
-
   display: flex;
-
   justify-content: space-between;
-
   gap: 20px;
-
   padding-top: 20px;
-
   color: var(--text-muted);
-
   font-size: 11px;
 }
 
@@ -1273,24 +963,16 @@ a {
    ========================================================= */
 
 .search-container {
-
-  border:
-    1px solid
-    var(--border) !important;
-
-  border-radius:
-    var(--radius-md) !important;
-
-  background:
-    var(--surface) !important;
-
-  box-shadow:
-    var(--shadow-md);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-md);
 }
 
 
 /* =========================================================
-   MOBILE FILETREE
+   MOBILE FILETREE TOGGLE
+   (دکمه «فهرست یادداشت‌ها» که فقط در موبایل ظاهر می‌شود)
    ========================================================= */
 
 .filetree-mobile-toggle {
@@ -1298,38 +980,50 @@ a {
 }
 
 .filetree-mobile-button {
-
   width: 100%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 7px;
 
-  padding: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 
-  border:
-    1px solid
-    var(--border);
+  background: var(--surface);
+  color: var(--green-800);
 
-  border-radius:
-    var(--radius-sm);
-
-  background:
-    var(--surface);
-
-  color:
-    var(--green-800);
-
-  font-family:
-    var(--font);
-
-  font-size: 13px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
 
   cursor: pointer;
+
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.filetree-mobile-button:hover,
+.filetree-mobile-button:active {
+  background: var(--accent-softer);
+  border-color: var(--green-700);
+  color: var(--green-900);
+}
+
+/* در دسکتاپ، دکمه موبایل مخفی */
+@media (min-width: 901px) {
+  .filetree-mobile-toggle { display: none; }
+}
+
+
+/* =========================================================
+   RESPONSIVE — LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1300px) {
+  .note-layout {
+    grid-template-columns: 200px minmax(0, 1fr) 200px;
+    gap: 25px;
+  }
 }
 
 
@@ -1338,56 +1032,48 @@ a {
    ========================================================= */
 
 @media (max-width: 1100px) {
-
   .note-layout {
-
-    grid-template-columns:
-      190px
-      minmax(500px, 760px)
-      190px;
-
-    gap: 25px;
+    grid-template-columns: 180px minmax(0, 1fr) 180px;
+    gap: 20px;
   }
 
   .navbar-inner {
-
-    width:
-      calc(100% - 30px);
+    width: calc(100% - 30px);
   }
 }
 
 
 /* =========================================================
    RESPONSIVE — SMALL TABLET
+   سایدبار راست به پایین، ستون چپ مخفی،
+   دکمه موبایل filetree نمایان
    ========================================================= */
 
 @media (max-width: 900px) {
 
   .note-layout {
-
-    width:
-      min(760px, calc(100% - 30px));
-
+    width: min(var(--content-width), calc(100% - 30px));
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "main"
-      "right"
-      "left";
+      "right";
+    gap: 25px;
   }
 
-  .note-left-column,
-  .note-right-column {
-
-    width: 100%;
+  .note-left-column {
+    display: none; /* در موبایل ستون چپ مخفی، دکمه فهرست نمایش داده می‌شود */
   }
 
+  .note-right-column,
   .site-sidebar {
+    width: 100%;
     padding-top: 0;
   }
 
   .filetree-system {
     position: static;
+    max-height: none;
+    overflow: visible;
   }
 
   .filetree-wrapper {
@@ -1401,6 +1087,15 @@ a {
   .note-page {
     padding-top: 35px;
   }
+
+  .note-container {
+    padding: 35px 0 60px;
+  }
+
+  /* در موبایل دکمه فهرست نمایان */
+  .filetree-mobile-toggle {
+    display: block;
+  }
 }
 
 
@@ -1411,56 +1106,40 @@ a {
 @media (max-width: 750px) {
 
   .note-container {
-
-    width:
-      calc(100% - 28px);
-
-    padding:
-      30px 0 60px;
+    width: calc(100% - 28px);
+    padding: 30px 0 60px;
   }
 
   .note-header,
   .note-content,
   .note-footer {
-
     width: 100%;
   }
 
   .note-title {
-
     font-size: 29px;
-
     line-height: 1.5;
   }
 
   .note-content {
-
-    font-size:
-      17px !important;
-
-    line-height:
-      2 !important;
+    font-size: 17px !important;
+    line-height: 2 !important;
   }
 
-  .note-content h1 {
-    font-size: 29px;
-  }
-
-  .note-content h2 {
-    font-size: 25px;
-  }
-
-  .note-content h3 {
-    font-size: 21px;
-  }
+  .note-content h1 { font-size: 29px; }
+  .note-content h2 { font-size: 25px; }
+  .note-content h3 { font-size: 21px; }
 
   .note-content table {
-
     display: block;
-
     overflow-x: auto;
-
     white-space: nowrap;
+  }
+
+  .note-content pre {
+    padding: 15px;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -1476,11 +1155,8 @@ a {
   }
 
   .navbar-inner {
-
     min-height: 62px;
-
-    width:
-      calc(100% - 24px);
+    width: calc(100% - 24px);
   }
 
   .navbar-brand {
@@ -1488,9 +1164,7 @@ a {
   }
 
   .note-container {
-
-    width:
-      calc(100% - 24px);
+    width: calc(100% - 24px);
   }
 
   .note-title {
@@ -1498,24 +1172,16 @@ a {
   }
 
   .note-content {
-
-    font-size:
-      16px !important;
-
-    line-height:
-      1.95 !important;
+    font-size: 16px !important;
+    line-height: 1.95 !important;
   }
 
   .footer-inner {
-
-    width:
-      calc(100% - 24px);
+    width: calc(100% - 24px);
   }
 
   .footer-bottom {
-
     flex-direction: column;
-
     gap: 7px;
   }
 }
@@ -1526,12 +1192,8 @@ a {
    ========================================================= */
 
 ::selection {
-
-  background:
-    var(--accent-soft);
-
-  color:
-    var(--green-900);
+  background: var(--accent-soft);
+  color: var(--green-900);
 }
 
 
@@ -1540,66 +1202,96 @@ a {
    ========================================================= */
 
 ::-webkit-scrollbar {
-
   width: 8px;
-
   height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-
   border-radius: 999px;
-
-  background:
-    #cbd4cf;
+  background: #cbd4cf;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-
-  background:
-    #aebbb4;
+  background: #aebbb4;
 }
 
 
 /* =========================================================
-   PRINT
+   REDUCED MOTION
    ========================================================= */
 
-@media print {
-
-  .site-navbar,
-  .site-sidebar,
-  .note-right-column {
-
-    display: none !important;
-  }
-
-  .note-container,
-  .note-layout {
-
-    display: block;
-
-    width: 100%;
-
-    max-width: none;
-  }
-
-  .note-page {
-
-    max-width: none;
-
-    padding: 0;
-  }
-
-  .note-content {
-
-    width: 100%;
-
-    max-width: none;
-  }
-
-  .site-footer {
-
-    display: none !important;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================================
+   DARK MODE (اختیاری — خودکار با تنظیمات سیستم)
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --bg: #161a18;
+    --surface: #1f2421;
+    --surface-soft: #262c28;
+
+    --text: #e6ebe8;
+    --text-secondary: #a8b2ac;
+    --text-muted: #7c8781;
+
+    --border: #2e3531;
+    --border-light: #262c28;
+
+    --accent-soft: #2a3b34;
+    --accent-softer: #1e2a25;
+
+    --green-900: #b8d6c8;
+    --green-800: #8fc4ae;
+    --green-700: #6fb096;
+  }
+
+  .site-navbar {
+    background: rgba(22, 26, 24, .95);
+  }
+
+  .note-content pre {
+    background: #0f1210;
+    color: #d8e0da;
+  }
+
+  .note-content code {
+    background: #232825;
+  }
+
+  .callout[data-callout="warning"],
+  .callout.callout-warning {
+    background: #2a241a;
+  }
+
+  .callout[data-callout="danger"],
+  .callout.callout-danger {
+    background: #2a1c1a;
+  }
+
+  .callout[data-callout="info"],
+  .callout.callout-info {
+    background: #1a222a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3a423d;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4b544f;
+  }
+}
+
+
+/* =========================================================
+  
