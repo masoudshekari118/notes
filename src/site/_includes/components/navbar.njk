@@ -1,167 +1,32 @@
-{% macro menuItem(fileOrFolderName, fileOrFolder, step, currentPath) %}
+<header class="site-navbar">
+  <div class="navbar-inner">
 
-  {% if fileOrFolder.isNote or fileOrFolder.isFolder %}
+    <a href="/" class="navbar-brand">
+      مسعود شکاری
+    </a>
 
-    <div
-      x-show="isOpen"
-      style="display:none"
-      class="{{ 'filelist' if step > 0 }}">
+    <nav class="navbar-actions">
 
-      {% if fileOrFolder.isNote and not fileOrFolder.hide %}
-
-        <div
-          @click.stop
-          class="notelink {{ 'active-note' if fileOrFolder.permalink === permalink }}">
-
-          <a
-            class="filename"
-            href="{{ fileOrFolder.permalink }}"
-            data-note-icon="{{ fileOrFolder.noteIcon }}">
-
-            {{ fileOrFolder.name }}
-
-          </a>
-
-        </div>
-
-      {% elif fileOrFolder.isFolder %}
-
-        <div
-          class="folder inner-folder"
-          x-data="{isOpen: $persist(false).as({{currentPath | dump}})}"
-          @click.stop="isOpen=!isOpen">
-
-          <div class="foldername-wrapper">
-
-            <i
-              x-show="isOpen"
-              style="display:none"
-              data-lucide="chevron-down">
-            </i>
-
-            <i
-              x-show="!isOpen"
-              data-lucide="chevron-right">
-            </i>
-
-            <span class="foldername">
-              {{ fileOrFolderName }}
-            </span>
-
-          </div>
-
-          {% for fileOrFolderName, child in fileOrFolder %}
-
-            {{ menuItem(
-              fileOrFolderName,
-              child,
-              step + 1,
-              currentPath + "/" + fileOrFolderName
-            ) }}
-
-          {% endfor %}
-
-        </div>
-
-      {% endif %}
-
-    </div>
-
-  {% endif %}
-
-{% endmacro %}
-
-
-<div
-  class="filetree-system"
-  x-data="{isDesktop: true, showFilesMobile: false}"
-  x-init="isDesktop = window.innerWidth >= 1000">
-
-  <div
-    class="filetree-mobile-toggle"
-    x-show="!isDesktop"
-    style="display:none">
-
-    <button
-      type="button"
-      @click="showFilesMobile = !showFilesMobile"
-      class="filetree-mobile-button">
-
-      <i data-lucide="list"></i>
-      <span>فهرست یادداشت‌ها</span>
-
-    </button>
-
-  </div>
-
-
-  <div
-    x-show="isDesktop || showFilesMobile"
-    style="display:none"
-    class="filetree-wrapper">
-
-    <nav class="filetree-sidebar">
-
-
-      <a
-        href="/"
-        class="filetree-site-icon"
-        aria-label="صفحه اصلی">
-
-        <img
-          src="https://tse1.mm.bing.net/th/id/OIP.w1tyddMjShF4Pu_7vBD9NgAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-          alt="مسعود شکری">
-
+      <a href="/" class="navbar-action">
+        خانه
       </a>
 
+      <a href="/notes/" class="navbar-action">
+        یادداشت‌ها
+      </a>
 
-      <div class="filetree-heading">
+      <a href="/about/" class="navbar-action">
+        درباره
+      </a>
 
-        <span class="filetree-heading-title">
-          یادداشت‌ها
-        </span>
-
-        <span class="filetree-heading-subtitle">
-          دانش و ایده‌ها
-        </span>
-
-      </div>
-
-
-      {% if settings.dgEnableSearch === true %}
-
-        <div class="filetree-search">
-
-          {% include "components/searchButton.njk" %}
-
-        </div>
-
-      {% endif %}
-
-
-      <div class="filetree-list">
-
-        <div
-          class="folder"
-          x-data="{isOpen: true}">
-
-          {% for fileOrFolderName, fileOrFolder in filetree %}
-
-            {{ menuItem(
-              fileOrFolderName,
-              fileOrFolder,
-              0,
-              fileOrFolderName
-            ) }}
-
-          {% endfor %}
-
-        </div>
-
-      </div>
+      <button
+        type="button"
+        class="navbar-action navbar-search-button"
+        id="searchBtn">
+        جستجو
+      </button>
 
     </nav>
 
   </div>
-
-</div>
+</header>
