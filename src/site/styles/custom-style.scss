@@ -1,14 +1,16 @@
 /* =========================================================
    MASOUD SHEKARI
    پژوهشگر، مدرس دانشگاه، مشاور
-   نسخه بازنویسی‌شده و اصلاح‌شده
+   نسخه بازنویسی‌شده و اصلاح‌شده — v2.0
    ========================================================= */
+
 
 /* =========================================================
    VARIABLES
    ========================================================= */
 
 :root {
+  /* --- رنگ‌های اصلی --- */
   --green-900: #173f34;
   --green-800: #1f5d4a;
   --green-700: #28745d;
@@ -27,13 +29,16 @@
   --accent-soft: #ddebe5;
   --accent-softer: #edf4f1;
 
+  /* --- سایه‌ها --- */
   --shadow-sm: 0 2px 12px rgba(24, 54, 44, .05);
   --shadow-md: 0 8px 30px rgba(24, 54, 44, .08);
 
+  /* --- شعاع گوشه --- */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
 
+  /* --- فونت --- */
   --font: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
 
   /* --- ابعاد ساختاری --- */
@@ -457,7 +462,6 @@ video {
   box-shadow: var(--shadow-sm);
 }
 
-/* اگر داخل لینک باشند */
 .note-content a img {
   transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -625,7 +629,6 @@ video {
   box-shadow: var(--shadow-sm);
 }
 
-/* آیکون سایت */
 .filetree-site-icon {
   display: flex;
   align-items: center;
@@ -642,7 +645,6 @@ video {
   box-shadow: var(--shadow-sm);
 }
 
-/* سربرگ */
 .filetree-heading {
   display: flex;
   flex-direction: column;
@@ -663,12 +665,10 @@ video {
   font-size: 11px;
 }
 
-/* جستجو */
 .filetree-search {
   margin-bottom: 15px;
 }
 
-/* لیست فایل‌ها */
 .filetree-list {
   border-top: 1px solid var(--border-light);
   padding-top: 12px;
@@ -708,7 +708,6 @@ video {
   font-weight: 700;
 }
 
-/* پوشه‌ها */
 .filetree-list .foldername-wrapper {
   display: flex;
   align-items: center;
@@ -729,12 +728,10 @@ video {
 
 
 /* =========================================================
-   LEGACY THREE COLUMN SUPPORT
-   (اصلاح‌شده — بدون تداخل width)
+   LEGACY THREE COLUMN LAYOUT
    ========================================================= */
 
 .note-layout {
-  /* دیگر width مستقل ندارد؛ داخل note-container قرار می‌گیرد */
   width: 100%;
   margin: 0 auto;
 
@@ -765,7 +762,6 @@ video {
   max-width: none;
 }
 
-/* وقتی note-layout تنها عنصر داخل note-container است */
 .note-container > .note-layout {
   padding: 0;
 }
@@ -828,7 +824,6 @@ video {
   background: var(--bg);
 }
 
-/* Backlinks */
 .sidebar-backlink-list {
   display: flex;
   flex-direction: column;
@@ -857,7 +852,6 @@ video {
   font-size: 11px;
 }
 
-/* TOC */
 .sidebar-toc { font-size: 12px; }
 
 .sidebar-toc ul {
@@ -972,7 +966,6 @@ video {
 
 /* =========================================================
    MOBILE FILETREE TOGGLE
-   (دکمه «فهرست یادداشت‌ها» که فقط در موبایل ظاهر می‌شود)
    ========================================================= */
 
 .filetree-mobile-toggle {
@@ -1045,8 +1038,6 @@ video {
 
 /* =========================================================
    RESPONSIVE — SMALL TABLET
-   سایدبار راست به پایین، ستون چپ مخفی،
-   دکمه موبایل filetree نمایان
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -1061,7 +1052,13 @@ video {
   }
 
   .note-left-column {
-    display: none; /* در موبایل ستون چپ مخفی، دکمه فهرست نمایش داده می‌شود */
+    display: none;
+  }
+
+  .note-left-column.is-open {
+    display: block;
+    margin-top: 15px;
+    grid-area: left;
   }
 
   .note-right-column,
@@ -1092,7 +1089,6 @@ video {
     padding: 35px 0 60px;
   }
 
-  /* در موبایل دکمه فهرست نمایان */
   .filetree-mobile-toggle {
     display: block;
   }
@@ -1230,7 +1226,7 @@ video {
 
 
 /* =========================================================
-   DARK MODE (اختیاری — خودکار با تنظیمات سیستم)
+   DARK MODE
    ========================================================= */
 
 @media (prefers-color-scheme: dark) {
@@ -1294,4 +1290,55 @@ video {
 
 
 /* =========================================================
-  
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  .site-navbar,
+  .site-sidebar,
+  .note-right-column,
+  .filetree-mobile-toggle {
+    display: none !important;
+  }
+
+  .note-container,
+  .note-layout {
+    display: block;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  .note-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .note-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .note-content pre,
+  .note-content img,
+  .note-content table,
+  .note-content blockquote {
+    break-inside: avoid;
+  }
+
+  .note-content a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .note-content a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: .8em;
+    color: #555;
+  }
+
+  .site-footer {
+    display: none !important;
+  }
+}
