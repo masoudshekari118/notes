@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"/scroll-until-infinity","permalink":"/scroll-until-infinity/","tags":["سبک_زندگی_دیجیتال"],"dg-note-properties":{"tags":["سبک_زندگی_دیجیتال"]}}
+{"dg-publish":true,"dg-home":"true","tags":["سبک_زندگی_دیجیتال"],"dg-note-properties":{"tags":["سبک_زندگی_دیجیتال"]}}
 ---
 
 
