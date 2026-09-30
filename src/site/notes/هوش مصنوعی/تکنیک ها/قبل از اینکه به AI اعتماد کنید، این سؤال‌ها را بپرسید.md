@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/hwsh-msnwey/tknyk-ha/qbl-az-aynkh-bh-ai-aetmad-knyd-ayn-swal-ha-ra-bprsyd/","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/hwsh-msnwey/tknyk-ha/qbl-az-aynkh-bh-ai-aetmad-knyd-ayn-swal-ha-ra-bprsyd/","dgPassFrontmatter":true,"dg-note-properties":{}}
 ---
 
 

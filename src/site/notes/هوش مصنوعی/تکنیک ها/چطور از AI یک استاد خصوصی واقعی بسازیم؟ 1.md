@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"nofekr/ai-tutor","permalink":"/nofekr/ai-tutor/","dg-note-properties":{}}
+{"dg-publish":true,"dg-permalink":"nofekr/ai-tutor","permalink":"/nofekr/ai-tutor/","dgPassFrontmatter":true,"dg-note-properties":{}}
 ---
 
 
