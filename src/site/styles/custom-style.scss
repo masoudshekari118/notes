@@ -1,73 +1,128 @@
-// وارد کردن فونت وزیرمتن از گوگل فونت
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+/* ==========================================================================
+   ۱. بارگذاری فونت وزیرمتن و اعمال به کل اجزای سایت
+   ========================================================================== */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+html, body, * {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
 
 body {
-    // ۳- فونت کل نوشته‌ها به وزیرمتن تغییر کرد
-    font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
 
-    // ۷- همه متن‌ها راست‌چین و جاستیفای شدند
-    direction: rtl;
-    text-align: right;
+/* ==========================================================================
+   ۲. انتقال منو (سایدبار) به سمت راست و قابلیت تغییر اندازه (Resize)
+   ========================================================================== */
+/* برعکس کردن ترتیب ستون‌ها در بدنه اصلی تا منوی سمت چپ به راست منتقل شود */
+.body,
+.site-body,
+.wrapper,
+main {
+  flex-direction: row-reverse !important;
+}
 
-    // ۱- حذف عنوان «خانه» از بالای صفحه اصلی
-    // این کد عنوان صفحه اصلی را پنهان می‌کند
-    .page-header {
-        h1 {
-            display: none;
-        }
-    }
+/* تنظیمات سایدبار راست و فعال‌سازی قابلیت کشیدن با ماوس */
+.sidebar,
+.site-body-left-column {
+  border-left: 1px solid var(--background-modifier-border, #e0e0e0) !important;
+  border-right: none !important;
+  resize: horizontal !important;
+  overflow-x: auto !important;
+  min-width: 240px;
+  max-width: 500px;
+}
 
-    // ۴- تغییر اندازه و چیدمان عنوان سایت
-    // نام «مسعود شکری» بزرگ‌تر و بقیه متن کوچک‌تر در یک خط
-    .site-name {
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-        gap: 10px;
+/* فیلد جستجو و لیست موضوعات داخل سایدبار */
+.sidebar input[type="search"],
+.sidebar .search-bar {
+  text-align: right !important;
+  direction: rtl !important;
+}
 
-        // فرض بر این است که نام و توضیحات در المان‌های جداگانه هستند
-        // اگر کلاس‌های متفاوتی داری، این قسمت را تغییر بده
-        .site-title {
-            font-size: 1.6em;
-            font-weight: bold;
-        }
+/* ==========================================================================
+   ۳. حذف تیتر تکراری «خانه» از بالای صفحه
+   ========================================================================== */
+.content h1:first-of-type,
+.note-header-container,
+.cm-header-1:first-child {
+  display: none !important;
+}
 
-        .site-description {
-            font-size: 0.8em;
-            font-weight: normal;
-        }
-    }
+/* ==========================================================================
+   ۴. استایل عنوان سایت در سایدبار (مسعود شکری و زیرعنوان در یک خط)
+   ========================================================================== */
+.sidebar h1,
+.site-title,
+.site-body-left-column .header {
+  font-size: 1.45rem !important;
+  line-height: 1.6 !important;
+  white-space: normal;
+}
 
-    // ۸- حاشیه و کرو کردن گوشه‌های عکس‌ها
-    img {
-        border-radius: 12px;
-        border: 2px solid #e0e0e0;
-        padding: 4px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        max-width: 100%;
-        height: auto;
-    }
+/* کوچک‌تر شدن متن توضیحات پایین نام */
+.sidebar h1 span,
+.site-title span,
+.site-title small {
+  font-size: 0.85rem !important;
+  font-weight: normal !important;
+  display: block;
+  white-space: nowrap; /* تک‌خطی ماندن متن توضیحات */
+  margin-top: 6px;
+  opacity: 0.85;
+}
 
-    // برای عکس‌هایی که به صورت SVG هستند
-    svg {
-        border-radius: 12px;
-        border: 2px solid #e0e0e0;
-        padding: 4px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    }
+/* ==========================================================================
+   ۵. انتقال آیکون شناور گوشه پایین به سمت چپ
+   ========================================================================== */
+.theme-toggle-container,
+.floating-controls,
+.sidebar-toggle,
+.theme-toggle,
+div[class*="toggle"],
+button[class*="toggle"] {
+  right: auto !important;
+  left: 24px !important;
+}
 
-    // ۷- جاستیفای کردن متن‌های پاراگراف (متن‌های اصلی نوشته‌ها)
-    p, li, blockquote {
-        text-align: justify;
-    }
+/* ==========================================================================
+   ۶. ترازبندی، راست‌چین و جاستیفای متن‌های محتوا
+   ========================================================================== */
+.content,
+.markdown-rendered,
+article,
+p {
+  direction: rtl !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  line-height: 2 !important;
+}
 
-    // ۶- انتقال دکمه شناور به پایین سمت چپ
-    // اگر شناسه (ID) دکمه شناور تو متفاوت است، این قسمت را تغییر بده
-    #floating-control-random, .floating-control {
-        position: fixed;
-        bottom: 1vmax;
-        left: 1vmax;
-        right: auto;
-        z-index: 999999;
-    }
+.content h2,
+.content h3,
+.content h4 {
+  text-align: right !important;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* ==========================================================================
+   ۷. کادر زیبا، انحنا و سایه برای تصاویر داخل متن‌ها
+   ========================================================================== */
+.content img,
+.markdown-rendered img {
+  display: block !important;
+  margin: 25px auto !important;
+  max-width: 90% !important;
+  border-radius: 16px !important;                               /* لبه‌های گرد */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;            /* کادر ظریف */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07) !important;       /* سایه نرم دور تصویر */
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.content img:hover,
+.markdown-rendered img:hover {
+  transform: translateY(-2px) scale(1.008) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
 }
