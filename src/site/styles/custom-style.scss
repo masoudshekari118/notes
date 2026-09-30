@@ -1,13 +1,73 @@
+// وارد کردن فونت وزیرمتن از گوگل فونت
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
 body {
-    /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-      IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
-   ***/
-    //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
-    //  h1 {
-    //   color: black;
-    //  }
+    // ۳- فونت کل نوشته‌ها به وزیرمتن تغییر کرد
+    font-family: 'Vazirmatn', sans-serif;
+
+    // ۷- همه متن‌ها راست‌چین و جاستیفای شدند
+    direction: rtl;
+    text-align: right;
+
+    // ۱- حذف عنوان «خانه» از بالای صفحه اصلی
+    // این کد عنوان صفحه اصلی را پنهان می‌کند
+    .page-header {
+        h1 {
+            display: none;
+        }
+    }
+
+    // ۴- تغییر اندازه و چیدمان عنوان سایت
+    // نام «مسعود شکری» بزرگ‌تر و بقیه متن کوچک‌تر در یک خط
+    .site-name {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 10px;
+
+        // فرض بر این است که نام و توضیحات در المان‌های جداگانه هستند
+        // اگر کلاس‌های متفاوتی داری، این قسمت را تغییر بده
+        .site-title {
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        .site-description {
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+    }
+
+    // ۸- حاشیه و کرو کردن گوشه‌های عکس‌ها
+    img {
+        border-radius: 12px;
+        border: 2px solid #e0e0e0;
+        padding: 4px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        max-width: 100%;
+        height: auto;
+    }
+
+    // برای عکس‌هایی که به صورت SVG هستند
+    svg {
+        border-radius: 12px;
+        border: 2px solid #e0e0e0;
+        padding: 4px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    // ۷- جاستیفای کردن متن‌های پاراگراف (متن‌های اصلی نوشته‌ها)
+    p, li, blockquote {
+        text-align: justify;
+    }
+
+    // ۶- انتقال دکمه شناور به پایین سمت چپ
+    // اگر شناسه (ID) دکمه شناور تو متفاوت است، این قسمت را تغییر بده
+    #floating-control-random, .floating-control {
+        position: fixed;
+        bottom: 1vmax;
+        left: 1vmax;
+        right: auto;
+        z-index: 999999;
+    }
 }
