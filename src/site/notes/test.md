@@ -30,26 +30,94 @@
 - **افزایش اضطراب و بی‌قراری ذهنی.**
     
 
----
-### چطور میشه از این چرخه بیرون اومد؟
 
-1. **آگاهانه مصرف کن:** فقط برای هدف خاص وارد شبکه اجتماعی شو، نه برای وقت‌گذرونی.
-    
-2. **زمان‌بندی کن:** اپ‌هایی مثل _Digital Wellbeing_ (اندروید) یا _Screen Time_ (iOS) می‌تونن بهت نشون بدن چقدر وقتت داره تلف می‌شه.
-    
-3. **حذف یا محدود کردن نوتیفیکیشن‌ها:** اعلان‌ها همون دروازه‌ی ورود به اسکرول بی‌پایانن!
-    
-4. **استفاده از ابزارهای بازدارنده:** افزونه‌هایی مثل _News Feed Eradicator_ یا _Unhook_ (برای YouTube) محتوای اصلی رو مخفی می‌کنن.
-    
-5. **جایگزین بساز:** به‌جای حذف کامل، محتوای ارزشمند جایگزین کن. مثلاً دنبال‌کردن کانال‌های آموزشی، کتاب صوتی، یا اپ‌هایی مثل _Readwise Reader_ برای مطالعه‌ی مفید.
-    
 
----
-### یک تمرین ساده برای امروز:
 
-گوشی‌تو بردار، وارد اینستاگرام یا هر شبکه اجتماعی دیگه شو، و دقیقه‌شمار بذار. ببین چند دقیقه‌ست که اسکرول می‌کنی بدون اینکه متوجه بشی؟ بعد، از خودت بپرس: آیا چیزی بهم اضافه شد؟ یا فقط سرگرم شدم؟
 
----
-### سخن آخر
+```dataviewjs
+const container = dv.el("div", "");
 
-اسکرول بی‌نهایت یکی از هزاران ترفند طراحی اعتیادآور در دنیای دیجیتال امروزه. اما حالا که دلیل و سازوکارش رو فهمیدی، می‌تونی با آگاهی بیشتری انتخاب کنی که وقتت، توجهت و انرژی روانی‌ت رو به کجا هدایت کنی. زندگی ارزشمندتر از اونیه که بی‌هدف با انگشت، رو صفحه بالا پایینش کنیم...
+container.innerHTML = `
+<style>
+  .interactive-box {
+    font-family: Tahoma, sans-serif;
+    direction: rtl;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .interactive-box h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .button-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .interactive-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4a90d9;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+  .interactive-btn:hover {
+    background: #357ab8;
+  }
+  .interactive-btn.active {
+    background: #2c5f8a;
+  }
+  .content-box {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    min-height: 80px;
+    line-height: 1.8;
+    color: #444;
+    border: 1px solid #e0e0e0;
+  }
+</style>
+
+<div class="interactive-box">
+  <h2>موضوع را انتخاب کنید</h2>
+  <div class="button-row">
+    <button class="interactive-btn" data-target="item1">موضوع اول</button>
+    <button class="interactive-btn" data-target="item2">موضوع دوم</button>
+    <button class="interactive-btn" data-target="item3">موضوع سوم</button>
+  </div>
+  <div class="content-box" id="content-display">
+    لطفاً یکی از موضوعات بالا را انتخاب کنید.
+  </div>
+</div>
+
+<script>
+  const contents = {
+    item1: "این توضیحات مربوط به موضوع اول است. می‌توانی هر متنی اینجا بنویسی.",
+    item2: "این توضیحات مربوط به موضوع دوم است. کاملاً قابل تغییر است.",
+    item3: "این توضیحات مربوط به موضوع سوم است. هر تعداد موضوع می‌توانی اضافه کنی."
+  };
+
+  const buttons = document.querySelectorAll(".interactive-btn");
+  const display = document.getElementById("content-display");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const target = btn.getAttribute("data-target");
+      display.innerHTML = contents[target];
+    });
+  });
+</script>
+`;
+```
