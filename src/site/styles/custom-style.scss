@@ -12,34 +12,6 @@ body {
   text-align: right;
 }
 
-/* ==========================================================================
-   ۲. انتقال منو (سایدبار) به سمت راست و قابلیت تغییر اندازه (Resize)
-   ========================================================================== */
-/* برعکس کردن ترتیب ستون‌ها در بدنه اصلی تا منوی سمت چپ به راست منتقل شود */
-.body,
-.site-body,
-.wrapper,
-main {
-  flex-direction: row-reverse !important;
-}
-
-/* تنظیمات سایدبار راست و فعال‌سازی قابلیت کشیدن با ماوس */
-.sidebar,
-.site-body-left-column {
-  border-left: 1px solid var(--background-modifier-border, #e0e0e0) !important;
-  border-right: none !important;
-  resize: horizontal !important;
-  overflow-x: auto !important;
-  min-width: 240px;
-  max-width: 500px;
-}
-
-/* فیلد جستجو و لیست موضوعات داخل سایدبار */
-.sidebar input[type="search"],
-.sidebar .search-bar {
-  text-align: right !important;
-  direction: rtl !important;
-}
 
 /* ==========================================================================
    ۳. حذف تیتر تکراری «خانه» از بالای صفحه
@@ -50,41 +22,8 @@ main {
   display: none !important;
 }
 
-/* ==========================================================================
-   ۴. استایل عنوان سایت در سایدبار (مسعود شکری و زیرعنوان در یک خط)
-   ========================================================================== */
-.sidebar h1,
-.site-title,
-.site-body-left-column .header {
-  font-size: 1.45rem !important;
-  line-height: 1.6 !important;
-  white-space: normal;
-}
 
-/* کوچک‌تر شدن متن توضیحات پایین نام */
-.sidebar h1 span,
-.site-title span,
-.site-title small {
-  font-size: 0.85rem !important;
-  font-weight: normal !important;
-  display: block;
-  white-space: nowrap; /* تک‌خطی ماندن متن توضیحات */
-  margin-top: 6px;
-  opacity: 0.85;
-}
 
-/* ==========================================================================
-   ۵. انتقال آیکون شناور گوشه پایین به سمت چپ
-   ========================================================================== */
-.theme-toggle-container,
-.floating-controls,
-.sidebar-toggle,
-.theme-toggle,
-div[class*="toggle"],
-button[class*="toggle"] {
-  right: auto !important;
-  left: 24px !important;
-}
 
 /* ==========================================================================
    ۶. ترازبندی، راست‌چین و جاستیفای متن‌های محتوا
@@ -94,7 +33,6 @@ button[class*="toggle"] {
 article,
 p {
   direction: rtl !important;
-  text-align: justify !important;
   text-justify: inter-word !important;
   line-height: 2 !important;
 }
