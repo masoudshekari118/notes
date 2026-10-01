@@ -94,3 +94,79 @@ pre, code {
 }
 
 
+/* ثابت نگه داشتن نوار در بالاترین نقطه صفحه */
+.custom-top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 9999; /* بالاتر از همه عناصر و سایدبار */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  
+  /* افکت شیشه‌ای مدرن */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* برای حالت دارک مود */
+body.theme-dark .custom-top-nav {
+  background: rgba(20, 20, 20, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* فاصله دادن به کل محتوای صفحه تا زیر نوار پنهان نشود */
+body {
+  padding-top: 60px !important;
+}
+
+/* استایل عنوان سایت در نوار */
+.custom-top-nav .nav-brand a {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1e5e3a;
+  text-decoration: none;
+}
+
+/* استایل لینک‌ها */
+.custom-top-nav .nav-menu {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.custom-top-nav .nav-btn {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e5e3a;
+  background: rgba(30, 94, 58, 0.08);
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.custom-top-nav .nav-btn:hover {
+  background: #1e5e3a;
+  color: #ffffff;
+}
+
+body.theme-dark .custom-top-nav .nav-btn {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+}
+
+body.theme-dark .custom-top-nav .nav-btn:hover {
+  background: #4ade80;
+  color: #121212;
+}
+
+
+
