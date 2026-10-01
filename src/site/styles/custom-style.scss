@@ -179,3 +179,99 @@ body.theme-dark .custom-top-nav .nav-btn:hover {
     padding-top: 0 !important;
   }
 }
+
+
+
+
+/* ==============================================
+   ۱. تنظیمات دسکتاپ: جایگزینی متن با لوگو + لینک و فاصله
+   ============================================== */
+@media (min-width: 769px) {
+  /* تنظیم فاصله بالای سایدبار منوی درختی تا زیر نوار ناوبری نیفتد */
+  .filetree-sidebar,
+  aside.sidebar,
+  .sidebar-container {
+    margin-top: 25px !important;
+  }
+
+  /* مخفی کردن متن عنوان فقط در کامپیوتر و نمایش لوگو به جای آن */
+  .filetree-sidebar h1,
+  .filetree-sidebar .site-name,
+  .sidebar-container h1 {
+    font-size: 0 !important; /* پنهان کردن متن */
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+    line-height: 0 !important;
+  }
+
+  /* تزریق تصویر لوگو */
+  .filetree-sidebar h1 a,
+  .filetree-sidebar .site-name a,
+  .sidebar-container h1 a {
+    display: inline-block !important;
+    font-size: 0 !important;
+    width: 140px; /* پهنای لوگو */
+    height: 70px; /* ارتفاع لوگو */
+    background: url('/img/mylogo.png') no-repeat center right / contain !important;
+    text-indent: -9999px;
+    cursor: pointer;
+  }
+}
+
+/* ==============================================
+   ۲. فارسی‌سازی متن کادر جستجو (تبدیل به "جستجو:")
+   ============================================== */
+.search-button .search-placeholder,
+.search-bar input::placeholder,
+#search-input::placeholder {
+  color: transparent !important;
+}
+
+.search-button .search-placeholder::before,
+.search-bar::after {
+  content: "جستجو:" !important;
+  color: var(--text-muted, #666);
+  font-family: var(--font-default);
+  font-size: 0.9rem;
+}
+
+/* ==============================================
+   ۳. تفکیک و مشخص کردن زیرمجموعه‌های منوی درختی
+   ============================================== */
+/* خط نشانگر عمودی و تورفتگی برای موضوعات زیرمجموعه */
+.file-tree ul ul,
+.nav-group ul {
+  padding-right: 14px !important; /* فاصله به داخل در حالت راست‌چین */
+  margin-right: 6px !important;
+  border-right: 2px solid rgba(30, 94, 58, 0.25) !important; /* خط شاخه‌ای سبز ملایم */
+}
+
+/* رنگ متمایز و ملایم‌تر برای آیتم‌های زیرمجموعه */
+.file-tree ul ul li a,
+.nav-group ul li a {
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+.file-tree ul ul li a:hover,
+.nav-group ul li a:hover {
+  color: #1e5e3a !important; /* تغییر رنگ هنگام هاور */
+  opacity: 1;
+  transform: translateX(-3px); /* حرکت جزیی به چپ برای پویایی */
+}
+
+/* ==============================================
+   ۴. تنظیمات مخصوص گوشی (موبایل)
+   ============================================== */
+@media (max-width: 768px) {
+  /* لوگو در گوشی نمایش داده نمی‌شود و همان متن حفظ می‌شود */
+  .filetree-sidebar h1,
+  .sidebar-container h1 {
+    font-size: 1.05rem !important; /* فونت کوچک‌تر و شکیل در گوشی */
+    line-height: 1.5 !important;
+    margin: 10px 0 !important;
+    font-weight: 700 !important;
+  }
+}
