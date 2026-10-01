@@ -65,3 +65,37 @@ img {
     margin-right: auto;
 }
 
+
+/* تنظیم ظاهر مدرن برای بدنه و کارت‌های یادداشت */
+.content {
+  max-width: 780px; /* جلوگیری از کشیده شدن بیش از حد خطوط متن */
+  margin: 0 auto;
+}
+
+/* بهبود استایل لینک‌های درونی (Wikilinks) */
+a.internal-link {
+  text-decoration: none;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+a.internal-link:hover {
+  background: rgba(37, 99, 235, 0.18);
+  color: #1d4ed8;
+}
+
+/* حاشیه مدرن برای تصاویر و بلوک‌های کد */
+img {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+pre, code {
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+}
+
+
