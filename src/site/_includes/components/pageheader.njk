@@ -1,6 +1,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- رنگ تم نوار ابزار مرورگرها بر اساس رنگ سبز برند -->
+<meta name="theme-color" content="#1e5e3a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+
+<!-- بهبود سرعت لود فونت و CDNها -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+
+<!-- فونت فارسی وزیرمتن با کش جهانی سریع -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+
 {% if metatags %}
     {% for name, content in metatags %}
         {% if name.includes("og:") %}
@@ -74,5 +86,17 @@
         }
     </style>
 {% endif %}
+
+<!-- تنظیمات پایه تایپوگرافی و جهت نوشتاری فارسی -->
 <style>
+    :root {
+        --font-default: 'Vazirmatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        --font-text-theme: 'Vazirmatn', sans-serif !important;
+        --font-interface: 'Vazirmatn', sans-serif !important;
+    }
+    html, body {
+        font-family: var(--font-default);
+        direction: rtl;
+        text-align: right;
+    }
 </style>
